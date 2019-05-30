@@ -37,5 +37,9 @@ export class SubCategoryComponent implements OnInit {
 
      
   }
-
+  loadItemBySubCatId(item  ) {
+    debugger
+    this.router.navigate(['/items']);
+  }
+  
 }

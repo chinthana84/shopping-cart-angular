@@ -20,7 +20,9 @@ import { AllCategoryComponent } from './all-category/all-category.component'
 
 import { ChiGridModule } from './_shared/_grid/chi-grid.module';;
 import { SubCategoryComponent } from './all-category/sub-category/sub-category.component'
- 
+;
+import { ItemsComponent } from './all-category/items/items.component' ;
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
 @NgModule({
     imports: [
         BrowserModule,
@@ -37,8 +39,10 @@ import { SubCategoryComponent } from './all-category/sub-category/sub-category.c
         LoginComponent,
         RegisterComponent,
         AllCategoryComponent ,
-        SubCategoryComponent 
-         ],
+        SubCategoryComponent ,
+        ItemsComponent
+,
+        ShoppingCartComponent         ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 

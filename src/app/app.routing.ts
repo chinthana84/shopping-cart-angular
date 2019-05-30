@@ -6,6 +6,8 @@ import { RegisterComponent } from './register';
 import { AuthGuard } from './_guards'; 
 import { AllCategoryComponent } from './all-category/all-category.component';
 import { SubCategoryComponent } from './all-category/sub-category/sub-category.component';
+import { ItemsComponent } from './all-category/items/items.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -13,6 +15,8 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'allCategory', component: AllCategoryComponent },
     { path: 'subCategory', component: SubCategoryComponent },
+     { path: 'items', component: ItemsComponent },   
+     { path: 'shoppinCart', component: ShoppingCartComponent },   
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

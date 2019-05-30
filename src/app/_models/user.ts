@@ -7,3 +7,11 @@
     token: string;
 }
 
+export class Item{
+    itemName?:string;
+    itemId?:number;
+    price?:number;
+    qty?:number;
+}
+
+ 

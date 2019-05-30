@@ -21,22 +21,25 @@ export class AllCategoryComponent implements OnInit {
 
   searchObject:SearchObject={};
   gridOption: GridOptions={
-          colNames:[  {colName:'id'},{colName:'description'}  ] ,
+          colNames:[  {colName:'categoryId'},{colName:'description'}  ] ,
           datas:{ }
   }
-   
-
-  
+ 
     setPage(obj:SearchObject) {
       debugger 
       obj.girdId=1;
-      obj.defaultSortColumnName="id";
+      obj.defaultSortColumnName="categoryId";
   
       this.allCategoryService.getAllCategory(obj).subscribe((data:any)=>{
         this.gridOption.datas =data; 
       });  
 
      
+  }
+
+  selectedCategory(item  ) {
+    debugger
+    this.router.navigate(['/subCategory']);
   }
 
 }

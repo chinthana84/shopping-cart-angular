@@ -18,7 +18,8 @@ import { RegisterComponent } from './register';;
 import { AllCategoryComponent } from './all-category/all-category.component'
 
 
-import { ChiGridModule } from './_shared/_grid/chi-grid.module';
+import { ChiGridModule } from './_shared/_grid/chi-grid.module';;
+import { SubCategoryComponent } from './all-category/sub-category/sub-category.component'
  
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { ChiGridModule } from './_shared/_grid/chi-grid.module';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        AllCategoryComponent  
+        AllCategoryComponent ,
+        SubCategoryComponent 
          ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

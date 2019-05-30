@@ -4,5 +4,6 @@ export class SearchObject{
     pageNo?:number;
     girdId?:number;
     defaultSortColumnName?:string;
+    passingId?:number;
   }
   

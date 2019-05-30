@@ -13,12 +13,13 @@
  <div class="row">
    <div class="col" *ngFor="let item of gridOption.datas.pagedItems">
     <div class="card   mb-3" style="min-width: 15rem;max-width: 15rem">
-      <a href="#">
-      <img alt="Card image cap" class="card-img-topa img-fluid" src="https://www.buyasianfood.com.au/adm/thumbnailer.aspx?src=/CtgImg/IMG_1492-1300x867.jpg&bgcolor=FFFFFF&width=300&height=300" />
+      <a  >
+      <img alt="Card image cap" (click)="selectedCategory(item)" class="card-img-topa img-fluid"
+      src="assets/images/Category.jpg" />
       </a>
       <div class="card-body text-primary">
         <h5 class="card-title">{{item.description}}</h5>
-        <h5 class="card-title">{{item.id}}</h5>
+        <h5 class="card-title">{{item.categoryId}}</h5>
                 <h5 class="card-title">{{item.isSubCat}}</h5>
       </div>
 
@@ -27,18 +28,7 @@
    </div>
   
 
-<!-- <table class="table table-bordered" >
-   <tr>
-       <th>ID</th>
-       <th>First Name</th>
-       <th>Last Name</th>
-     </tr>
-<tr *ngFor="let item of gridOption.datas.pagedItems">
- <td>{{item.id}}</td>
- <td>{{item.description}}</td>
- <td>{{item.LastName}}</td>
-</tr>
+ 
 
-</table> -->
 
 <app-pager (pagedClicked)="setPage($event)" [pagerX]="gridOption"></app-pager>  

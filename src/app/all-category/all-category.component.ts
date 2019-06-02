@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AllCategoryService } from '@app/_services/all-category.service';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
@@ -11,7 +11,8 @@ import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
 export class AllCategoryComponent implements OnInit {
 
   constructor(private router: Router, 
-    private allCategoryService:AllCategoryService) { }
+    private allCategoryService:AllCategoryService,
+    private route: ActivatedRoute) { }
   
   ngOnInit() {
     debugger;
@@ -38,8 +39,7 @@ export class AllCategoryComponent implements OnInit {
   }
 
   selectedCategory(item  ) {
-    debugger
-    this.router.navigate(['/subCategory']);
+    this.router.navigate(['/subCategory'],{relativeTo:this.route} );
   }
 
 }

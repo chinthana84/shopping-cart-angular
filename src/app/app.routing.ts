@@ -13,8 +13,15 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'allCategory', component: AllCategoryComponent },
-    { path: 'subCategory', component: SubCategoryComponent },
+    { path: 'allCategory', component: AllCategoryComponent ,
+        children:[
+            {
+                path:"subCategory",component:SubCategoryComponent
+            }
+        ]
+
+},
+   // { path: 'subCategory', component: SubCategoryComponent },
      { path: 'items', component: ItemsComponent },   
      { path: 'shoppinCart', component: ShoppingCartComponent },   
     // otherwise redirect to home

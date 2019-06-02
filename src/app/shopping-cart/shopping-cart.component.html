@@ -1,4 +1,26 @@
- 
-  shopping-cart works!
-  <h1>{{item.itemName}}</h1>
+   <table class="table">
+    <thead>
+       <th>itemId</th>
+       <th>Product Descritpion</th>
+      <th>Delete</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Total</th>    
+    </thead>
+    <tbody>
+     <tr  *ngFor="let i of items; let i = index">
+       <td>{{i.itemId}}</td>
+       <td>
+        {{i.itemName}}
+       </td>
+       <td>X</td>
+       <td>{{i.price}}</td>
+       <td> <input [(ngModel)]="i.qty" type="text">  </td>
+       <td> {{i.qty * i.price}} </td>
+     </tr>
+    
+       
+     
+    </tbody>
+  </table>
  

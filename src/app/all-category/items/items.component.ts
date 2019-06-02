@@ -42,8 +42,8 @@ this.gridOption.datas =data;
 
 
 addShoppingCartItem(item){
-
-  alert(item)
+  this.data.items.push(item);
+  this.data.shoppingCartItemCount
   this.data.changeMessage(item);
   this.router.navigate(['/shoppinCart']);
   

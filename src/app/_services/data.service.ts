@@ -6,12 +6,20 @@ import { Item } from '@app/_models';
   providedIn: 'root'
 })
 export class DataService {
+
+  items:any=[];
+  shoppingCartItemCount:number;
   private messageSource = new BehaviorSubject({});
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
   changeMessage(i: Item) {
-    this.messageSource.next(i)
+    this.messageSource.next(this.items)
   }
+
+  getShoppinCartList(){
+    return this.items.lenght();
+  }
+
 }

@@ -9,11 +9,17 @@ import { Item } from '@app/_models';
 })
 export class ShoppingCartComponent implements OnInit {
   item:Item;
+  items:any=[];
   constructor(private _itemSer :ItemService,
     private data: DataService) { }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(i=>this.item=i );
+    debugger;
+    this.data.currentMessage.subscribe(i=>{ 
+      this.items=i;
+    });
+  
+  
   }
 
 

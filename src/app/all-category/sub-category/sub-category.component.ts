@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
 import { SubCategoryService } from '@app/_services/sub-category.service';
+import { SubCategory } from '@app/_models';
 
 @Component({
   selector: 'app-sub-category',
@@ -37,9 +38,9 @@ export class SubCategoryComponent implements OnInit {
 
      
   }
-  loadItemBySubCatId(item  ) {
+  loadItemBySubCatId(subCat:SubCategory  ) {
     debugger
-    this.router.navigate(['/items']);
+    this.router.navigate(['/cat/sub/items'],{ queryParams: { s: subCat.subCatId }} );
   }
   
 }

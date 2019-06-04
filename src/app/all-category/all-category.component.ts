@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AllCategoryService } from '@app/_services/all-category.service';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
+import { Category } from '@app/_models';
 
 @Component({
   selector: 'app-all-category',
@@ -38,8 +39,9 @@ export class AllCategoryComponent implements OnInit {
      
   }
 
-  selectedCategory(item  ) {
-    this.router.navigate(['/subCategory'],{relativeTo:this.route} );
+  selectedCategory(category :Category  ) {
+    debugger
+    this.router.navigate(['/category/sub/'], { queryParams: { c: category.categoryId } }  );
   }
 
 }

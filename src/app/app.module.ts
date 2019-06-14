@@ -17,7 +17,6 @@ import { RegisterComponent } from './register';;
 
 import { AllCategoryComponent } from './all-category/all-category.component'
 
-
 import { ChiGridModule } from './_shared/_grid/chi-grid.module';;
 import { SubCategoryComponent } from './all-category/sub-category/sub-category.component'
 ;

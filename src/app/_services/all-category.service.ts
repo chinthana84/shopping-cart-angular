@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Category } from '@app/_models/category';
  
 import { environment } from '@environments/environment';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';

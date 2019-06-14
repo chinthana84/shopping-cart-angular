@@ -10,8 +10,8 @@ import { ItemsComponent } from './all-category/items/items.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
+     { path: 'home', component: HomeComponent },
+     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'category', component: AllCategoryComponent  },
     { path: 'category/sub', component: SubCategoryComponent },

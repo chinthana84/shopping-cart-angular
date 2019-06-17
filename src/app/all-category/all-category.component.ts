@@ -10,37 +10,28 @@ import { Category } from '@app/_models';
   templateUrl: './all-category.component.html' 
 })
 export class AllCategoryComponent implements OnInit {
-
-  constructor(private router: Router, 
-    private allCategoryService:AllCategoryService,
-    private route: ActivatedRoute) { }
-  
-  ngOnInit() {
-    debugger;
-      this.setPage({ pageNo:1,searchColName:'' });
-
-  }
-
   searchObject:SearchObject={};
   gridOption: GridOptions={
           colNames:[  {colName:'categoryId'},{colName:'description'}  ] ,
           datas:{ }
   }
- 
-    setPage(obj:SearchObject) {
-      debugger 
-      obj.girdId=1;
-      obj.defaultSortColumnName="categoryId";
+  constructor(private router: Router,private allCategoryService:AllCategoryService,private route: ActivatedRoute) { }
   
-      this.allCategoryService.getAllCategory(obj).subscribe((data:any)=>{
-        this.gridOption.datas =data; 
-      });  
+  ngOnInit() {
+      this.setPage({ pageNo:1,searchColName:'' });
+  }
 
-     
+
+ 
+  setPage(obj:SearchObject) {
+    obj.girdId=1;
+    obj.defaultSortColumnName="categoryId";
+    this.allCategoryService.getAllCategory(obj).subscribe((data:any)=>{
+      this.gridOption.datas =data; 
+    });     
   }
 
   selectedCategory(category :Category  ) {
-    debugger
     this.router.navigate(['/category/sub/'], { queryParams: { c: category.categoryId } }  );
   }
 

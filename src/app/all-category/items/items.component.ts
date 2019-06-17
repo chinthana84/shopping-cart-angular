@@ -5,6 +5,7 @@ import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
 import { DataService } from '@app/_services/data.service';
 import { Item } from '@app/_models';
+import { AlertService } from '@app/_services';
 
 @Component({
   selector: 'app-items',
@@ -12,41 +13,33 @@ import { Item } from '@app/_models';
 })
 export class ItemsComponent implements OnInit {
   item:Item;
-  constructor(private router: Router,
-    private _itemSer :ItemService,
-    private data: DataService) { }
+  shoppinCartItemCount$: number;
+  searchObject:SearchObject={};
+  gridOption: GridOptions={colNames:[  {colName:'itemId'},{colName:'itemName'}],datas:{ }};
 
-ngOnInit() {
-this.setPage({ pageNo:1,searchColName:'' });
-  this.data.currentMessage.subscribe(i=> this.item=i);
-}
+  constructor(private router: Router,private _itemSer :ItemService,private dataSer: DataService,
+    private alertSer:AlertService) {}
 
-searchObject:SearchObject={};
-gridOption: GridOptions={
-colNames:[  {colName:'itemId'},{colName:'itemName'}  ] ,
-datas:{ }
-}
+    
+  ngOnInit() {
+  this.setPage({ pageNo:1,searchColName:'' });
 
-setPage(obj:SearchObject) {
-debugger 
-obj.girdId=3;
-obj.defaultSortColumnName="itemId";
+  }
 
-this._itemSer.getItemsbySubCatId(obj).subscribe((data:any)=>{
-debugger;
-this.gridOption.datas =data; 
-});  
+  setPage(obj:SearchObject) {
+    obj.girdId=3;
+    obj.defaultSortColumnName="itemId";
+    this._itemSer.getItemsbySubCatId(obj).subscribe((data:any)=>{ this.gridOption.datas =data;});  
+  }
 
-
-}
-
-
-addShoppingCartItem(item){
-  this.data.items.push(item);
-  this.data.shoppingCartItemCount
-  this.data.changeMessage(item);
-  this.router.navigate(['/shoppinCart']);
-  
-}
-
+  addShoppingCartItem(item){
+    debugger;
+    this.dataSer.addShoppingCartItem(item);
+    this.dataSer.currentSPCartCount();
+    this.router.navigate(['/shoppinCart']); 
+    //this.toastr.success("Success", 'You are on right track.');
+  }
+  navigateToItem(id){
+    this.router.navigate(['/item'],{ queryParams: { i:id}} );
+  }
 }

@@ -13,24 +13,12 @@ export class AppComponent implements OnInit {
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
-        private data:DataService
+        private dataSer:DataService
     ) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
        
     }
     ngOnInit() {
-        this.data.currentMessage.subscribe(i=>{ 
-            debugger;
-            this.shoppinCartItemCount$= (i  as Item[]).length;
-          });
-    
-
-    }
-
-
-
-    logout() {
-        this.authenticationService.logout();
-        this.router.navigate(['/login']);
+        this.dataSer.currentCartCount.subscribe(count=> this.shoppinCartItemCount$=count);
     }
 }

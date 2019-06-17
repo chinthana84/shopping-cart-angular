@@ -9,6 +9,7 @@ import { fakeBackendProvider } from './_helpers';
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
+
 import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
@@ -18,10 +19,10 @@ import { RegisterComponent } from './register';;
 import { AllCategoryComponent } from './all-category/all-category.component'
 
 import { ChiGridModule } from './_shared/_grid/chi-grid.module';;
-import { SubCategoryComponent } from './all-category/sub-category/sub-category.component'
-;
+import { SubCategoryComponent } from './all-category/sub-category/sub-category.component';
 import { ItemsComponent } from './all-category/items/items.component' ;
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ItemComponent } from './item/item.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -41,7 +42,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
         SubCategoryComponent ,
         ItemsComponent
 ,
-        ShoppingCartComponent         ],
+        ShoppingCartComponent ,
+        ItemComponent        ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 

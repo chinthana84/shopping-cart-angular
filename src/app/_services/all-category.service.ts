@@ -12,7 +12,7 @@ export class AllCategoryService {
   constructor(private http: HttpClient) { }
 
   getAllCategory(obj:SearchObject){
-         let data=  this.http.post("http://localhost:83/WebAPI//api/AngularDTQuery",obj);
+         let data=  this.http.post("http://localhost:83/webapi//api/AngularDTQuery",obj);
 
 
          return data;

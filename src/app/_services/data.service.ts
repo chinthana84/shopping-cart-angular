@@ -6,20 +6,25 @@ import { Item } from '@app/_models';
   providedIn: 'root'
 })
 export class DataService {
+  private bsShoppingCartCountSource=new BehaviorSubject<number>(0);
+  currentCartCount=this.bsShoppingCartCountSource.asObservable();
 
-  items:any=[];
-  shoppingCartItemCount:number;
-  private messageSource = new BehaviorSubject({});
-  currentMessage = this.messageSource.asObservable();
-
+  shoppintCartItems:Item[]=[];
   constructor() { }
 
-  changeMessage(i: Item) {
-    this.messageSource.next(this.items)
+  addShoppingCartItem(item:Item){
+    this.shoppintCartItems.push(item);
+  }
+
+  deleteShoppingCartItem(item:Item){
+    this.shoppintCartItems=[...this.shoppintCartItems.filter(r=> r.itemId!=item.itemId)];
   }
 
   getShoppinCartList(){
-    return this.items.lenght();
+    return this.shoppintCartItems;
   }
 
+  currentSPCartCount(){
+    this.bsShoppingCartCountSource.next(this.getShoppinCartList().length);
+  }
 }

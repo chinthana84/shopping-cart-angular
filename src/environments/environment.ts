@@ -7,6 +7,16 @@ export const environment = {
   apiUrl: 'http://localhost:83/WebAPI'
 };
 
+export enum GridType
+{
+    Category=1,
+    SubCategory=2,
+    ItemsBySubCategory=3,
+    ItemsByCategory=4
+
+}
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

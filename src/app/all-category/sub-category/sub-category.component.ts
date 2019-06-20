@@ -1,23 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
 import { SubCategoryService } from '@app/_services/sub-category.service';
 import { SubCategory } from '@app/_models';
+import { GridType } from '@environments/environment';
 
 @Component({
   selector: 'app-sub-category',
   templateUrl: './sub-category.component.html'
 })
 export class SubCategoryComponent implements OnInit {
-
-  constructor(private router: Router,
+ categoryId:number;
+  constructor(private router: Router,private activatedRoute: ActivatedRoute,
               private _subCatSer :SubCategoryService) { }
 
   ngOnInit() {
     debugger;
-      this.setPage({ pageNo:1,searchColName:'' });
+      
 
+      this.activatedRoute.queryParams.subscribe(params => {
+        debugger;
+        this.categoryId=params['c'] ;
+        this.setPage({ pageNo:1,searchColName:'' });
+    
+      });
   }
 
   searchObject:SearchObject={};
@@ -28,7 +35,8 @@ export class SubCategoryComponent implements OnInit {
  
     setPage(obj:SearchObject) {
       debugger 
-      obj.girdId=2;
+      obj.girdId=GridType.SubCategory;
+      obj.passingId=this.categoryId;
       obj.defaultSortColumnName="subCatId";
   
       this._subCatSer.getSubCategoryByCategoryId(obj).subscribe((data:any)=>{

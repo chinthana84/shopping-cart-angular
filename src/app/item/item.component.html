@@ -1,3 +1,27 @@
-<p>
-  item works!
-</p>
+<div class="row">
+    <div class="col-lg-2 col-md-4 mb-4">
+      <div class="card">
+        <a (click)="navigateToItem(item.itemId)"><img class="card-img-top" src="assets/images/item.jpg" alt="" /></a>
+        <div class="card-body">
+          <h5 class="card-title">{{item.itemName}}</h5>
+          <h5 class="card-title">{{item.itemId}}</h5>
+          <h4>Price : {{item.price}}</h4>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Qty</span>
+                  </div>
+                  <input type="text" [(ngModel)]="item.qty" class="form-control"
+                    aria-label="Amount (to the nearest dollar)">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary input-group-text" (click)="addShoppingCartItem(item)">Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

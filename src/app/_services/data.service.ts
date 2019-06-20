@@ -1,30 +1,35 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Item } from '@app/_models';
+import { Item, ShoppinCartSummary } from '@app/_models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private bsShoppingCartCountSource=new BehaviorSubject<number>(0);
-  currentCartCount=this.bsShoppingCartCountSource.asObservable();
+  private bsShoppingCartCountSource = new BehaviorSubject<ShoppinCartSummary>(new ShoppinCartSummary());
+  currentCartCount = this.bsShoppingCartCountSource.asObservable();
 
-  shoppintCartItems:Item[]=[];
+  shoppintCartItems: Item[] = [];
   constructor() { }
 
-  addShoppingCartItem(item:Item){
+  currentSPCartCount() {
+    const scSummary = new ShoppinCartSummary();
+    scSummary.itemsCount = this.getShoppinCartList().length;
+    scSummary.Total = this.shoppintCartItems.reduce((acc, val) => acc + (val.price * val.qty), 0);
+    this.bsShoppingCartCountSource.next(scSummary);
+  }
+
+  addShoppingCartItem(item: Item) {
     this.shoppintCartItems.push(item);
   }
 
-  deleteShoppingCartItem(item:Item){
-    this.shoppintCartItems=[...this.shoppintCartItems.filter(r=> r.itemId!=item.itemId)];
+  deleteShoppingCartItem(item: Item) {
+    this.shoppintCartItems = [...this.shoppintCartItems.filter(r => r.itemId != item.itemId)];
   }
 
-  getShoppinCartList(){
+  getShoppinCartList() {
     return this.shoppintCartItems;
   }
 
-  currentSPCartCount(){
-    this.bsShoppingCartCountSource.next(this.getShoppinCartList().length);
-  }
+
 }

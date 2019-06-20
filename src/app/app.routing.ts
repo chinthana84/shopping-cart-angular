@@ -16,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'category', component: AllCategoryComponent  },
     { path: 'category/sub', component: SubCategoryComponent },
+    { path: 'category/items', component: ItemsComponent },   
     { path: 'cat/sub/items', component: ItemsComponent },   
     { path: 'shoppinCart', component: ShoppingCartComponent }, 
     { path: 'item', component: ItemComponent},  

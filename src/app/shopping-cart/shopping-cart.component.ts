@@ -9,31 +9,30 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './shopping-cart.component.html'
 })
 export class ShoppingCartComponent implements OnInit {
-  items:any=[];
+  items: any = [];
 
-  subTotal:number;
+  subTotal: number;
 
-  constructor(private _itemSer :ItemService,private dataService: DataService) { }
+  constructor(private _itemSer: ItemService, private dataService: DataService) { }
 
 
 
   ngOnInit() {
-      // debugger;
-    // this.data.currentMessage.subscribe(i=>{ 
+    // debugger;
+    // this.data.currentMessage.subscribe(i=>{
     //   this.items=i;
     //   this.subTotal=this.items.reduce((acc,val) => acc + (val.price * val.qty), 0);
     // });
-  this.items=this.dataService.getShoppinCartList();
-  
+    this.items = this.dataService.getShoppinCartList();
+
   }
 
-  deleteShoppingCartItem(item:Item){
-    debugger;
+  deleteShoppingCartItem(item: Item) {
     this.dataService.deleteShoppingCartItem(item);
     this.dataService.currentSPCartCount();
-    this.items=this.dataService.getShoppinCartList();
+    this.items = this.dataService.getShoppinCartList();
   }
 
 
-  
+
 }

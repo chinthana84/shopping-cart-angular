@@ -1,60 +1,62 @@
-  <div class="container mb-4">
-      <div class="row">
-          <div class="col-12">
-              <div class="table-responsive">
-                  <table class="table table-striped">
-                      <thead>
-                          <tr>
-                              <th scope="col"> </th>
-                              <th scope="col">Product</th>
-                              <th scope="col">Available</th>
-                              <th scope="col" class="text-center">Quantity</th>
-                              <th scope="col" class="text-right">Price</th>
-                              <th> </th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr  *ngFor="let i of items; let i = index">
-                              <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                              <td>{{i.itemName}}</td>
-                              <td>In stock</td>
-                              <td><input class="form-control" type="text" [(ngModel)]="i.qty" /></td>
-                              <td class="text-right">{{i.qty * i.price}}$</td>
-                              <td class="text-right">
-                                  <button (click)="deleteShoppingCartItem(i)" class="btn btn-sm btn-danger">
-                                  <i class="fa fa-trash"></i> </button> 
-                                </td>
-                          </tr>
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"> </th>
+              <th scope="col">Product</th>
+              <th scope="col">Available</th>
+              <th scope="col">Discount%</th>
+              <th scope="col" class="text-center">Quantity</th>
+              <th scope="col" class="text-right">Unit Price</th>
+              <th scope="col" class="text-right">Discount</th>
+              <th scope="col" class="text-right">Total</th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of items; let ii = index">
+              <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+              <td>{{i.itemName}}</td>
+              <td>In stock</td>
+              <td>{{i.discount}}</td>
+              <td><input class="form-control"type="text"
+                 [(ngModel)]="i.qty"  (ngModelChange)="triggerUpdate(i)"  /></td>
+              <td class="text-right">{{i.price}}$</td>
+              <td class="text-right">{{ (i.qty * i.price)*(i.discount *0.01)  }}$</td>
+              <td class="text-right">{{ (i.qty * i.price) - ((i.qty * i.price)*(i.discount *0.01) ) }}$</td>
+              <td class="text-right">
+                <button (click)="deleteShoppingCartItem(i)" class="btn btn-sm btn-danger">
+                  <i class="fa fa-trash"></i> </button>
+              </td>
+            </tr>
 
-                          <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td>Shipping</td>
-                              <td class="text-right">{{subTotal}}$</td>
-                          </tr>
-                          <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td><strong>Total</strong></td>
-                              <td class="text-right">[(ngModel)]="subTotal"</td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-          <div class="col mb-2">
-              <div class="row">
-                  <div class="col-sm-12  col-md-6">
-                      <button class="btn btn-block btn-light">Continue Shopping</button>
-                  </div>
-                  <div class="col-sm-12 col-md-6 text-right">
-                      <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
-                  </div>
-              </div>
-          </div>
+
+            <tr *ngIf="items.length > 0" >
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><strong>Total</strong></td>
+              <td class="text-right"> {{spCartSummary.Total}}$</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
+    <div class="col mb-2">
+      <div class="row">
+        <div class="col-sm-12  col-md-6">
+          <button class="btn btn-block btn-light">Continue Shopping</button>
+        </div>
+        <div class="col-sm-12 col-md-6 text-right">
+          <button class="btn btn-lg btn-block btn-success text-uppercase" (click)="checkOut()" >Checkout</button>
+        </div>
       </div>
+    </div>
+  </div>
+</div>

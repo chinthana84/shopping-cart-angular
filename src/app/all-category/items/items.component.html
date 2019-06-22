@@ -1,12 +1,15 @@
 <div class="row">
   <div class="col-lg-2 col-md-4 mb-4" *ngFor="let item of gridOption.datas.pagedItems">
-    <div class="card">
-      <a (click)="navigateToItem(item.itemId)"><img class="card-img-top" src="assets/images/item.jpg" alt="" /></a>
+    <div class="card h-100">
+      <a (click)="navigateToItem(item.itemId)"><img class="card-img-top" src="{{item.imageUrl}}" alt="" /></a>
       <div class="card-body">
-        <h5 class="card-title">{{item.itemName}}</h5>
-        <h5 class="card-title">{{item.itemId}}</h5>
-        <h4>Price : {{item.price}}</h4>
-        <div class="row">
+        <h6 class="card-title">{{item.itemName}}</h6>
+        <h6 class="card-title btn btn-danger" *ngIf='item.sIH <= 0' ><del> out of stock</del></h6>
+        <h6 class="card-title btn btn-danger" *ngIf='item.discount >0' >discount : {{item.discount}}%</h6>
+        <h6>Price : {{item.price}}</h6>
+
+
+        <div class="row" *ngIf='item.sIH > 0'>
             <div class="col-md-12">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -25,7 +28,7 @@
   </div>
 
 </div>
- 
+
 
 <!-- <div class="row">
   <div class="col" *ngFor="let item of gridOption.datas.pagedItems">

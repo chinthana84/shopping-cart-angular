@@ -18,19 +18,23 @@ export class SubCategory {
   subCatId: number;
   subCateDescription: string;
   categoryId: boolean;
+  imageUrl: string;
 }
 export class Item {
   itemName?: string;
   itemId?: number;
   price?: number;
   qty?: number;
-  sih?: number;
+  sIH?: number;
   discount?: number;
+  imageUrl?: string;
 }
 
 export class ShoppinCartSummary {
   itemsCount: number;
   Total: number;
+
+  subToal: number;
 }
 
 

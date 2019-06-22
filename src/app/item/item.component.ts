@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Item } from '@app/_models/user'; 
+import { ActivatedRoute, Router } from '@angular/router';
+import { Item } from '@app/_models/user';
 import { ItemService } from '@app/_services/item.service';
+import { DataService } from '@app/_services/data.service';
 
 @Component({
   selector: 'app-item',
@@ -9,20 +10,24 @@ import { ItemService } from '@app/_services/item.service';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  item :Item={};
-  constructor(private activatedRoute: ActivatedRoute,private _itemSer:ItemService) { }
+  item: Item = {};
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router, private _itemSer: ItemService,
+    private dataSer: DataService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      debugger;
-      this._itemSer.getItem(params['i']).subscribe((data:any)=>{
-        this.item=data;
+      this._itemSer.getItem(params['i']).subscribe((data: any) => {
+        this.item = data;
       });
-  
-    });  
- 
+    });
+  }
+
+  addShoppingCartItem(item) {
+    this.dataSer.addShoppingCartItem(item);
+    this.dataSer.currentSPCartCount();
+    this.router.navigate(['/shoppinCart']);
   }
 
 }
- 
- 
+

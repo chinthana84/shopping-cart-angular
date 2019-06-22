@@ -14,22 +14,34 @@ import { Router } from '@angular/router';
 export class ItemSearchComponent implements OnInit {
   results: any[] = [];
   queryField: FormControl = new FormControl();
+
+  searchTerm: FormControl = new FormControl();
+  myBooks = <any>[];
   constructor(private _itemService: ItemService, private router: Router) { }
 
   ngOnInit() {
-    this.queryField.valueChanges
-      .distinctUntilChanged()
-      .switchMap((query) => this._itemService.itemSearchByName(query))
-      .subscribe((r: any[]) => {
-        debugger
-        this.results = r;
+
+    this.searchTerm.valueChanges.subscribe(
+      term => {
+        if (term !== '') {
+          this._itemService.itemSearchByName(term).subscribe(
+            data => {
+              this.myBooks = data as any[];
+            });
+        }
       });
   }
   loadSearchedItem(item: Item) {
-    debugger
     this.results = [];
-
+    this.searchTerm.setValue('');
     this.router.navigate(['/item'], { queryParams: { i: item.itemId } });
+  }
+  searchItems() {
+    if (this.searchTerm.value !== '') {
+      this.myBooks = [];
+      this.router.navigate(['/items'], { queryParams: { 'search': this.searchTerm.value } });
+      this.searchTerm.setValue('');
+    }
   }
 }
 

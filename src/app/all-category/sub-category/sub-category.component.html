@@ -5,7 +5,7 @@
 <div class="col-lg-2 col-md-4 mb-4" *ngFor="let item of gridOption.datas.pagedItems">
     <div class="card">
       <a  (click)="loadItemBySubCatId(item)"><img class="card-img-top" 
-        src="assets/images/subCat.jpg" alt=""/></a>
+        src="{{item.imageUrl}}" alt=""/></a>
       <div class="card-body">
         <h6 class="card-title">
           <a  (click)="selectedCategory(item)">{{item.subCateDescription}}</a>

@@ -15,7 +15,8 @@ export class DataService {
   currentSPCartCount() {
     const scSummary = new ShoppinCartSummary();
     scSummary.itemsCount = this.getShoppinCartList().length;
-    scSummary.Total = this.shoppintCartItems.reduce((acc, val) => acc + (val.price * val.qty), 0);
+    scSummary.Total = this.shoppintCartItems.reduce((acc, val) =>
+                      acc + (val.price * val.qty) - (val.price * val.qty * val.discount * 0.01), 0);
     this.bsShoppingCartCountSource.next(scSummary);
   }
 
@@ -24,7 +25,7 @@ export class DataService {
   }
 
   deleteShoppingCartItem(item: Item) {
-    this.shoppintCartItems = [...this.shoppintCartItems.filter(r => r.itemId != item.itemId)];
+    this.shoppintCartItems = [...this.shoppintCartItems.filter(r => r.itemId !== item.itemId)];
   }
 
   getShoppinCartList() {

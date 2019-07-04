@@ -16,6 +16,7 @@ export class EditCategoryComponent implements OnInit {
   editCategoryModel: CategoryModel = {};
   status: any[] = [];
   formStatus = '';
+ // subCateogryModel: SubCategoryModel = {};
 
   constructor(
     private _adminCategoryService: AdminCateogyService,
@@ -28,11 +29,16 @@ export class EditCategoryComponent implements OnInit {
   ngOnInit() {
     this._adminCategoryService.getCategoryByID(this._adminCategoryService.editCategoryModel.CategoryID)
       .subscribe(r => {
-        console.log(r);
         this.editCategoryModel = r;
         this.formStatus = this.editCategoryModel.CategoryID > 0 ? 'Edit Category' : 'New Category';
         this.status = this._dataService.getStatus();
+
+        // this._adminCategoryService.currentMessage.subscribe((rr: SubCategoryModel) => {
+        //   this.subCateogryModel = rr;
+        // });
+
       });
+
 
   }
 
@@ -40,6 +46,7 @@ export class EditCategoryComponent implements OnInit {
     this.selectedFile = <File>event.target.files[0];
     this.onUpload();
   }
+
   onUpload() {
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
@@ -55,14 +62,18 @@ export class EditCategoryComponent implements OnInit {
     });
   }
 
-  editSubCategory(subCategoryModel: SubCategoryModel) {
-    this._adminCategoryService.editCategoryModel = this.editCategoryModel;
-    this._router.navigate(['/AdminCategory']);
-    console.log(subCategoryModel);
+  editSubCategory(obj: SubCategoryModel) {
+    debugger;
+    this._adminCategoryService.changeMessage(obj);
+    //this._adminCategoryService.editCategoryModel = this.editCategoryModel;
+    this.modalService.open();
+
   }
 
   newSubCategory(obj: SubCategoryModel) {
-    this._adminCategoryService.editSubCategoryModel = obj;
+    const subCat: SubCategoryModel = { CategoryID: obj.CategoryID, SubCategoryID: 0 };
+    this._adminCategoryService.changeMessage(subCat);
+    this._adminCategoryService.editCategoryModel = this.editCategoryModel;
     this.modalService.open();
   }
 }

@@ -1,24 +1,43 @@
-import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpResponse,
+  HttpErrorResponse
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-
-import { AuthenticationService } from '@app/_services';
+import { retry, catchError, finalize, map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HTTPStatus } from './HTTPStatus';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService) {}
-
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError(err => {
-            if (err.status === 401) {
-                // auto logout if 401 response returned from api
-                this.authenticationService.logout();
-                location.reload(true);
-            }
-            
-            const error = err.error.message || err.statusText;
-            return throwError(error);
-        }))
-    }
+  constructor(private status: HTTPStatus) { }
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request)
+      .pipe(
+        map(event => {
+          this.status.setHttpStatus(true);
+          return event;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage = '';
+          if (error.error instanceof ErrorEvent) {
+            // client-side error
+            errorMessage = `Error: ${error.error.message}`;
+          } else {
+            // server-side error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+          }
+          window.alert(errorMessage);
+          return throwError(errorMessage);
+        }),
+        finalize(() => {
+          this.status.setHttpStatus(false);
+        })
+      );
+  }
 }
+
+

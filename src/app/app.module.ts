@@ -1,14 +1,13 @@
-﻿import { NgModule, Inject } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatInputModule, MatIconModule } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { fakeBackendProvider } from './_helpers';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { AlertComponent } from './_components';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -20,6 +19,15 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ItemComponent } from './item/item.component';
 import { ItemSearchComponent } from './_shared/item-search/item-search.component';
 import { ConfirmDialogComponent } from './_components/dialog/confirm-dialog/confirm-dialog.component';
+import { HTTPStatus } from './_helpers/HTTPStatus';
+import { LoadingAnimationComponent } from './_components/loading-animation/loading-animation.component';
+import {ToastrModule} from 'ngx-toastr';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { ClickOutsideDirective } from './_shared/directive/click-outside.directive';
+import { CategoryComponent } from './Admin/category/category.component';
+import { EditCategoryComponent } from './Admin/category/edit-category/edit-category.component';;
+import { EditSubCategoryComponent } from './Admin/category/edit-sub-category/edit-sub-category.component';
+import { ModalDialogComponent } from './_shared/modalDialog/modal-dialog/modal-dialog.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -31,7 +39,9 @@ import { ConfirmDialogComponent } from './_components/dialog/confirm-dialog/conf
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatIconModule],
+    MatIconModule,
+    ToastrModule.forRoot(),
+    ClickOutsideModule],
   exports: [
     ConfirmDialogComponent
   ],
@@ -47,12 +57,16 @@ import { ConfirmDialogComponent } from './_components/dialog/confirm-dialog/conf
     ShoppingCartComponent,
     ItemComponent,
     ItemSearchComponent,
-    ConfirmDialogComponent],
+    ConfirmDialogComponent,
+    LoadingAnimationComponent,
+    ClickOutsideDirective,
+    CategoryComponent,
+    EditCategoryComponent,
+    EditSubCategoryComponent,
+    ModalDialogComponent],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+     ErrorInterceptor, HTTPStatus,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-    // provider used to create fake backend
-    , fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

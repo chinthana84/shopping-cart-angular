@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { ConfirmDialogService } from '@app/_services/dialog/confirm-dialog.service';
+import { ToastrService } from 'ngx-toastr';
+import { ShoppingCartService } from '@app/_services/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,8 +18,10 @@ export class ShoppingCartComponent implements OnInit {
   spCartSummary = new ShoppinCartSummary();
   subTotal: number;
   constructor(private _itemSer: ItemService,
+    private toastr: ToastrService,
     private dataService: DataService,
     private _confirmDialogService: ConfirmDialogService,
+    private _shoppingCartService: ShoppingCartService,
     private router: Router) { }
 
   ngOnInit() {
@@ -36,6 +40,7 @@ export class ShoppingCartComponent implements OnInit {
       if (that.items.length === 0) {
         that.router.navigate(['/home']);
       }
+      that.toastr.success('deleted item from cart');
     }, function () { });
   }
 
@@ -44,6 +49,10 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkOut() {
+    console.log( this.items);
+    this._shoppingCartService.checkoutShoppingCart(this.items).subscribe(r => {
 
+      debugger;
+    });
   }
 }

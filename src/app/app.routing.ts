@@ -1,5 +1,4 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
-
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -9,6 +8,8 @@ import { SubCategoryComponent } from './all-category/sub-category/sub-category.c
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ItemComponent } from './item/item.component';
 import { ItemsComponent } from './all-category/items/items.component';
+import { CategoryComponent } from './Admin/category/category.component';
+import { EditCategoryComponent } from './Admin/category/edit-category/edit-category.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,9 @@ const appRoutes: Routes = [
   { path: 'shoppinCart', component: ShoppingCartComponent },
   { path: 'item', component: ItemComponent },
   { path: 'items', component: ItemsComponent },
+
+  { path: 'AdminCategory', component: CategoryComponent },
+  { path: 'EditCategory', component: EditCategoryComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

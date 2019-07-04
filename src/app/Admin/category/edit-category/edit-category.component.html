@@ -1,0 +1,71 @@
+{{formStatus}}
+<form>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" name="Descriptionvv" placeholder="Description"
+          [(ngModel)]="editCategoryModel.Description" />
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" name="Remarks" [(ngModel)]="editCategoryModel.Remarks" />
+      </div>
+
+      <div class="form-group">
+        <label for="power">Hero Power</label>
+        <select class="form-control" id="power" [(ngModel)]="editCategoryModel.StatusId" name="status">
+          <option *ngFor="let i of status" [value]="i.id">{{i.desc}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <input type="file" (change)="onFileSelected($event)" class='btn btn-primary' value="upload" /><br />
+      <img class="img-fluid" src='{{editCategoryModel?.ImageURL}}' />
+    </div>
+  </div>
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+            aria-controls="collapseOne">
+            Collapsible Group Item #1
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <table class="table">
+            <tr *ngFor="let i of editCategoryModel.listSubCategory">
+              <td>{{ i.Description }}</td>
+              <td>{{ i.Remarks }}</td>
+              <td>{{ i.ImageURL }}</td>
+              <td>{{ i.StatusDesc }}</td>
+              <td>
+                <input type="button" value="Edit" class="btn" (click)="editSubCategory(i)" />
+                <input type="button" value="New" class="btn" (click)="newSubCategory(i)" /></td>
+            </tr>
+          </table>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="saveCategoryX()">
+    Submit
+  </button>
+
+<app-modal-dialog>
+    <div class="modal-body">
+
+      <h1>This is for subcategory</h1>
+      <app-edit-sub-category></app-edit-sub-category>
+    </div>
+   </app-modal-dialog>
+</form>

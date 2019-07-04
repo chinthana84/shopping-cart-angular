@@ -37,6 +37,30 @@ export class ShoppinCartSummary {
   subToal: number;
 }
 
+export class Breadscrub {
+  test: string;
+  url: string;
+}
+
+export class CategoryModel {
+  CategoryID?: number;
+  Description?: string;
+  Remarks?: string;
+  ImageURL?: string;
+  StatusDesc?: string;
+  StatusId?: number;
+  listSubCategory?: SubCategoryModel[];
+}
+
+export class SubCategoryModel {
+  SubCategoryID?: number;
+  CategoryID?: number;
+  Description?: string;
+  ImageURL?: string;
+  Remarks?: string;
+  StatusDesc?: string;
+  StatusId?: number;
+}
 
 
 

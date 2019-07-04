@@ -1,0 +1,35 @@
+
+
+<div class="row">
+  <table class="table">
+    <tr *ngFor="let item of gridOption.datas.pagedItems">
+      <td>{{ item.CategoryID }}</td>
+      <td>{{ item.Description }}</td>
+      <td>{{ item.Remarks }}</td>
+      <td>{{ item.ImageURL }}</td>
+       <td>{{ item.StatusDesc }}</td>
+      <td>
+        <input
+          type="button"
+          value="Edit"
+          class="btn"
+          (click)="editCategory(item)"
+        />
+        <input
+          type="button"
+          value="New"
+          class="btn"
+          (click)="newCategory()"
+        />
+        <input
+        type="button"
+        value="SubCategory"
+        class="btn"
+        (click)="addEditSubCategory()"
+      />
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- <app-pager (pagedClicked)="setPage($event)" [pagerX]="gridOption"></app-pager> -->

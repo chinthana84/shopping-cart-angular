@@ -7,6 +7,8 @@ import { DataService } from '@app/_services/data.service';
 import { Item } from '@app/_models';
 import { AlertService } from '@app/_services';
 import { GridType } from '@environments/environment';
+import { ConfirmDialogService } from '@app/_services/dialog/confirm-dialog.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-items',
@@ -19,9 +21,14 @@ export class ItemsComponent implements OnInit {
   searchObject: SearchObject = {};
   gridOption: GridOptions = { colNames: [{ colName: 'itemId' }, { colName: 'itemName' }], datas: {} };
 
-  constructor(private router: Router, private _itemSer: ItemService, private dataSer: DataService,
-    private alertSer: AlertService, private activatedRoute: ActivatedRoute, private _itemService: ItemService) { }
-
+  constructor(private router: Router,
+    private _itemSer: ItemService,
+    private toastr: ToastrService,
+    private dataSer: DataService,
+    private alertSer: AlertService,
+    private activatedRoute: ActivatedRoute,
+    private _itemService: ItemService,
+    private _confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -44,7 +51,6 @@ export class ItemsComponent implements OnInit {
           passingId: params['s']
         });
       }
-
     });
 
   }
@@ -54,13 +60,21 @@ export class ItemsComponent implements OnInit {
     this._itemSer.getItemsbySubCatId(obj).subscribe((data: any) => { this.gridOption.datas = data; });
   }
 
-  addShoppingCartItem(item) {
-    this.dataSer.addShoppingCartItem(item);
-    this.dataSer.currentSPCartCount();
-    this.router.navigate(['/shoppinCart']);
-
+  addShoppingCartItem(item: Item) {
+    const that = this;
+    if (this.dataSer.addShoppingCartItem(item) === true) {
+      this.dataSer.currentSPCartCount();
+      this.router.navigate(['/shoppinCart']);
+      this.toastr.success('item added to cart');
+    } else {
+      this._confirmDialogService.
+        confirmThis(`Items already in Shoping cart.do you need to navigate to shoping cart?`,
+          function () { that.router.navigate(['/shoppinCart']); },
+          function () { });
+    }
   }
-  navigateToItem(id) {
+
+  navigateToItem(id: number) {
     this.router.navigate(['/item'], { queryParams: { i: id } });
   }
 }

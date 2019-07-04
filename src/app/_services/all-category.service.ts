@@ -8,13 +8,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AllCategoryService {
-
   constructor(private http: HttpClient) { }
 
   getAllCategory(obj: SearchObject) {
     return this.http.post(environment.apiUrl + '//api/AngularDTQuery', obj);
   }
-
 }
-
-

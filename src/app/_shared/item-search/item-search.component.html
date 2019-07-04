@@ -10,9 +10,9 @@
    </ul>
    </section> -->
 
-<!-- <section class="filter-wrapper">
+ <section class="filter-wrapper">
   <div class="keyword-wrapper">
-    <input [formControl]="queryField" autocomplete="off" type="text" id="keyword" placeholder="search for items..."
+    <input  [formControl]="queryField" autocomplete="off" type="text" id="keyword" placeholder="search for items..."
       autofocus />
       <div class="input-group-append">
           <button type="button" class="btn btn-secondary btn-number" (click)="searchItems()">
@@ -20,33 +20,13 @@
           </button>
       </div>
   </div>
-  <ul class="filter-select">
+  <div  clickOutside (clickOutside)="closeDropDown()">
+  <ul class="filter-select" *ngIf='showDropDown'>
     <li *ngFor="let result of results" class="filter-select-list">
       <p class="artist-name" (click)="loadSearchedItem(result)">
         {{result.itemName}}</p>
-  </ul>
-</section> -->
+  </ul></div>
+</section> 
+
+
  
-<form>
-  <mat-form-field class="container">
-
-      <!-- ADD AN INPUT BOX OF TYPE TEXT AND LINK IT TO THE AUTO COMPLETE PANEL. -->
-      <input type="text"  
-          matInput 
-          [formControl]="searchTerm" 
-          [matAutocomplete]="auto" />  
-          <button mat-button matSuffix mat-stroked-button aria-label="search"  (click)="searchItems()">
-            search 
-        </button>
-      <!-- CREATE AUTO COMPLETE PANEL WITH OPTIONS. -->
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let books of myBooks"  >
-          
-
-          <p class="artist-name" (click)="loadSearchedItem(books)">
-            {{books.itemName}}</p>
-        </mat-option>
-      </mat-autocomplete>
-
-  </mat-form-field>
-</form>

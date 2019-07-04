@@ -3,20 +3,31 @@
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/home">Home</a>
     <a class="nav-item nav-link" routerLink="/category">All Category</a>
+
+    <a class="nav-item nav-link" routerLink="/AdminCategory">AdminCategory</a>
   </div>
+  <app-item-search></app-item-search>
   <form class="form-inline my-2 my-lg-0">
 
     <a *ngIf="shoppinCartItemCount$.itemsCount >0 " class="btn btn-success btn-sm ml-3" routerLink="/shoppinCart">
       <i class="fa fa-shopping-cart"></i>&nbsp;
-      <span class="badge badge-light">{{shoppinCartItemCount$.itemsCount}}</span>
-      <span class="badge badge-light">{{shoppinCartItemCount$.Total}}</span>
+      <span class="badge badge-light">{{shoppinCartItemCount$.itemsCount}} </span>&nbsp;
+      <span class="badge badge-light">{{shoppinCartItemCount$.Total}}$</span>
     </a>
   </form>
 </nav>
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark "  >
+  <div class="navbar-nav" *ngFor="let i of navigationLink$ | async; ">
+    <a class="nav-item nav-link" routerLink="{{i.url}}">{{i.url}}</a>
+  </div>
 
-<app-item-search></app-item-search>
+  </nav> -->
+
+
+<app-loading-animation></app-loading-animation>
+
 <!-- Page Content -->
-<div class="container-fluid" (click)="test();">
+<div class="container-fluid" >
 
   <div class="row">
 
@@ -43,4 +54,4 @@
   </div>
   <!-- /.container -->
 </footer>
-<app-confirm-dialog></app-confirm-dialog> 
+<app-confirm-dialog></app-confirm-dialog>

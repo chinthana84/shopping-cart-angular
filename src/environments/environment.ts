@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-   apiUrl: 'http://localhost:83/WebAPI'
+  apiUrl: 'http://localhost:83/WebAPI'
   // apiUrl: 'http://13.75.198.182/webapi'
+  , imageNotFoundUrl: '/assets/images/notfound.png'
+  , imageUrlPath: 'http://localhost:83/WebAPI/UploadFile/'
 };
 
 export enum GridType {
@@ -14,7 +16,8 @@ export enum GridType {
   ItemsBySubCategory = 3,
   ItemsByCategory = 4,
   ItemsListByName = 5,
-  AdminCategory=6
+  AdminCategory = 6,
+  AdminItems = 7
 }
 
 

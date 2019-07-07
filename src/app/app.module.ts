@@ -25,9 +25,12 @@ import {ToastrModule} from 'ngx-toastr';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ClickOutsideDirective } from './_shared/directive/click-outside.directive';
 import { CategoryComponent } from './Admin/category/category.component';
-import { EditCategoryComponent } from './Admin/category/edit-category/edit-category.component';;
+import { EditCategoryComponent } from './Admin/category/edit-category/edit-category.component';
 import { EditSubCategoryComponent } from './Admin/category/edit-sub-category/edit-sub-category.component';
 import { ModalDialogComponent } from './_shared/modalDialog/modal-dialog/modal-dialog.component';
+import { AdminItemsComponent } from './Admin/admin-items/admin-items.component';
+import { AdminEditItemsComponent } from './Admin/admin-items/admin-edit-items/admin-edit-items.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -63,7 +66,9 @@ import { ModalDialogComponent } from './_shared/modalDialog/modal-dialog/modal-d
     CategoryComponent,
     EditCategoryComponent,
     EditSubCategoryComponent,
-    ModalDialogComponent],
+    ModalDialogComponent,
+    AdminItemsComponent,
+    AdminEditItemsComponent],
   providers: [
      ErrorInterceptor, HTTPStatus,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

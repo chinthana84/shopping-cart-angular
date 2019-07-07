@@ -7,19 +7,23 @@
   token: string;
 }
 
-
 export class Category {
-  categoryId: number;
-  description: string;
-  isSubCategory: boolean;
-  imageUrl?: string;
+  CategoryID: number;
+  Description: string;
+  ImageURL?: string;
+  IsSubCategory?: boolean;
 }
+
 export class SubCategory {
-  subCatId: number;
-  subCateDescription: string;
-  categoryId: boolean;
-  imageUrl: string;
+  SubCategoryID: number;
+  Description: string;
+  CategoryID: boolean;
+  ImageURL: string;
 }
+
+
+
+
 export class Item {
   itemName?: string;
   itemId?: number;
@@ -42,6 +46,7 @@ export class Breadscrub {
   url: string;
 }
 
+//////////////////////////////////////////////////////////
 export class CategoryModel {
   CategoryID?: number;
   Description?: string;
@@ -62,5 +67,19 @@ export class SubCategoryModel {
   StatusId?: number;
 }
 
+export class ItemModel {
+  ItemID?: number;
+  ItemDescription?: string;
+  CategoryID?: number;
+  ListStatus?: [];
+  ListSubCategory?: SubCategoryModel[];
+  Remarks?: string;
+  SIH?: number;
+  Price?: number;
+  Discount?: number;
+  ImageURL?: string;
+  SubCategoryID?: number;
+  StatusID?: number;
+}
 
 

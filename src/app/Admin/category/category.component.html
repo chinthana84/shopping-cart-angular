@@ -1,35 +1,33 @@
+<h4> {{formName}}</h4>
+<app-search (searchClicked)="setPage($event)" [searchOptionsX]="gridOption.colNames" [searchID]='searchID'>
+</app-search>
 
-
-<div class="row">
-  <table class="table">
-    <tr *ngFor="let item of gridOption.datas.pagedItems">
-      <td>{{ item.CategoryID }}</td>
-      <td>{{ item.Description }}</td>
-      <td>{{ item.Remarks }}</td>
-      <td>{{ item.ImageURL }}</td>
-       <td>{{ item.StatusDesc }}</td>
-      <td>
-        <input
-          type="button"
-          value="Edit"
-          class="btn"
-          (click)="editCategory(item)"
-        />
-        <input
-          type="button"
-          value="New"
-          class="btn"
-          (click)="newCategory()"
-        />
-        <input
-        type="button"
-        value="SubCategory"
-        class="btn"
-        (click)="addEditSubCategory()"
-      />
-      </td>
-    </tr>
-  </table>
+<div class='container-fluid'>
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <th>Description</th>
+        <th>Remarks</th>
+        <th>Image</th>
+        <th>Status</th>
+        <th>SubCategory</th>
+        <th>
+          <input type="button" value="New" class="btn btn-primary" (click)="newCategory()" />
+        </th>
+      </thead>
+      <tr *ngFor="let item of gridOption.datas.pagedItems">
+        <td>{{ item.Description }}</td>
+        <td>{{ item.Remarks }}</td>
+        <td>
+          <img style="width:50px;" class="img-responsive" src="{{ item.ImageURL }}" alt="" />
+        </td>
+        <td>{{ item.StatusDesc }}</td>
+        <td>{{ item.listSubCategory.length>0 ?'true':'false'}}</td>
+        <td>
+          <input type="button" value="Edit" class="btn btn-primary" (click)="editCategory(item)" />
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
-
-<!-- <app-pager (pagedClicked)="setPage($event)" [pagerX]="gridOption"></app-pager> -->
+<app-pager (pagedClicked)="setPage($event)" [pagerX]="gridOption"></app-pager>

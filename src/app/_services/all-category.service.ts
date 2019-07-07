@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class AllCategoryService {
   constructor(private http: HttpClient) { }
 
-  getAllCategory(obj: SearchObject) {
+  getGridAllCategory(obj: SearchObject) {
     return this.http.post(environment.apiUrl + '//api/AngularDTQuery', obj);
   }
 }

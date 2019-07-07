@@ -1,0 +1,75 @@
+
+<form>
+  <div class="row" *ngIf="editItemModel">
+    <div class="col-md-8">
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" name="Description" placeholder="Description"
+          [(ngModel)]="editItemModel.ItemDescription" />
+      </div>
+
+      <div class="form-group">
+        <label for="Remarks">Remarks</label>
+        <input type="text" class="form-control" id="Remarks" name="Remarks" placeholder="Remarks"
+          [(ngModel)]="editItemModel.Remarks" />
+      </div>
+
+      <div class="form-group">
+        <label for="Remarks">SIH</label>
+        <input type="text" class="form-control" id="SIH" name="SIH" placeholder="SIH" [(ngModel)]="editItemModel.SIH" />
+      </div>
+      <div class="form-group">
+        <label for="Remarks">Price</label>
+        <input type="text" class="form-control" id="Price" name="Price" placeholder="Price"
+          [(ngModel)]="editItemModel.Price" />
+      </div>
+      <div class="form-group">
+        <label for="Discount">Discount</label>
+        <input type="text" class="form-control" id="Discount" name="Discount" placeholder="Discount"
+          [(ngModel)]="editItemModel.Discount" />
+      </div>
+
+      <div class="form-group">
+        <label for="Status">Status</label>
+        <select class="form-control" id="Status" [(ngModel)]="editItemModel.StatusID" name="status">
+          <option *ngFor="let i of status" [value]="i.id">{{i.desc}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="Category">Category</label>
+        <select class="form-control" id="Status" [(ngModel)]="editItemModel.CategoryID" name="Category"
+          (change)='getSubCategoryByCatID($event)'>
+          <option *ngFor="let i of categoryModel" [value]="i.CategoryID">{{i.Description}}</option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf='subCategoryModel.length >0'>
+        <label for="SubCategory">SubCategory</label>
+        <select class="form-control" id="SubCategory" [(ngModel)]="editItemModel.SubCategoryID" name="SubCategory">
+          <option *ngFor="let i of subCategoryModel" [value]="i.SubCategoryID">{{i.Description}}</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <label for="customFile"> Item Image </label>
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile" (change)="onFileSelected($event)">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+
+      <div class="text-center">
+        <div class="img">
+          <img src='{{editItemModel?.ImageURL}}' height="200" width='100%' class="rounded" alt="...">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="btn-group float-right">
+    <button type="button" class="btn btn-primary" (click)="saveItem()">Save</button>
+    <button type="button" class="btn btn-primary" (click)="backToItemList()">Back</button>
+  </div>
+</form>
+<!-- {{editItemModel | json}} -->

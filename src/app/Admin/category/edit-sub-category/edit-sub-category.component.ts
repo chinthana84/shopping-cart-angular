@@ -8,35 +8,54 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-sub-category',
-  templateUrl: './edit-sub-category.component.html',
-  styleUrls: ['./edit-sub-category.component.css']
+  templateUrl: './edit-sub-category.component.html'
 })
 export class EditSubCategoryComponent implements OnInit {
   subCategoryModel: SubCategoryModel = {};
+  subCatID: number;
   status: any = [];
   selectedFile: File = null;
   constructor(private _adminCaCategoryService: AdminCateogyService, private _dataService: DataService,
-    private modalService: ModalDialogService,private _http :HttpClient) { }
+    private modalService: ModalDialogService, private _http: HttpClient) { }
 
   ngOnInit() {
-    debugger;
-    this._adminCaCategoryService.currentMessage.subscribe((r: any) => {
-      this.subCategoryModel = r;
+    this._adminCaCategoryService.currentSubCatID.subscribe((r: any) => {
+      this.subCatID = r;
+      if (this.subCatID > 0) {
+        this._adminCaCategoryService.getSubCategoryBySubCatID(this.subCatID).subscribe((r: SubCategoryModel) => {
+          this.subCategoryModel = r;
+        });
+      } else {
+        this.subCategoryModel = { SubCategoryID: 0, ImageURL: '/assets/images/notfound.png', StatusId: 1 };
+      }
+
     });
     this.status = this._dataService.getStatus();
   }
 
   AddSubCategory() {
-    debugger;
-    if (this.subCategoryModel.SubCategoryID === 0) {
-     this._adminCaCategoryService.editCategoryModel.
+    const subCatId = this.subCategoryModel.SubCategoryID;
+    if (subCatId === 0) {
+      if (this._adminCaCategoryService.editCategoryModel.listSubCategory === undefined) {
+        this._adminCaCategoryService.editCategoryModel.listSubCategory = [];
+        }
+      this._adminCaCategoryService.editCategoryModel.
         listSubCategory.push(this.subCategoryModel);
+    } else {
+      const sub: SubCategoryModel = this._adminCaCategoryService.editCategoryModel.listSubCategory
+                                                                .find(r => r.SubCategoryID === subCatId);
+      this._adminCaCategoryService.editCategoryModel.listSubCategory.
+                                                    splice(this._adminCaCategoryService.editCategoryModel.listSubCategory
+                                                    .indexOf(sub), 1);
+
+      this._adminCaCategoryService.editCategoryModel.listSubCategory.push(this.subCategoryModel);
     }
     this.modalService.close();
   }
 
   setStatus(id: number) {
-    this.subCategoryModel.StatusDesc = this.status.filter(r => r.id==id)[0].desc;
+// tslint:disable-next-line: triple-equals
+    this.subCategoryModel.StatusDesc = this.status.filter(r => r.id == id)[0].desc;
   }
 
   onFileSelected(event) {
@@ -50,5 +69,9 @@ export class EditSubCategoryComponent implements OnInit {
     this._http.post(environment.apiUrl + '//api/image/UploadJsonFileSubCategory', fd).subscribe(r => {
       this.subCategoryModel.ImageURL = r.toString();
     });
+  }
+
+  dialogClose() {
+    this.modalService.close();
   }
 }

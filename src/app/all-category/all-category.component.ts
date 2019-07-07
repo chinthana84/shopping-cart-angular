@@ -8,18 +8,19 @@ import { Type } from '@angular/compiler';
 import { GridType } from '@environments/environment';
 import { HTTPStatus } from '@app/_helpers/HTTPStatus';
 import { DataService } from '@app/_services/data.service';
+import { environment } from '@environments/environment.prod';
 
 @Component({
   selector: 'app-all-category',
   templateUrl: './all-category.component.html'
 })
 export class AllCategoryComponent implements OnInit {
+  imagePathUrl = environment.imageUrlPath;
   searchObject: SearchObject = {};
   gridOption: GridOptions = {
     colNames: [{ colName: 'categoryId' }, { colName: 'description' }],
     datas: {}
   };
-
   breadScrub: Breadscrub[] = [];
   categoryList: Category[] = [];
 
@@ -27,31 +28,26 @@ export class AllCategoryComponent implements OnInit {
     private allCategoryService: AllCategoryService,
     private route: ActivatedRoute,
     private _dateService: DataService) {
-      this._dateService.setCurrentNavigation('something');
-    }
+  }
 
   ngOnInit() {
     this.setPage({ pageNo: 1, searchColName: '' });
-
   }
-
-
 
   setPage(obj: SearchObject) {
     obj.girdId = GridType.Category;
-    obj.defaultSortColumnName = 'categoryId';
-    this.allCategoryService.getAllCategory(obj).subscribe((data: any) => {
+    obj.defaultSortColumnName = 'Description';
+    this.allCategoryService.getGridAllCategory(obj).subscribe((data: any) => {
       this.gridOption.datas = data;
     });
   }
 
   selectedCategory(category: Category) {
-    if (category.isSubCategory) {
-      this.router.navigate(['/category/sub/'], { queryParams: { c: category.categoryId } });
+    if (category.IsSubCategory) {
+      this.router.navigate(['/category/sub/'], { queryParams: { c: category.CategoryID } });
     } else {
-      this.router.navigate(['/category/items'], { queryParams: { cat: category.categoryId } });
+      this.router.navigate(['/category/items'], { queryParams: { cat: category.CategoryID } });
     }
-    this._dateService.setCurrentNavigation('allCate');
   }
 
   testNavigation() {

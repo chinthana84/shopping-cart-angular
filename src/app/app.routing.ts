@@ -10,6 +10,8 @@ import { ItemComponent } from './item/item.component';
 import { ItemsComponent } from './all-category/items/items.component';
 import { CategoryComponent } from './Admin/category/category.component';
 import { EditCategoryComponent } from './Admin/category/edit-category/edit-category.component';
+import { AdminItemsComponent } from './Admin/admin-items/admin-items.component';
+import { AdminEditItemsComponent } from './Admin/admin-items/admin-edit-items/admin-edit-items.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,6 +27,8 @@ const appRoutes: Routes = [
 
   { path: 'AdminCategory', component: CategoryComponent },
   { path: 'EditCategory', component: EditCategoryComponent },
+  { path: 'AdminItems', component: AdminItemsComponent },
+  { path: 'EditAdminItems', component: AdminEditItemsComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

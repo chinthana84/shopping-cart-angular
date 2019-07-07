@@ -1,13 +1,12 @@
- 
-
 <div class="row">
 
   <div class="col-lg-2 col-md-4 mb-4" *ngFor="let item of gridOption.datas.pagedItems">
     <div class="card">
-      <a (click)="selectedCategory(item)"><img class="card-img-top" src="{{item.imageUrl}}" alt=""></a>
+      <a (click)="selectedCategory(item)"><img class="card-img-top" src="{{ imagePathUrl + item.ImageURL}}"
+          alt=""></a>
       <div class="card-body">
         <h6 class="card-title">
-          <a (click)="selectedCategory(item)">{{item.description}}</a>
+          <a (click)="selectedCategory(item)">{{item.Description}}</a>
         </h6>
       </div>
 

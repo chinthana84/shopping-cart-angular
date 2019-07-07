@@ -8,13 +8,16 @@ import { GridService } from '../grid-service/grid.service';
 })
 export class SearchComponent implements OnInit {
 
-  dropDonwDefautlSelected: number = 1;
+  dropDonwDefautlSelected = 1;
 
-  searchColumn: string = '';
-  searchText: string = '';
+  searchColumn = '';
+  searchText = '';
 
   @Input()
   searchOptionsX: any = {};
+
+  @Input()
+  searchID: number;
 
 
   @Output()
@@ -24,13 +27,11 @@ export class SearchComponent implements OnInit {
 
 
   searchClick(obj: any, s: string) {
-    debugger;
-
-    var x: SearchObject = {
+    const x: SearchObject = {
       pageNo: 1,
       searchColName: this.searchColumn,
       searchText: this.searchText
-    }
+    };
 
     this.gridService.updateMessage(x);
 
@@ -40,7 +41,7 @@ export class SearchComponent implements OnInit {
   constructor(private gridService: GridService) { }
 
   ngOnInit() {
-    debugger;
+
     this.searchColumn = this.searchOptionsX[0].colName;
   }
 

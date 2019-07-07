@@ -1,11 +1,50 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top" (click)="test();">
+﻿<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-item nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" routerLink="/category">All-Category</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf='isAdminLogged$'>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/AdminCategory">AdminCategory</a>
+          <a class="dropdown-item"routerLink="/AdminItems"    >Admin Items</a>
+          <!-- <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a> -->
+        </div>
+      </li>
+      <form class="form-inline my-2 my-lg-0">
+
+        <a *ngIf="shoppinCartItemCount$.itemsCount >0 " class="btn btn-success btn-sm ml-3" routerLink="/shoppinCart">
+          <i class="fa fa-shopping-cart"></i>&nbsp;
+          <span class="badge badge-light">{{shoppinCartItemCount$.itemsCount}} </span>&nbsp;
+          <span class="badge badge-light">{{shoppinCartItemCount$.Total}}$</span>
+        </a>
+      </form>
+    </ul>
+    <app-item-search></app-item-search>
+
+  </div>
+</nav>
+
+
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top"  >
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/home">Home</a>
     <a class="nav-item nav-link" routerLink="/category">All Category</a>
-
-    <a class="nav-item nav-link" routerLink="/AdminCategory">AdminCategory</a>
-  </div>
+ </div>
   <app-item-search></app-item-search>
   <form class="form-inline my-2 my-lg-0">
 
@@ -15,7 +54,7 @@
       <span class="badge badge-light">{{shoppinCartItemCount$.Total}}$</span>
     </a>
   </form>
-</nav>
+</nav> -->
 <!-- <nav class="navbar navbar-expand navbar-dark bg-dark "  >
   <div class="navbar-nav" *ngFor="let i of navigationLink$ | async; ">
     <a class="nav-item nav-link" routerLink="{{i.url}}">{{i.url}}</a>
@@ -27,15 +66,17 @@
 <app-loading-animation></app-loading-animation>
 
 <!-- Page Content -->
-<div class="container-fluid" >
+<div class="container-fluid">
 
   <div class="row">
 
 
     <!-- /.col-lg-3 -->
-    <div class="col-lg-2"></div>
+    <!-- <div class="col-lg-2" style='background-color:blue; '>
+    left side navigation/any
+    </div> -->
 
-    <div class="col-lg-10">
+    <div class="col-lg-12">
       <alert></alert>
       <router-outlet></router-outlet>
       <!-- /.row -->
@@ -50,8 +91,14 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
   <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019
+
+      <a class=" nav-item nav-link" *ngIf='!isAdminLogged$' routerLink="/login">Admin</a>
+
+      <a class=" nav-item nav-link" *ngIf='isAdminLogged$' routerLink="/#" (click)='logOut()'>Log Out</a>
+    </p>
   </div>
   <!-- /.container -->
 </footer>
 <app-confirm-dialog></app-confirm-dialog>
+

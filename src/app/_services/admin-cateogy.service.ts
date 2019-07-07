@@ -9,21 +9,25 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminCateogyService {
-  private messageSource = new BehaviorSubject(null);
-  currentMessage = this.messageSource.asObservable();
+  private passSubCatIdSource = new BehaviorSubject(0);
+  currentSubCatID = this.passSubCatIdSource.asObservable();
 
   editCategoryModel: CategoryModel = {};
   editSubCategoryModel: SubCategoryModel = {};
 
   constructor(private _http: HttpClient) { }
 
-  changeMessage(message: SubCategoryModel) {
-    this.messageSource.next(message);
+  passSubCatID(subCatID: number) {
+    this.passSubCatIdSource.next(subCatID);
   }
 
 
   getAllAdminCategories(obj: SearchObject) {
     return this._http.post(environment.apiUrl + '//api/AngularDTQuery', obj);
+  }
+
+  getAllCategory() {
+    return this._http.get(environment.apiUrl + '//api/Category/GetAllCategory');
   }
 
   getCategoryByID(CategoryID: number) {
@@ -37,5 +41,16 @@ export class AdminCateogyService {
       environment.apiUrl + '//api/Category/SaveCategory',
       editCategoryModel
     );
+  }
+
+  getSubCategoryByCategoryID(catID) {
+    const d = {CategoryID: catID };
+    return this._http.get(environment.apiUrl + '//api/Category/GetSubCategoryByCategoryID', { params: d});
+  }
+
+  getSubCategoryBySubCatID(subCatID: number) {
+    return this._http.get(environment.apiUrl + '//api/Category/GetSubCategoryBySubCatID', {
+      params: new HttpParams().set('SubCatID', subCatID.toString())
+    });
   }
 }

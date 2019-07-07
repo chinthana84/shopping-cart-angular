@@ -12,9 +12,18 @@ export class DataService {
   private bsNavigationLink = new BehaviorSubject<Breadscrub[]>(null);
   currentNavigation = this.bsNavigationLink.asObservable();
 
+  // Admin login BS
+  private bsAdminLogin = new BehaviorSubject<Boolean>(false);
+  isAdminLogged = this.bsAdminLogin.asObservable();
+
   breadScrub: Breadscrub[] = [];
   shoppintCartItems: Item[] = [];
   constructor() { }
+
+  adminLogin(b: Boolean) {
+   // localStorage.setItem('isAdminLogin',b);
+    this.bsAdminLogin.next(b);
+  }
 
   currentSPCartCount() {
     const scSummary = new ShoppinCartSummary();
@@ -41,13 +50,13 @@ export class DataService {
     return this.shoppintCartItems;
   }
 
-
   setCurrentNavigation(link: string) {
     const userlist: Breadscrub[] = [];
     this.breadScrub.push({ test: link, url: link });
     this.bsNavigationLink.next(this.breadScrub);
   }
 
+  // TODO: db call
   getStatus(): any[] {
     const status: any[] = [{ id: 1, desc: 'Active' }, { id: 2, desc: 'Inactive' }];
     return status;

@@ -1,16 +1,5 @@
-<!-- <section class="filter-wrapper">
-    <div class="keyword-wrapper">
-   <input [formControl]="queryField"  type="text" id="keyword" placeholder="search for artists..." autofocus/>
-     </div>
-   <ul class="filter-select">
-     <li *ngFor="let result of results" class="filter-select-list">
- <p class="artist-name" (click)="loadSearchedItem(result)">
-       {{result.itemName}}</p>
 
-   </ul>
-   </section> -->
-
- <section class="filter-wrapper">
+ <!-- <section class="filter-wrapper">
   <div class="keyword-wrapper">
     <input  [formControl]="queryField" autocomplete="off" type="text" id="keyword" placeholder="search for items..."
       autofocus />
@@ -26,7 +15,20 @@
       <p class="artist-name" (click)="loadSearchedItem(result)">
         {{result.itemName}}</p>
   </ul></div>
-</section> 
+</section> -->
+
+<form class="form-inline my-5 my-lg-0">
+
+    <input class="form-control  mr-sm-1"  [formControl]="queryField" autocomplete="off" type="text" id="keyword" placeholder="search for items..."
+    autofocus />
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchItems()">Search</button>
+    <div  clickOutside (clickOutside)="closeDropDown()">
+        <ul class="filter-select" *ngIf='showDropDown'>
+          <li *ngFor="let result of results" class="filter-select-list">
+            <p class="artist-name" (click)="loadSearchedItem(result)">
+              {{result.itemName}}</p>
+        </ul></div>
+  </form>
 
 
- 
+

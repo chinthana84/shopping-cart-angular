@@ -21,17 +21,15 @@ export class SubCategory {
   ImageURL: string;
 }
 
-
-
-
 export class Item {
-  itemName?: string;
-  itemId?: number;
-  price?: number;
-  qty?: number;
-  sIH?: number;
-  discount?: number;
-  imageUrl?: string;
+  Description?: string;
+  ItemID?: number;
+  Remarks?: string;
+  Price?: number;
+  OrderQty?: number;
+  SIH?: number;
+  Discount?: number;
+  ImageURL?: string;
 }
 
 export class ShoppinCartSummary {

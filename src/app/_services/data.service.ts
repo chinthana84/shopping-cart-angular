@@ -29,12 +29,12 @@ export class DataService {
     const scSummary = new ShoppinCartSummary();
     scSummary.itemsCount = this.getShoppinCartList().length;
     scSummary.Total = this.shoppintCartItems.reduce((acc, val) =>
-      acc + (val.price * val.qty) - (val.price * val.qty * val.discount * 0.01), 0);
+      acc + (val.Price * val.OrderQty) - (val.Price * val.OrderQty * val.Discount * 0.01), 0);
     this.bsShoppingCartCountSource.next(scSummary);
   }
 
   addShoppingCartItem(item: Item): boolean {
-    if (this.shoppintCartItems.filter(r => r.itemId === item.itemId).length > 0) {
+    if (this.shoppintCartItems.filter(r => r.ItemID === item.ItemID).length > 0) {
       return false;
     } else {
       this.shoppintCartItems.push(item);
@@ -43,7 +43,7 @@ export class DataService {
   }
 
   deleteShoppingCartItem(item: Item) {
-    this.shoppintCartItems = [...this.shoppintCartItems.filter(r => r.itemId !== item.itemId)];
+    this.shoppintCartItems = [...this.shoppintCartItems.filter(r => r.ItemID !== item.ItemID)];
   }
 
   getShoppinCartList() {

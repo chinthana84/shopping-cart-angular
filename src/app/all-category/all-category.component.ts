@@ -15,14 +15,13 @@ import { environment } from '@environments/environment.prod';
   templateUrl: './all-category.component.html'
 })
 export class AllCategoryComponent implements OnInit {
+  formName = 'All Category';
   imagePathUrl = environment.imageUrlPath;
   searchObject: SearchObject = {};
   gridOption: GridOptions = {
     colNames: [{ colName: 'categoryId' }, { colName: 'description' }],
     datas: {}
   };
-  breadScrub: Breadscrub[] = [];
-  categoryList: Category[] = [];
 
   constructor(private router: Router,
     private allCategoryService: AllCategoryService,

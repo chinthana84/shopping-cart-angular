@@ -11,6 +11,7 @@ import { GridType, environment } from '@environments/environment';
   templateUrl: './sub-category.component.html'
 })
 export class SubCategoryComponent implements OnInit {
+  formName = 'Cateogry => SubCategory';
   imagePathUrl = environment.imageUrlPath;
   categoryId: number;
   searchObject: SearchObject = {};

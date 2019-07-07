@@ -34,7 +34,7 @@ export class ItemSearchComponent implements OnInit {
   loadSearchedItem(item: Item) {
     this.results = [];
     this.queryField.setValue('');
-    this.router.navigate(['/item'], { queryParams: { i: item.itemId } });
+    this.router.navigate(['/item'], { queryParams: { i: item.ItemID } });
   }
   searchItems() {
     if (this.queryField.value !== '') {

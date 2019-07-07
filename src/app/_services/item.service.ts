@@ -14,7 +14,7 @@ export class ItemService {
     return this.http.post(environment.apiUrl + '//api/AngularDTQuery', obj);
   }
 
-  getItemsbySubCatId(obj: SearchObject) {
+  getGridItemsbySubCatId(obj: SearchObject) {
     const data = this.http.post(environment.apiUrl + '//api/AngularDTQuery', obj);
     return data;
   }
@@ -25,7 +25,7 @@ export class ItemService {
   }
 
   getItem(itemId: number) {
-    const item: Item = { itemId: itemId };
+    const item: Item = { ItemID: itemId };
     return this.http.post(environment.apiUrl + '//api/WarrantyCard/GetItem', item);
   }
 

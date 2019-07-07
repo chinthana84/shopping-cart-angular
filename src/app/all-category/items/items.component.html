@@ -1,28 +1,31 @@
+
+<h3>{{formName}}</h3>
 <div class="row">
   <div class="col-lg-2 col-md-4 mb-4" *ngFor="let item of gridOption.datas.pagedItems">
     <div class="card h-100">
-      <a (click)="navigateToItem(item.itemId)"><img class="card-img-top" src="{{item.imageUrl}}" alt="" /></a>
+      <a (click)="navigateToItem(item.ItemID)"><img class="card-img-top" src="{{ item.ImageURL}}"
+          alt="" /></a>
       <div class="card-body">
-        <h6 class="card-title">{{item.itemName}}</h6>
-        <h6 class="card-title btn btn-danger" *ngIf='item.sIH <= 0' ><del> out of stock</del></h6>
-        <h6 class="card-title btn btn-danger" *ngIf='item.discount >0' >discount : {{item.discount}}%</h6>
-        <h6>Price : {{item.price}}</h6>
+        <h6 class="card-title">{{item.Description}}</h6>
+        <h6 class="card-title btn btn-danger" *ngIf='item.SIH <= 0'><del> out of stock</del></h6>
+        <h6 class="card-title btn btn-danger" *ngIf='item.Discount >0'>discount : {{item.Discount}}%</h6>
+        <h6>Price : {{item.Price}}</h6>
 
 
-        <div class="row" *ngIf='item.sIH > 0'>
-            <div class="col-md-12">
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Qty</span>
-                </div>
-                <input type="text" [(ngModel)]="item.qty" class="form-control"
-                  aria-label="Amount (to the nearest dollar)">
-                <div class="input-group-append">
-                  <button class="btn btn-primary input-group-text" (click)="addShoppingCartItem(item)">Add</button>
-                </div>
+        <div class="row" *ngIf='item.SIH > 0'>
+          <div class="col-md-12">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Qty</span>
+              </div>
+              <input type="text" [(ngModel)]="item.OrderQty" class="form-control"
+                aria-label="Amount (to the nearest dollar)">
+              <div class="input-group-append">
+                <button class="btn btn-primary input-group-text" (click)="addShoppingCartItem(item)">Add</button>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@ import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
 import { DataService } from '@app/_services/data.service';
 import { Item } from '@app/_models';
 import { AlertService } from '@app/_services';
-import { GridType } from '@environments/environment';
+import { GridType, environment } from '@environments/environment';
 import { ConfirmDialogService } from '@app/_services/dialog/confirm-dialog.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,6 +15,8 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './items.component.html'
 })
 export class ItemsComponent implements OnInit {
+  formName = 'Items';
+  imagePathUrl = environment.imageUrlPath;
   item: Item;
   items: Item[] = [];
   shoppinCartItemCount$: number;
@@ -34,7 +36,7 @@ export class ItemsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['search'] !== undefined) {
         const so = new SearchObject();
-        so.defaultSortColumnName = 'itemId';
+        so.defaultSortColumnName = 'Description';
         so.passingString = params['search'];
         so.pageNo = 1;
         so.girdId = GridType.ItemsListByName;
@@ -42,9 +44,9 @@ export class ItemsComponent implements OnInit {
           .subscribe((data: any) => {
             this.gridOption.datas = data;
           });
-      } else if (params['s'] === undefined) {
+      } else if (params['cat'] !== undefined) { // Item has not   Sub Category
         this.setPage({ pageNo: 1, girdId: GridType.ItemsByCategory, passingId: params['cat'] });
-      } else {
+      } else if (params['s'] !== undefined) {  // Item has Category and Sub Category
         this.setPage({
           pageNo: 1,
           girdId: GridType.ItemsBySubCategory,
@@ -56,8 +58,8 @@ export class ItemsComponent implements OnInit {
   }
 
   setPage(obj: SearchObject) {
-    obj.defaultSortColumnName = 'itemId';
-    this._itemSer.getItemsbySubCatId(obj).subscribe((data: any) => { this.gridOption.datas = data; });
+    obj.defaultSortColumnName = 'Description';
+    this._itemSer.getGridItemsbySubCatId(obj).subscribe((data: any) => { this.gridOption.datas = data; });
   }
 
   addShoppingCartItem(item: Item) {

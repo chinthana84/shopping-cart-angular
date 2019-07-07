@@ -4,7 +4,7 @@
 
   <div class="col-lg-2 col-md-4 mb-4" *ngFor="let item of gridOption.datas.pagedItems">
     <div class="card">
-      <a (click)="selectedCategory(item)"><img class="card-img-top" src="{{ imagePathUrl + item.ImageURL}}" alt=""></a>
+      <a (click)="selectedCategory(item)"><img class="card-img-top" height=150px height=150px src="{{ imagePathUrl + item.ImageURL}}" alt=""></a>
       <div class="card-body">
         <h6 class="card-title">
           <a (click)="selectedCategory(item)">{{item.Description}}</a>
@@ -14,19 +14,6 @@
     </div>
   </div>
 
-
-  <!-- <div class="card   mb-3" style="min-width: 10rem;max-width: 20rem">
-      <a  >
-      <img alt="Card image cap" (click)="selectedCategory(item)" class="  img-fluid"
-      src="assets/images/Category.jpg" />
-      </a>
-      <div class="card-body text-primary">
-        <h5 class="card-title">{{item.description}}xxxxxxxxxxxxxxxxxxxxxdd</h5>
-        <h5 class="card-title">{{item.categoryId}}</h5>
-                <h5 class="card-title">{{item.isSubCat}}</h5>
-      </div>
-
-      </div> -->
 
 </div>
 

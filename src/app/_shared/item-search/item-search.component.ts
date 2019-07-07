@@ -25,17 +25,19 @@ export class ItemSearchComponent implements OnInit {
         if (term !== '') {
           this._itemService.itemSearchByName(term).subscribe(
             data => {
-              this.results = data as any[];
+              this.results = data as Item[];
               this.showDropDown = true;
             });
         }
       });
   }
+
   loadSearchedItem(item: Item) {
     this.results = [];
     this.queryField.setValue('');
     this.router.navigate(['/item'], { queryParams: { i: item.ItemID } });
   }
+
   searchItems() {
     if (this.queryField.value !== '') {
     this.results = [];
@@ -44,11 +46,9 @@ export class ItemSearchComponent implements OnInit {
     }
   }
 
-
   closeDropDown() {
     this.showDropDown = false;
   }
-
 
 }
 

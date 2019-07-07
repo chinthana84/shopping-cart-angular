@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Item, ShoppinCartSummary, Breadscrub } from '@app/_models';
+import { Item, ShoppinCartSummary } from '@app/_models';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,9 @@ export class DataService {
   private bsShoppingCartCountSource = new BehaviorSubject<ShoppinCartSummary>(new ShoppinCartSummary());
   currentCartCount = this.bsShoppingCartCountSource.asObservable();
 
-  private bsNavigationLink = new BehaviorSubject<Breadscrub[]>(null);
-  currentNavigation = this.bsNavigationLink.asObservable();
-
   // Admin login BS
   private bsAdminLogin = new BehaviorSubject<Boolean>(false);
   isAdminLogged = this.bsAdminLogin.asObservable();
-
-  breadScrub: Breadscrub[] = [];
   shoppintCartItems: Item[] = [];
   constructor() { }
 
@@ -48,12 +43,6 @@ export class DataService {
 
   getShoppinCartList() {
     return this.shoppintCartItems;
-  }
-
-  setCurrentNavigation(link: string) {
-    const userlist: Breadscrub[] = [];
-    this.breadScrub.push({ test: link, url: link });
-    this.bsNavigationLink.next(this.breadScrub);
   }
 
   // TODO: db call

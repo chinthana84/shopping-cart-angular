@@ -5,14 +5,15 @@ import { ItemService } from '@app/_services/item.service';
 import { DataService } from '@app/_services/data.service';
 import { ConfirmDialogService } from '@app/_services/dialog/confirm-dialog.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  templateUrl: './item.component.html'
 })
 export class ItemComponent implements OnInit {
   item: Item = {};
+  imagePathUrl = environment.imageUrlPath;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
@@ -23,6 +24,7 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this._itemSer.getItem(params['i']).subscribe((data: any) => {
+        this.item.OrderQty = 1;
         this.item = data;
       });
     });

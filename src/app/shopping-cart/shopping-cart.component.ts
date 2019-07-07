@@ -52,7 +52,6 @@ export class ShoppingCartComponent implements OnInit {
     console.log( this.items);
     this._shoppingCartService.checkoutShoppingCart(this.items).subscribe(r => {
 
-      debugger;
     });
   }
 }

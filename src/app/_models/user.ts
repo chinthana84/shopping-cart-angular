@@ -39,10 +39,6 @@ export class ShoppinCartSummary {
   subToal: number;
 }
 
-export class Breadscrub {
-  test: string;
-  url: string;
-}
 
 //////////////////////////////////////////////////////////
 export class CategoryModel {

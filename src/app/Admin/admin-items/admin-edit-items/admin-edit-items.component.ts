@@ -35,6 +35,7 @@ export class AdminEditItemsComponent implements OnInit {
     if (itemId === '0') {
       this._adminCategoryService.getAllCategory().subscribe((cat: any[]) => { this.categoryModel = cat; });
       this.editItemModel.SubCategoryID = 0;
+      this.editItemModel.ImageURL = environment.imageNotFoundUrl ;
     } else {
       this._adminItemService.getItemByID(itemId).subscribe(r => {
         this.editItemModel = r;

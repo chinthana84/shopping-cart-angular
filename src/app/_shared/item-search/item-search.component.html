@@ -1,34 +1,18 @@
-
- <!-- <section class="filter-wrapper">
-  <div class="keyword-wrapper">
-    <input  [formControl]="queryField" autocomplete="off" type="text" id="keyword" placeholder="search for items..."
-      autofocus />
-      <div class="input-group-append">
-          <button type="button" class="btn btn-secondary btn-number" (click)="searchItems()">
-              <i class="fa fa-search"></i>
-          </button>
-      </div>
-  </div>
-  <div  clickOutside (clickOutside)="closeDropDown()">
-  <ul class="filter-select" *ngIf='showDropDown'>
-    <li *ngFor="let result of results" class="filter-select-list">
-      <p class="artist-name" (click)="loadSearchedItem(result)">
-        {{result.itemName}}</p>
-  </ul></div>
-</section> -->
-
-<form class="form-inline my-5 my-lg-0">
-
-    <input class="form-control  mr-sm-1"  [formControl]="queryField" autocomplete="off" type="text" id="keyword" placeholder="search for items..."
-    autofocus />
-    <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchItems()">Search</button>
-    <div  clickOutside (clickOutside)="closeDropDown()">
+<form class="form-inline">
+  <div class="input-group">
+    <input type="text" class="form-control" [formControl]="queryField" autocomplete="off" type="text" id="keyword"
+      placeholder="search for items...">
+    <div class="input-group-append">
+      <button type="button" class="btn btn-secondary" (click)="searchItems()"><i class="fa fa-search"></i></button>
+      <div clickOutside (clickOutside)="closeDropDown()">
         <ul class="filter-select" *ngIf='showDropDown'>
           <li *ngFor="let result of results" class="filter-select-list">
             <p class="artist-name" (click)="loadSearchedItem(result)">
-              {{result.itemName}}</p>
-        </ul></div>
-  </form>
+              {{result.Description}}</p>
+        </ul>
+      </div>
 
+    </div>
+  </div>
 
-
+</form>

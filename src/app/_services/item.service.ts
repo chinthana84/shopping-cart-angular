@@ -24,9 +24,9 @@ export class ItemService {
     return data;
   }
 
-  getItem(itemId: number) {
-    const item: Item = { ItemID: itemId };
-    return this.http.post(environment.apiUrl + '//api/WarrantyCard/GetItem', item);
+  getItem(itemId) {
+    const d = { ItemID: itemId };
+    return this.http.get(environment.apiUrl + '//api/Item/GetItem', { params: d });
   }
 
   itemSearchByName(itemName: string) {

@@ -19,14 +19,14 @@
           <tbody>
             <tr *ngFor="let i of items; let ii = index">
               <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-              <td>{{i.itemName}}</td>
+              <td>{{i.Description}}</td>
               <td>In stock</td>
-              <td>{{i.discount}}</td>
+              <td>{{i.Discount}}</td>
               <td><input class="form-control"type="text"
-                 [(ngModel)]="i.qty"  (ngModelChange)="triggerUpdate(i)"  /></td>
-              <td class="text-right">{{i.price}}$</td>
-              <td class="text-right">{{ (i.qty * i.price)*(i.discount *0.01)  }}$</td>
-              <td class="text-right">{{ (i.qty * i.price) - ((i.qty * i.price)*(i.discount *0.01) ) }}$</td>
+                 [(ngModel)]="i.OrderQty"  (ngModelChange)="triggerUpdate(i)"  /></td>
+              <td class="text-right">{{i.Price}}$</td>
+              <td class="text-right">{{ (i.OrderQty * i.Price)*(i.Discount *0.01)  }}$</td>
+              <td class="text-right">{{ (i.OrderQty * i.Price) - ((i.OrderQty * i.Price)*(i.Discount *0.01) ) }}$</td>
               <td class="text-right">
                 <button (click)="deleteShoppingCartItem(i)" class="btn btn-sm btn-danger">
                   <i class="fa fa-trash"></i> </button>

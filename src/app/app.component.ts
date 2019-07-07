@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './_services';
-import { User, Item, ShoppinCartSummary, Breadscrub } from './_models';
+import { User, Item, ShoppinCartSummary } from './_models';
 import { DataService } from './_services/data.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -18,7 +18,6 @@ export class AppComponent implements  OnInit {
   currentUser: User;
   HTTPActivity: boolean;
   private shoppinCartItemCount$: ShoppinCartSummary = new ShoppinCartSummary();
-  public navigationLink$: Observable<Breadscrub[]>;
   isAdminLogged$: Boolean;
 
   constructor(
@@ -32,11 +31,11 @@ export class AppComponent implements  OnInit {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     const scSummary = new ShoppinCartSummary();
     this._dataService.currentCartCount.subscribe(count => this.shoppinCartItemCount$ = count);
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });
-    this.navigationLink$ = this._dataService.currentNavigation;
+  
     this._dataService.isAdminLogged.subscribe(r => this.isAdminLogged$ = r);
   }
   onClickedOutside(e: Event) {

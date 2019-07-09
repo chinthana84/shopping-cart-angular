@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let i of items; let ii = index">
-              <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+              <td><img height='50' width='50' src="{{ i.ImageURL}}" /> </td>
               <td>{{i.Description}}</td>
               <td>In stock</td>
               <td>{{i.Discount}}</td>

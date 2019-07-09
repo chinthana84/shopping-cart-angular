@@ -1,10 +1,16 @@
 ﻿export class User {
-  id: number;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  token: string;
+  id?: number;
+  username?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  token?: string;
+
+  UserID?: number;
+  UserName?: string;
+  Password?: string;
+  Token?: string;
+
 }
 
 export class Category {

@@ -10,11 +10,12 @@ import { ItemService } from './_services/item.service';
 import { HTTPStatus } from './_helpers/HTTPStatus';
 import { SubjectSubscriber } from 'rxjs/internal/Subject';
 import { ToastrService } from 'ngx-toastr';
+import { LocalStorageService } from './_services/local-storage.service';
 
 
 // tslint:disable-next-line: component-selector
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
-export class AppComponent implements  OnInit {
+export class AppComponent implements OnInit {
   currentUser: User;
   HTTPActivity: boolean;
   private shoppinCartItemCount$: ShoppinCartSummary = new ShoppinCartSummary();
@@ -26,7 +27,8 @@ export class AppComponent implements  OnInit {
     private _dataService: DataService,
     private _itemService: ItemService,
     private httpStatus: HTTPStatus,
-    private _toaster: ToastrService
+    private _toaster: ToastrService,
+    private localStorageService: LocalStorageService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
@@ -35,8 +37,14 @@ export class AppComponent implements  OnInit {
     const scSummary = new ShoppinCartSummary();
     this._dataService.currentCartCount.subscribe(count => this.shoppinCartItemCount$ = count);
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });
-  
-    this._dataService.isAdminLogged.subscribe(r => this.isAdminLogged$ = r);
+    this._dataService.isAdminLogged.subscribe((r: any) => {
+      if (this.localStorageService.getData('isAdminLogin') != undefined) {
+        this.isAdminLogged$ = this.localStorageService.getData('isAdminLogin');
+      } else {
+        this.isAdminLogged$ = r;
+      }
+
+    });
   }
   onClickedOutside(e: Event) {
 

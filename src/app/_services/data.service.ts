@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Item, ShoppinCartSummary } from '@app/_models';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,11 @@ export class DataService {
   private bsAdminLogin = new BehaviorSubject<Boolean>(false);
   isAdminLogged = this.bsAdminLogin.asObservable();
   shoppintCartItems: Item[] = [];
-  constructor() { }
+
+  constructor(private localStorageService: LocalStorageService) { }
 
   adminLogin(b: Boolean) {
-   // localStorage.setItem('isAdminLogin',b);
+    this.localStorageService.setData('isAdminLogin', b);
     this.bsAdminLogin.next(b);
   }
 

@@ -6,20 +6,23 @@ import { first } from 'rxjs/operators';
 import { AlertService, AuthenticationService } from '@app/_services';
 import { DataService } from '@app/_services/data.service';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '@app/_models';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
+  user: User = {};
 
-  constructor(private _dataService: DataService,private _router: Router,  private _toastr: ToastrService
-
-  ) {
-
-  }
+  constructor(
+    private _dataService: DataService,
+    private _router: Router,
+    private _toastr: ToastrService,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-
+    this.authenticationService.logout();
   }
-
 
   onSubmit() {
     this._dataService.adminLogin(true);
@@ -35,17 +38,17 @@ export class LoginComponent implements OnInit {
     // }
 
     // this.loading = true;
-    // this.authenticationService.login(this.f.username.value, this.f.password.value)
-    //     .pipe(first())
-    //     .subscribe(
-    //         data => {
-    //             this.router.navigate([this.returnUrl]);
-    //         },
-    //         error => {
-    //             this.alertService.error(error);
-    //             this.loading = false;
-    //         });
-
-
+    // this.authenticationService
+    //   .login(this.user.UserName, this.user.Password)
+    //   .pipe(first())
+    //   .subscribe(
+    //     data => {
+    //       //this.router.navigate([this.returnUrl]);
+    //     },
+    //     error => {
+    //       //this.alertService.error(error);
+    //       //this.loading = false;
+    //     }
+    //   );
   }
 }

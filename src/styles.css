@@ -63,22 +63,21 @@ body {
 
 .filter-select {
 
-  margin-right: 75px;
-  padding: 0;
-  list-style: none;
-  font-size: 1.1em;
-  color: rgb(105, 105, 105);
-  border: 1px solid #ccc;
-  border-top: none;
-  /*so things don't jump around*/
-  position: absolute;
-  right: 0;
-  /*Since we know the wrapper will always be 100% height, we can use half of 100% + half the height of the input*/
-  top: calc(50% + 20px);
-
-  overflow-y: auto;
-  background: #fff;
-  z-index:5000;
+     /* margin-right: 75px; */
+     padding: 0;
+     list-style: none;
+     font-size: 1.1em;
+     color: rgb(105, 105, 105);
+     border: 1px solid #ccc;
+     border-top: none;
+     position: absolute;
+     /* right: 0; */
+     top: 38px;
+     overflow-y: auto;
+     background: #fff;
+     z-index: 5000;
+     width: 100%;
+     left: 0px;
 }
 .filter-select-list img {
   margin-right: 30px;

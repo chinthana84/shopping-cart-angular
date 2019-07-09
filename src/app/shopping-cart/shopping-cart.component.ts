@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 import { ConfirmDialogService } from '@app/_services/dialog/confirm-dialog.service';
 import { ToastrService } from 'ngx-toastr';
 import { ShoppingCartService } from '@app/_services/shopping-cart.service';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-shopping-cart',

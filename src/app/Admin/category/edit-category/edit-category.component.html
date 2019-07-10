@@ -1,83 +1,91 @@
 <h3>{{formStatus}} </h3>
-<form>
-  <div class="row" *ngIf="editCategoryModel">
-    <div class="col-md-8">
-      <div class="form-group">
-        <label for="Description">Description</label>
-        <input type="text" class="form-control" id="Description" name="Description" placeholder="Description"
-          [(ngModel)]="editCategoryModel.Description" />
-      </div>
-      <div class="form-group">
-        <label for="Remarks">Remarks</label>
-        <input type="text" class="form-control" id="Remarks" name="Remarks" [(ngModel)]="editCategoryModel.Remarks" />
-      </div>
+<div class='container-fluid bg'>
+  <form>
+    <div class="row" *ngIf="editCategoryModel">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="Description">Description</label>
+          <input type="text" class="form-control" id="Description" name="Description" placeholder="Description"
+            [(ngModel)]="editCategoryModel.Description" />
+        </div>
+        <div class="form-group">
+          <label for="Remarks">Remarks</label>
+          <input type="text" class="form-control" id="Remarks" name="Remarks" [(ngModel)]="editCategoryModel.Remarks" />
+        </div>
 
-      <div class="form-group">
-        <label for="Status">Status</label>
-        <select class="form-control" id="Status" [(ngModel)]="editCategoryModel.StatusId" name="status">
-          <option *ngFor="let i of status" [value]="i.id">{{i.desc}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label for="customFile"> Category Image </label>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFile" (change)="onFileSelected($event)">
-        <label class="custom-file-label" for="customFile">Choose file</label>
-      </div>
-
-      <div class="text-center">
-        <div class="img">
-          <img src='{{editCategoryModel?.ImageURL}}' height="200" width='100%' class="rounded" alt="...">
+        <div class="form-group">
+          <label for="Status">Status</label>
+          <select class="form-control" id="Status" [(ngModel)]="editCategoryModel.StatusId" name="status">
+            <option *ngFor="let i of status" [value]="i.id">{{i.desc}}</option>
+          </select>
         </div>
       </div>
+      <div class="col-md-4">
+        <label for="customFile"> Category Image </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile" (change)="onFileSelected($event)">
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
 
-    </div>
-  </div>
-  <br />
-  <div id="accordion">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-            <div class="btn-group float-right " role="group"> <input type="button" value="New-Subcategory"
-                class="btn btn-primary  " (click)="newSubCategory()" />
-            </div>
+        <div class="text-center">
+          <div class="img">
+            <img src='{{editCategoryModel?.ImageURL}}' height="200" width='100%' class="rounded" alt="...">
+          </div>
+        </div>
+
       </div>
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <table class="table table-striped">
-            <thead>
-              <th>Description</th>
-              <th>Remarks</th>
-              <th></th>
-              <th>Status</th>
-              <th></th>
-            </thead>
-            <tr *ngFor="let i of editCategoryModel.listSubCategory">
-              <td>{{ i.Description }}</td>
-              <td>{{ i.Remarks }}</td>
-              <td><img style="width:50px;" class="img-responsive" src="{{ i.ImageURL }}" alt="Sub Cateroy image" /></td>
+    </div>
+    <br />
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <div class="btn-group float-right " role="group"> <input type="button" value="New-Subcategory"
+              class="btn btn-primary  " (click)="newSubCategory()" />
+          </div>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <th>Description</th>
+                <th>Remarks</th>
+                <th></th>
+                <th>Status</th>
+                <th></th>
+              </thead>
+              <tr *ngFor="let i of editCategoryModel.listSubCategory">
+                <td>{{ i.Description }}</td>
+                <td>{{ i.Remarks }}</td>
+                <td><img style="width:50px;" class="img-responsive" src="{{ i.ImageURL }}" alt="Sub Cateroy image" />
+                </td>
 
-              <td>{{ i.StatusDesc }}</td>
-              <td>
-                <input type="button" value="Edit" class="btn" (click)="editSubCategory(i)" />
-              </td>
-            </tr>
-          </table>
+                <td>{{ i.StatusDesc }}</td>
+                <td>
+                  <input type="button" value="Edit" class="btn" (click)="editSubCategory(i)" />
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12">
+        <div class="btn-group float-right">
+          <button type="button" class="btn btn-primary" (click)="saveCategoryX()">Save</button>
+          <button type="button" class="btn btn-primary" (click)="clickBack()">Back</button>
+        </div>
+      </div>
+    </div>
 <br />
-  <div class="btn-group float-right">
-      <button type="button" class="btn btn-primary" (click)="saveCategoryX()">Save</button>
-      <button type="button" class="btn btn-primary" (click)="clickBack()">Back</button>
-    </div>
+  </form>
+</div>
+<br />
+<app-modal-dialog>
+  <div class="modal-body">
 
-  <app-modal-dialog>
-    <div class="modal-body">
-
-      <h4>Subcategory</h4>
-      <app-edit-sub-category></app-edit-sub-category>
-    </div>
-  </app-modal-dialog>
-</form>
+    <h4>Subcategory</h4>
+    <app-edit-sub-category></app-edit-sub-category>
+  </div>
+</app-modal-dialog>

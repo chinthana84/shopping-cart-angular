@@ -25,6 +25,10 @@ export class DataService {
   currentSPCartCount() {
     const scSummary = new ShoppinCartSummary();
     scSummary.itemsCount = this.getShoppinCartList().length;
+
+    scSummary.TotalDiscount = this.shoppintCartItems.reduce((acc, val) =>
+    acc +   (val.Price * val.OrderQty * val.Discount * 0.01), 0);
+
     scSummary.Total = this.shoppintCartItems.reduce((acc, val) =>
       acc + (val.Price * val.OrderQty) - (val.Price * val.OrderQty * val.Discount * 0.01), 0);
     this.bsShoppingCartCountSource.next(scSummary);

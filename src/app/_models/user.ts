@@ -41,6 +41,7 @@ export class Item {
 export class ShoppinCartSummary {
   itemsCount: number;
   Total: number;
+  TotalDiscount : number;
 
   subToal: number;
 }

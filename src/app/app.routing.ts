@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'item', component: ItemComponent },
   { path: 'items', component: ItemsComponent },
 
-  { path: 'AdminCategory', component: CategoryComponent, canActivate: [AuthGuard]  },
+  { path: 'AdminCategory', component: CategoryComponent  },
   { path: 'EditCategory', component: EditCategoryComponent },
   { path: 'AdminItems', component: AdminItemsComponent },
   { path: 'EditAdminItems', component: AdminEditItemsComponent },

@@ -1,4 +1,27 @@
-<form class="form-inline">
+<form action="#" class="search-wrap">
+  <div class="input-group w-100">
+    <input type="text" class="form-control" style="width:55%;" [formControl]="queryField" autocomplete="off"
+      placeholder="search for items..." id="keyword">
+
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" (click)="searchItems()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <div clickOutside (clickOutside)="closeDropDown()">
+      <ul class="filter-select" *ngIf='showDropDown'>
+        <li *ngFor="let result of results" class="filter-select-list">
+          <p class="artist-name" (click)="loadSearchedItem(result)">
+            {{result.Description}}</p>
+      </ul>
+    </div>
+  </div>
+</form>
+
+
+
+<!-- <form class="form-inline">
   <div class="input-group">
     <input type="text" class="form-control" [formControl]="queryField" autocomplete="off" type="text" id="keyword"
       placeholder="search for items...">
@@ -14,5 +37,4 @@
 
     </div>
   </div>
-
-</form>
+</form> -->

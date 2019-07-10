@@ -46,10 +46,17 @@ export class AppComponent implements OnInit {
 
     });
   }
+
   onClickedOutside(e: Event) {
 
   }
+  onSubmit() {
+    this._dataService.adminLogin(true);
+    this.router.navigate(['/home']);
+    this._toaster.success('Admin Logged Sucessfully');
 
+
+  }
 
 
   test() {

@@ -18,7 +18,7 @@ export class CategoryComponent implements OnInit {
     datas: {}
   };
 
-  formName = 'Category';
+  formName = ' ';
   constructor(private _router: Router,
     private _dateService: DataService,
     private _adminCategoryService: AdminCateogyService) { }

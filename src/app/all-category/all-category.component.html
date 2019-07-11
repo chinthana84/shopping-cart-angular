@@ -1,27 +1,29 @@
 <section class="section-content bg padding-y-sm">
   <div class="container-fluid">
-
-    <hr />
-    <div class="row-sm">
-      <div class="col-md-3 col-sm-6" *ngFor="let item of gridOption.datas.pagedItems">
-        <figure class="card card-product">
-          <a (click)="selectedCategory(item)">
-            <div class="img-wrap">
-              <img src="{{ imagePathUrl + item.ImageURL }}" />
-            </div>
-          </a>
-          <figcaption class="info-wrap">
-            <a href="#" class="title">{{ item.Description }}</a>
-            <div class="price-wrap"></div>
-            <!-- price-wrap.// -->
-          </figcaption>
-        </figure>
-        <!-- card // -->
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="row-sm">
+          <div class="col-md-3 col-sm-6" *ngFor="let item of gridOption.datas.pagedItems">
+            <figure class="card card-product">
+              <a (click)="selectedCategory(item)">
+                <div class="img-wrap">
+                  <img src="{{ imagePathUrl + item.ImageURL }}" />
+                </div>
+              </a>
+              <figcaption class="info-wrap">
+                <a href="#" class="title">{{ item.Description }}</a>
+                <div class="price-wrap"></div>
+                <!-- price-wrap.// -->
+              </figcaption>
+            </figure>
+            <!-- card // -->
+          </div>
+          <!-- col // -->
+        </div>
+        <app-pager (pagedClicked)="setPage($event)" [pagerX]="gridOption"></app-pager>
       </div>
-      <!-- col // -->
+      <div class="col-md-2"></div>
     </div>
-    <app-pager (pagedClicked)="setPage($event)" [pagerX]="gridOption"></app-pager>
   </div>
 </section>
-
-

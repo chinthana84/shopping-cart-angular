@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './_services';
-import { User, Item, ShoppinCartSummary } from './_models';
+import { User, Item, ShoppinCartSummary, Breadcrumb } from './_models';
 import { DataService } from './_services/data.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   HTTPActivity: boolean;
   private shoppinCartItemCount$: ShoppinCartSummary = new ShoppinCartSummary();
   isAdminLogged$: Boolean;
-
+  bsList: Breadcrumb[] = [];
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
@@ -31,19 +31,25 @@ export class AppComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
+   //this._dataService.ListBreadcrumb.subscribe((r: any) => {this.bsList = r;  });
   }
+
+
 
   ngOnInit() {
     const scSummary = new ShoppinCartSummary();
     this._dataService.currentCartCount.subscribe(count => this.shoppinCartItemCount$ = count);
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });
+
+
+
     this._dataService.isAdminLogged.subscribe((r: any) => {
       if (this.localStorageService.getData('isAdminLogin') != undefined) {
         this.isAdminLogged$ = this.localStorageService.getData('isAdminLogin');
       } else {
         this.isAdminLogged$ = r;
       }
-
     });
   }
 

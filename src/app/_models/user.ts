@@ -41,11 +41,16 @@ export class Item {
 export class ShoppinCartSummary {
   itemsCount: number;
   Total: number;
-  TotalDiscount : number;
+  TotalDiscount: number;
 
   subToal: number;
 }
 
+
+export class Breadcrumb {
+  Url: string;
+  DisplayText: string;
+}
 
 //////////////////////////////////////////////////////////
 export class CategoryModel {

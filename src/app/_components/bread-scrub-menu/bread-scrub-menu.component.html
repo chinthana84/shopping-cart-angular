@@ -1,0 +1,19 @@
+<div class="card hideHome"  >
+    <div class="card-body">
+      <div class="row"  >
+        <div class="col-md-3-24"><strong> </strong></div>
+         <nav class="col-md-18-24" >
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item" *ngFor="let i of bsList" ><a routerLink="{{i.Url}}">{{i.DisplayText}}</a></li>
+          </ol>
+        </nav>
+         <div class="col-md-3-24 text-right">
+          <a href="#" data-toggle="tooltip" title="" data-original-title="List view">
+            <i class="fa fa-bars"></i></a>
+          <a href="#" data-toggle="tooltip" title="" data-original-title="Grid view">
+            <i class="fa fa-th"></i></a>
+        </div>
+       </div>
+    </div>
+  </div>
+

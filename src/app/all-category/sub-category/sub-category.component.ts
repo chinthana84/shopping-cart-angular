@@ -3,8 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
 import { SubCategoryService } from '@app/_services/sub-category.service';
-import { SubCategory } from '@app/_models';
+import { SubCategory, Breadcrumb } from '@app/_models';
 import { GridType, environment } from '@environments/environment';
+import { DataService } from '@app/_services/data.service';
 
 @Component({
   selector: 'app-sub-category',
@@ -14,19 +15,35 @@ export class SubCategoryComponent implements OnInit {
   formName = 'Cateogry => SubCategory';
   imagePathUrl = environment.imageUrlPath;
   categoryId: number;
+  categoryName: string;
   searchObject: SearchObject = {};
   gridOption: GridOptions = {
     colNames: [ { colName: 'Description' }],
     datas: {}
   };
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private _subCatSer: SubCategoryService) { }
+  constructor(private _dataService: DataService,
+     private router: Router, private activatedRoute: ActivatedRoute, private _subCatSer: SubCategoryService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.categoryId = params['c'];
       this.setPage({ pageNo: 1, searchColName: 'Description' });
+      this.categoryName = params["name"];
     });
+
+    const arry: Breadcrumb[] = [];
+    const bs = new Breadcrumb();
+    bs.Url = '/home';
+    bs.DisplayText = "Home";
+    arry.push(bs);
+
+    const bs2 = new Breadcrumb();
+    bs2.Url = '';
+    bs2.DisplayText = this.categoryName;
+    arry.push(bs2);
+
+    this._dataService.setBreadcrumbPath(arry);
   }
 
   setPage(obj: SearchObject) {

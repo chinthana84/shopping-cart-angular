@@ -1,6 +1,203 @@
-﻿<h1>Home - Testing</h1>
-<div [innerHTML]="data"></div>
-<a class="nav-item nav-link" routerLink="/home">Homessss</a>
+﻿<style>
+  .hideHome {
+    display: none !important;
+  }
+</style>
+<section class="section-main bg padding-top-sm">
+  <div class="container">
 
-<button class="btn btn-primary pull-right" (click)="showDialog()">Show Dialog</button>
- 
+    <div class="row row-sm">
+      <aside class="col-md-3">
+        <div class="card">
+          <header class="card-header bg-secondary white">
+            <i class="icon-menu"></i> Categories
+          </header>
+          <ul class="menu-category">
+            <li> <a href="#">Food &amp; Beverage </a></li>
+            <li> <a href="#">Home Equipments </a></li>
+            <li> <a href="#">Machinery Items </a></li>
+            <li> <a href="#">Toys &amp; Hobbies </a></li>
+            <li> <a href="#">Consumer Electronics </a></li>
+            <li> <a href="#">Beauty &amp; Personal Care </a></li>
+            <li class="has-submenu"> <a href="#">More category <i class="icon-arrow-right pull-right"></i></a>
+              <ul class="submenu">
+                <li> <a href="#">Food &amp; Beverage </a></li>
+                <li> <a href="#">Home Equipments </a></li>
+                <li> <a href="#">Machinery Items </a></li>
+                <li> <a href="#">Toys &amp; Hobbies </a></li>
+                <li> <a href="#">Consumer Electronics </a></li>
+                <li> <a href="#">Home &amp; Garden </a></li>
+                <li> <a href="#">Beauty &amp; Personal Care </a></li>
+              </ul>
+            </li>
+          </ul>
+        </div> <!-- card.// -->
+      </aside> <!-- col.// -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <!-- ================= main slide ================= -->
+            <div class="owl-init slider-main owl-carousel owl-loaded owl-drag" data-items="1" data-nav="true"
+              data-dots="false">
+
+
+
+              <div class="owl-stage-outer">
+                <div class="owl-stage"
+                  style="transform: translate3d(-1156px, 0px, 0px); transition: all 0.25s ease 0s; width: 4046px;">
+                  <div class="owl-item cloned" style="width: 578px;">
+                    <div class="item-slide">
+                      <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/6.jpg">
+                    </div>
+                  </div>
+                  <div class="owl-item cloned" style="width: 578px;">
+                    <div class="item-slide">
+                      <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/6.jpg">
+                    </div>
+                  </div>
+                  <div class="owl-item active" style="width: 578px;">
+                    <div class="item-slide">
+                      <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/6.jpg">
+                    </div>
+                  </div>
+                  <div class="owl-item" style="width: 578px;">
+                    <div class="item-slide">
+                      <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/6.jpg">
+                    </div>
+                  </div>
+                  <div class="owl-item" style="width: 578px;">
+                    <div class="item-slide">
+                      <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/6.jpg">
+                    </div>
+                  </div>
+                  <div class="owl-item cloned" style="width: 578px;">
+                    <div class="item-slide">
+                      <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/6.jpg">
+                    </div>
+                  </div>
+                  <div class="owl-item cloned" style="width: 578px;">
+                    <div class="item-slide">
+                      <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/6.jpg">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i
+                    class="fa fa-chevron-left"></i></button><button type="button" role="presentation"
+                  class="owl-next"><i class="fa fa-chevron-right"></i></button></div>
+              <div class="owl-dots disabled"></div>
+            </div>
+            <!-- ============== main slidesow .end // ============= -->
+          </div> <!-- card-body .// -->
+        </div> <!-- card.// -->
+      </div> <!-- col.// -->
+      <aside class="col-md-3">
+
+        <div class="card bg-white h-100 d-flex flex-column">
+          <div class="p-3 flex-grow-1">
+            <article class="box h-100">
+              <figure class="itembox text-center">
+                <span class="mt-2 icon-wrap rounded icon-sm bg-success"><i class="fa fa-user white"></i></span>
+                <figcaption class="text-wrap">
+                  <h5 class="title">Creative Strategy &amp; solution</h5>
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod </p>
+                </figcaption>
+              </figure> <!-- iconbox // -->
+            </article>
+          </div>
+          <div class="p-3 bg flex-grow-1">
+            <p>Some item group </p><a href="#" class="btn btn-sm btn-primary round">View more</a>
+          </div>
+    
+        </div>
+
+      </aside>
+    </div>
+  </div> <!-- container .//  -->
+</section>
+
+<section class="section-content padding-y bg">
+  <div class="container">
+
+    <div class="card mb-3">
+      <div class="card-body">
+
+        <header class="section-heading">
+          <h3 class="title-section">Main section is here</h3>
+        </header>
+
+        <div class="row-sm">
+          <div class="col-md-3 col-sm-6">
+            <figure class="card card-product">
+              <div class="img-wrap"> <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/3.jpg"></div>
+              <figcaption class="info-wrap">
+                <a href="#" class="title">Good item name</a>
+                <div class="price-wrap">
+                  <span class="price-new">$1280</span>
+                  <del class="price-old">$1980</del>
+                </div> <!-- price-wrap.// -->
+              </figcaption>
+            </figure> <!-- card // -->
+          </div> <!-- col // -->
+          <div class="col-md-3 col-sm-6">
+            <figure class="card card-product">
+              <div class="img-wrap"> <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/3.jpg"></div>
+              <figcaption class="info-wrap">
+                <a href="#" class="title">The name of product</a>
+                <div class="price-wrap">
+                  <span class="price-new">$280</span>
+                </div> <!-- price-wrap.// -->
+              </figcaption>
+            </figure> <!-- card // -->
+          </div> <!-- col // -->
+          <div class="col-md-3 col-sm-6">
+            <figure class="card card-product">
+              <div class="img-wrap"> <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/3.jpg"></div>
+              <figcaption class="info-wrap">
+                <a href="#" class="title">Good item name</a>
+                <div class="price-wrap">
+                  <span class="price-new">$280</span>
+                </div> <!-- price-wrap.// -->
+              </figcaption>
+            </figure> <!-- card // -->
+          </div> <!-- col // -->
+          <div class="col-md-3 col-sm-6">
+            <figure class="card card-product">
+              <div class="img-wrap"> <img src="http://bootstrap-ecommerce.com/ui-ecommerce/images/items/3.jpg"></div>
+              <figcaption class="info-wrap">
+                <a href="#" class="title">Good item name</a>
+                <div class="price-wrap">
+                  <span class="price-new">$280</span>
+                </div> <!-- price-wrap.// -->
+              </figcaption>
+            </figure> <!-- card // -->
+          </div> <!-- col // -->
+
+
+
+
+
+
+
+
+        </div>
+      </div> <!-- card-body .// -->
+    </div> <!-- card.// -->
+
+    <div class="card">
+      <div class="card-body">
+
+        <article>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <br><br><br><br>
+        </article>
+      </div> <!-- card-body .// -->
+    </div> <!-- card.// -->
+
+  </div> <!-- container .//  -->
+</section>

@@ -31,7 +31,7 @@
       <div class="row align-items-center">
         <div class="col-lg-3 col-sm-4">
           <div class="brand-wrap">
-            <img class="logo" src="images/logo-dark.png">
+            <a routerLink="/home"><img class="logo" src="http://bootstrap-ecommerce.com/ui-ecommerce/images/logo.png"></a>
             <h2 class="logo-text">LOGO</h2>
           </div> <!-- brand-wrap.// -->
         </div>
@@ -91,126 +91,17 @@
     </div> <!-- container.// -->
   </section>
 </header>
-
-<div class="card">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-3-24"><strong>Your are here:</strong></div>
-      <!-- col.// -->
-      <nav class="col-md-18-24">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Category name</a></li>
-          <li class="breadcrumb-item"><a href="#">Sub category</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Items</li>
-        </ol>
-      </nav>
-      <!-- col.// -->
-      <div class="col-md-3-24 text-right">
-        <a href="#" data-toggle="tooltip" title="" data-original-title="List view">
-          <i class="fa fa-bars"></i></a>
-        <a href="#" data-toggle="tooltip" title="" data-original-title="Grid view">
-          <i class="fa fa-th"></i></a>
-      </div>
-      <!-- col.// -->
-    </div>
-  </div>
-</div>
+<app-bread-scrub-menu> </app-bread-scrub-menu>
 
 <div style='margin-top: 5px;' class='container-fluid'>
   <div class='row'>
-    <div class='col-md-2'></div>
-    <div class='col-md-8'>
+    <div class='col-md-12'>
       <router-outlet></router-outlet>
     </div>
-    <div *ngIf='isAdminLogged$' class='col-md-2'></div>
+
   </div>
 </div>
 
-<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a href="#" class="navbar-brand" routerLink="/home">Brand</a>
-  <app-item-search></app-item-search>
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/category">Category</a>
-          <div class="nav-item dropdown" *ngIf='isAdminLogged$'>
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Admin</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" routerLink="/AdminCategory">AdminCategory</a>
-                <a class="dropdown-item"routerLink="/AdminItems"    >Admin Items</a>
-              </div>
-          </div>
-      </div>
-
-
-      <form class="form-inline my-2 my-lg-0">
-
-        <a *ngIf="shoppinCartItemCount$.itemsCount >0 " class="btn btn-success btn-sm ml-3" routerLink="/shoppinCart">
-          <i class="fa fa-shopping-cart"></i>&nbsp;
-          <span class="badge badge-light">{{shoppinCartItemCount$.itemsCount}} </span>&nbsp;
-          <span class="badge badge-light">{{shoppinCartItemCount$.Total}}$</span>
-        </a>
-      </form>
-  </div>
-</nav> -->
-
-<!-- <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top"  >
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/home">Home</a>
-    <a class="nav-item nav-link" routerLink="/category">All Category</a>
- </div>
-  <app-item-search></app-item-search>
-  <form class="form-inline my-2 my-lg-0">
-
-    <a *ngIf="shoppinCartItemCount$.itemsCount >0 " class="btn btn-success btn-sm ml-3" routerLink="/shoppinCart">
-      <i class="fa fa-shopping-cart"></i>&nbsp;
-      <span class="badge badge-light">{{shoppinCartItemCount$.itemsCount}} </span>&nbsp;
-      <span class="badge badge-light">{{shoppinCartItemCount$.Total}}$</span>
-    </a>
-  </form>
-</nav> -->
-<!-- <nav class="navbar navbar-expand navbar-dark bg-dark "  >
-  <div class="navbar-nav" *ngFor="let i of navigationLink$ | async; ">
-    <a class="nav-item nav-link" routerLink="{{i.url}}">{{i.url}}</a>
-  </div>
-
-  </nav> -->
-
-<!--
-
-
-
-<div class="container-fluid">
-
-  <div class="row">
-
-    <div class="col-lg-12">
-      <alert></alert>
-      <router-outlet></router-outlet>
-
-    </div>
-
-  </div>
-
-
-</div>
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019
-
-      <a class=" nav-item nav-link" *ngIf='!isAdminLogged$' routerLink="/login">Admin</a>
-
-      <a class=" nav-item nav-link" *ngIf='isAdminLogged$' routerLink="/#" (click)='logOut()'>Log Out</a>
-    </p>
-  </div>
-
-</footer>
-
- -->
 <app-loading-animation></app-loading-animation>
 <app-confirm-dialog></app-confirm-dialog>
 <footer class="section-footer bg-secondary">
@@ -266,19 +157,9 @@
             </div>
           </article>
         </aside>
-      </div> <!-- row.// -->
+      </div>
       <br>
     </section>
-    <section class="footer-bottom row border-top-white">
-      <div class="col-sm-6">
-        <p class="text-white-50"> Made with &lt;3 <br> by Vosidiy M.</p>
-      </div>
-      <div class="col-sm-6">
-        <p class="text-md-right text-white-50">
-          Copyright © <br>
-          <a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
-        </p>
-      </div>
-    </section> <!-- //footer-top -->
-  </div><!-- //container -->
+
+  </div>
 </footer>

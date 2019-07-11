@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Item, ShoppinCartSummary } from '@app/_models';
+import { Item, ShoppinCartSummary, Breadcrumb } from '@app/_models';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
@@ -13,6 +13,11 @@ export class DataService {
   // Admin login BS
   private bsAdminLogin = new BehaviorSubject<Boolean>(false);
   isAdminLogged = this.bsAdminLogin.asObservable();
+
+  // Breadscrumt
+  private bsBreadcrumb = new BehaviorSubject<Breadcrumb[]>([]);
+  ListBreadcrumb = this.bsBreadcrumb.asObservable();
+
   shoppintCartItems: Item[] = [];
 
   constructor(private localStorageService: LocalStorageService) { }
@@ -22,12 +27,16 @@ export class DataService {
     this.bsAdminLogin.next(b);
   }
 
+  setBreadcrumbPath(lst: Breadcrumb[]) {
+    this.bsBreadcrumb.next(lst);
+  }
+
   currentSPCartCount() {
     const scSummary = new ShoppinCartSummary();
     scSummary.itemsCount = this.getShoppinCartList().length;
 
     scSummary.TotalDiscount = this.shoppintCartItems.reduce((acc, val) =>
-    acc +   (val.Price * val.OrderQty * val.Discount * 0.01), 0);
+      acc + (val.Price * val.OrderQty * val.Discount * 0.01), 0);
 
     scSummary.Total = this.shoppintCartItems.reduce((acc, val) =>
       acc + (val.Price * val.OrderQty) - (val.Price * val.OrderQty * val.Discount * 0.01), 0);

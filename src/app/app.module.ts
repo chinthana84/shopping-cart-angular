@@ -30,6 +30,7 @@ import { EditSubCategoryComponent } from './Admin/category/edit-sub-category/edi
 import { ModalDialogComponent } from './_shared/modalDialog/modal-dialog/modal-dialog.component';
 import { AdminItemsComponent } from './Admin/admin-items/admin-items.component';
 import { AdminEditItemsComponent } from './Admin/admin-items/admin-edit-items/admin-edit-items.component';
+import { BreadScrubMenuComponent } from './_components/bread-scrub-menu/bread-scrub-menu.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,8 @@ import { AdminEditItemsComponent } from './Admin/admin-items/admin-edit-items/ad
     EditSubCategoryComponent,
     ModalDialogComponent,
     AdminItemsComponent,
-    AdminEditItemsComponent],
+    AdminEditItemsComponent,
+    BreadScrubMenuComponent],
   providers: [
      ErrorInterceptor, HTTPStatus,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

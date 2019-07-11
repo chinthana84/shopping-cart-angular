@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AllCategoryService } from '@app/_services/all-category.service';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { GridOptions } from '@app/_shared/_grid/gridModels/gridOption.model';
-import { Category } from '@app/_models';
+import { Category, Breadcrumb } from '@app/_models';
 import { Type } from '@angular/compiler';
 import { GridType } from '@environments/environment';
 import { HTTPStatus } from '@app/_helpers/HTTPStatus';
@@ -23,6 +23,9 @@ export class AllCategoryComponent implements OnInit {
     datas: {}
   };
 
+
+  bsList: Breadcrumb[] = [];
+
   constructor(private router: Router,
     private allCategoryService: AllCategoryService,
     private route: ActivatedRoute,
@@ -31,6 +34,18 @@ export class AllCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.setPage({ pageNo: 1, searchColName: '' });
+    this._dateService.isAdminLogged.subscribe((r: any) => {
+      this.bsList = r;
+    });
+
+
+
+    const arry: Breadcrumb[] = [];
+    const bs = new Breadcrumb();
+    bs.Url = '/home';
+    bs.DisplayText = "Home";
+    arry.push(bs);
+    this._dateService.setBreadcrumbPath(arry);
   }
 
   setPage(obj: SearchObject) {
@@ -43,7 +58,7 @@ export class AllCategoryComponent implements OnInit {
 
   selectedCategory(category: Category) {
     if (category.IsSubCategory) {
-      this.router.navigate(['/category/sub/'], { queryParams: { c: category.CategoryID } });
+      this.router.navigate(['/category/sub/'], { queryParams: { c: category.CategoryID, name: category.Description } });
     } else {
       this.router.navigate(['/category/items'], { queryParams: { cat: category.CategoryID } });
     }

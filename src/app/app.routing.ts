@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'AdminItems', component: AdminItemsComponent },
   { path: 'EditAdminItems', component: AdminEditItemsComponent },
   // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'home' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

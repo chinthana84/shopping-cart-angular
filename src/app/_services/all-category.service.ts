@@ -13,4 +13,8 @@ export class AllCategoryService {
   getGridAllCategory(obj: SearchObject) {
     return this.http.post(environment.apiUrl + '//api/AngularDTQuery', obj);
   }
+
+  getAllActiveCategory() {
+    return this.http.get(environment.apiUrl + '//api/Category/GetAllActiveCategory');
+  }
 }

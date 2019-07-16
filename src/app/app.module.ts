@@ -31,6 +31,7 @@ import { ModalDialogComponent } from './_shared/modalDialog/modal-dialog/modal-d
 import { AdminItemsComponent } from './Admin/admin-items/admin-items.component';
 import { AdminEditItemsComponent } from './Admin/admin-items/admin-edit-items/admin-edit-items.component';
 import { BreadScrubMenuComponent } from './_components/bread-scrub-menu/bread-scrub-menu.component';
+import { HomeCategoryLeftsidemenuComponent } from './_components/home-category-leftsidemenu/home-category-leftsidemenu.component';
 
 @NgModule({
   imports: [
@@ -70,7 +71,8 @@ import { BreadScrubMenuComponent } from './_components/bread-scrub-menu/bread-sc
     ModalDialogComponent,
     AdminItemsComponent,
     AdminEditItemsComponent,
-    BreadScrubMenuComponent],
+    BreadScrubMenuComponent,
+    HomeCategoryLeftsidemenuComponent],
   providers: [
      ErrorInterceptor, HTTPStatus,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

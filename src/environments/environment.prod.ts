@@ -1,8 +1,8 @@
 export const environment = {
-  production: true,
-  apiUrl: 'http://13.75.198.182/webapi'
-  , imageNotFoundUrl: '/sc/assets/images/notfound.png'
-  , imageUrlPath: 'http://13.75.198.182/WebAPI/UploadFile/'
+   production: true,
+   apiUrl: 'http://13.75.198.182/webapi'
+   , imageNotFoundUrl: '/sc/assets/images/notfound.png'
+   , imageUrlPath: 'http://13.75.198.182/WebAPI/UploadFile/'
 
 
   //   apiUrl: 'http://localhost:83/WebAPI'

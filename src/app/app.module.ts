@@ -32,7 +32,8 @@ import { AdminItemsComponent } from './Admin/admin-items/admin-items.component';
 import { AdminEditItemsComponent } from './Admin/admin-items/admin-edit-items/admin-edit-items.component';
 import { BreadScrubMenuComponent } from './_components/bread-scrub-menu/bread-scrub-menu.component';
 import { HomeCategoryLeftsidemenuComponent } from './_components/home-category-leftsidemenu/home-category-leftsidemenu.component';
-
+import { ShoppingCartCheckoutComponent } from './shopping-cart/shopping-cart-checkout/shopping-cart-checkout.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     BrowserModule,
@@ -40,6 +41,7 @@ import { HomeCategoryLeftsidemenuComponent } from './_components/home-category-l
     HttpClientModule,
     routing,
     ChiGridModule,
+    NgbModule,
     FormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
@@ -72,7 +74,8 @@ import { HomeCategoryLeftsidemenuComponent } from './_components/home-category-l
     AdminItemsComponent,
     AdminEditItemsComponent,
     BreadScrubMenuComponent,
-    HomeCategoryLeftsidemenuComponent],
+    HomeCategoryLeftsidemenuComponent,
+    ShoppingCartCheckoutComponent],
   providers: [
      ErrorInterceptor, HTTPStatus,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

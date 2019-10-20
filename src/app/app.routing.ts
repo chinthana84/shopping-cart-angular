@@ -12,6 +12,7 @@ import { CategoryComponent } from './Admin/category/category.component';
 import { EditCategoryComponent } from './Admin/category/edit-category/edit-category.component';
 import { AdminItemsComponent } from './Admin/admin-items/admin-items.component';
 import { AdminEditItemsComponent } from './Admin/admin-items/admin-edit-items/admin-edit-items.component';
+import { ShoppingCartCheckoutComponent } from './shopping-cart/shopping-cart-checkout/shopping-cart-checkout.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +25,8 @@ const appRoutes: Routes = [
   { path: 'shoppinCart', component: ShoppingCartComponent },
   { path: 'item', component: ItemComponent },
   { path: 'items', component: ItemsComponent },
+  { path: 'check-out', component: ShoppingCartCheckoutComponent },
+
 
   { path: 'AdminCategory', component: CategoryComponent  },
   { path: 'EditCategory', component: EditCategoryComponent },

@@ -18,55 +18,25 @@
       <div class="card-body">
 
         <header class="section-heading">
-          <h3 class="title-section">Main section is here</h3>
+          <h3 class="title-section">Most sold items</h3>
         </header>
 
         <div class="row-sm">
-          <div class="col-md-3 col-sm-6">
+          <div class="col-md-3 col-sm-6" *ngFor="let i of MostSoldItems">
             <figure class="card card-product">
-              <div class="img-wrap"> <img src="https://www.buyasianfood.com.au/pi/TrungNguyc3aanG73-In-1Coffee16Kg@p4818@300x300.jpg"></div>
+              <div class="img-wrap"> <a (click)="navigateToItem(i.ItemID)"><img src="{{i.ImageURL}}"></a></div>
               <figcaption class="info-wrap">
-                <a href="#" class="title">Good item name</a>
+                <a (click)="navigateToItem(i.ItemID)"   class="title">{{i.Description}}</a>
                 <div class="price-wrap">
-                  <span class="price-new">$1280</span>
-                  <del class="price-old">$1980</del>
+                  <span *ngIf="i.Discount==0" class="price-new">${{i.Price}}</span>
+
+                  <span *ngIf="i.Discount>0" class="price-new">${{i.Price -(i.Price * i.Discount*.01)}}</span>
+                  <del *ngIf="i.Discount>0" class="price-old">${{i.Price}}</del>
                 </div> <!-- price-wrap.// -->
               </figcaption>
             </figure> <!-- card // -->
           </div> <!-- col // -->
-          <div class="col-md-3 col-sm-6">
-            <figure class="card card-product">
-              <div class="img-wrap"> <img src="https://www.buyasianfood.com.au/pi/OtafukuOkonomiyakiSauce500Ml@p883@300x300.jpg"></div>
-              <figcaption class="info-wrap">
-                <a href="#" class="title">The name of product</a>
-                <div class="price-wrap">
-                  <span class="price-new">$280</span>
-                </div> <!-- price-wrap.// -->
-              </figcaption>
-            </figure> <!-- card // -->
-          </div> <!-- col // -->
-          <div class="col-md-3 col-sm-6">
-            <figure class="card card-product">
-              <div class="img-wrap"> <img src="https://www.buyasianfood.com.au/pi/JFCEmptyBaoBuns(Large)12Kg@p21443@300x300.jpg"></div>
-              <figcaption class="info-wrap">
-                <a href="#" class="title">Good item name</a>
-                <div class="price-wrap">
-                  <span class="price-new">$280</span>
-                </div> <!-- price-wrap.// -->
-              </figcaption>
-            </figure> <!-- card // -->
-          </div> <!-- col // -->
-          <div class="col-md-3 col-sm-6">
-            <figure class="card card-product">
-              <div class="img-wrap"> <img src="https://www.buyasianfood.com.au/pi/Wel-PacEdamameInPod454G@p22562@300x300.jpg"></div>
-              <figcaption class="info-wrap">
-                <a href="#" class="title">Good item name</a>
-                <div class="price-wrap">
-                  <span class="price-new">$280</span>
-                </div> <!-- price-wrap.// -->
-              </figcaption>
-            </figure> <!-- card // -->
-          </div> <!-- col // -->
+
 
 
 

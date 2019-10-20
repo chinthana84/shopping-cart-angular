@@ -32,16 +32,23 @@ export class AppComponent implements OnInit {
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
-   //this._dataService.ListBreadcrumb.subscribe((r: any) => {this.bsList = r;  });
+    //this._dataService.ListBreadcrumb.subscribe((r: any) => {this.bsList = r;  });
   }
 
 
 
   ngOnInit() {
-    const scSummary = new ShoppinCartSummary();
-    this._dataService.currentCartCount.subscribe(count => this.shoppinCartItemCount$ = count);
-    this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });
 
+    const scSummary = new ShoppinCartSummary();
+    this._dataService.currentCartCount.subscribe(count => {
+      if(count != null){
+      this.shoppinCartItemCount$ = count;
+      }else{
+        this.shoppinCartItemCount$.itemsCount = 0;
+      }
+     });
+    this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });
+    this._dataService.currentSPCartCount();
 
 
     this._dataService.isAdminLogged.subscribe((r: any) => {
@@ -74,15 +81,4 @@ export class AppComponent implements OnInit {
     this._toaster.success('Logged out form the Admin');
   }
 
-  // @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
-
-  //   // Do more processing...
-  //   //  alert('sadfasdf');
-  //   event.returnValue = false;
-  // }
-
-  // ngAfterViewInit() {
-  //   // alert('after wi init');
-  //   this.isAdminLogged$ = true; //localStorage.getItem('isAdminLogin');
-  // }
 }

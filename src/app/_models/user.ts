@@ -36,6 +36,7 @@ export class Item {
   SIH?: number;
   Discount?: number;
   ImageURL?: string;
+  DeliveryDayCount?: number;
 }
 
 export class ShoppinCartSummary {
@@ -52,7 +53,17 @@ export class Breadcrumb {
   DisplayText: string;
 }
 
-//////////////////////////////////////////////////////////
+export class Checkout {
+  Name?: string;
+  Address1?: string;
+  Address2?: string;
+  Email?: string;
+  Phone?: string;
+  ItemsList?: Item[];
+}
+
+
+////////////////////////////////////////////////////////// Admin
 export class CategoryModel {
   CategoryID?: number;
   Description?: string;
@@ -86,6 +97,7 @@ export class ItemModel {
   ImageURL?: string;
   SubCategoryID?: number;
   StatusID?: number;
+  DeliveryDatesCount? : number;
 }
 
 

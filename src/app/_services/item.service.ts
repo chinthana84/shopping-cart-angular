@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { SearchObject } from '@app/_shared/_grid/gridModels/searchObject.model';
 import { Item } from '@app/_models';
 import { environment } from '@environments/environment';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,9 @@ export class ItemService {
   itemSearchListByName(so: SearchObject) {
     return this.http.post(environment.apiUrl + '//api/AngularDTQuery', so);
   }
+
+  MostSoldItems()  {
+    return this.http.get(environment.apiUrl + '//api/Item/MostSoldItems');
+  }
+
 }

@@ -4,66 +4,42 @@
       <header class="card-header bg-secondary white">
         <i class="icon-menu"></i> Categories
       </header>
-      <!-- <ul class="menu-category">
-        <li class="has-submenu"><a class="nav-item nav-link" routerLink="/category">Category</a>
+      <ul class="menu-category">
+        <li *ngFor="let m of categoryModel ; let i = index">
+          <a href="#" *ngIf='m.listSubCategory.length > 0 && i < 5' [routerLink]="['/category/sub']"
+            [queryParams]="{c :m.CategoryID, name : m.Description }">
+            {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+          </a>
+          <a href="#" *ngIf='m.listSubCategory.length === 0  && i < 5' [routerLink]="['/category/items']"
+            [queryParams]="{cat :m.CategoryID }">
+            {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+          </a>
+        </li>
 
+        <li class='has-submenu' *ngIf='categoryModel.length > 5'>
+          <a class="nav-item nav-link" routerLink="/category">more..</a>
           <ul class="submenu">
-            <li>
-
-
-
-
+            <li *ngFor="let m of categoryModel ; let j = index">
+              <a href="#" *ngIf='m.listSubCategory.length > 0 && j >= 5' [routerLink]="['/category/sub']"
+                [queryParams]="{c :m.CategoryID, name : m.Description }">
+                {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+              </a>
+              <a href="#" *ngIf='m.listSubCategory.length === 0  && j >=  5' [routerLink]="['/category/items']"
+                [queryParams]="{cat :m.CategoryID }">
+                {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+              </a>
             </li>
           </ul>
         </li>
-      </ul> -->
-
-      <!-- <ul class="menu-category">
-          <li class="has-submenu"><a class="nav-item nav-link" routerLink="/category">Category</a>
-
-c
-          </li>
-        </ul> -->
-
-      <ul class="menu-category">
-        <li  *ngFor="let m of categoryModel ; let i = index">
-           <a href="#" *ngIf='m.listSubCategory.length > 0 && i < 5'
-             [routerLink]="['/category/sub']"
-             [queryParams]="{c :m.CategoryID, name : m.Description }">
-             {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-            </a>
-            <a href="#" *ngIf='m.listSubCategory.length === 0  && i < 5'
-                [routerLink]="['/category/items']"
-                [queryParams]="{cat :m.CategoryID }">
-                {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-               </a>
-        </li>
-
-        <li  class='has-submenu' *ngIf='categoryModel.length > 5'>
-            <a   class="nav-item nav-link" routerLink="/category">more..</a>
-            <ul class="submenu"  >
-                <li *ngFor="let m of categoryModel ; let j = index">
-                    <a href="#" *ngIf='m.listSubCategory.length > 0 && j >= 5'
-                      [routerLink]="['/category/sub']"
-                      [queryParams]="{c :m.CategoryID, name : m.Description }">
-                      {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-                     </a>
-                     <a href="#" *ngIf='m.listSubCategory.length === 0  && j >=  5'
-                         [routerLink]="['/category/items']"
-                         [queryParams]="{cat :m.CategoryID }">
-                         {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-                        </a>
-                </li>
-              </ul>
-         </li>
       </ul>
     </div> <!-- card.// -->
   </aside> <!-- col.// -->
+
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
         <!-- ================= main slide ================= -->
-        <div class="owl-init slider-main owl-carousel owl-loaded owl-drag" data-items="1" data-nav="true"
+        <div id='ssdfas' class="owl-init slider-main owl-carousel owl-loaded owl-drag" data-items="1" data-nav="true"
           data-dots="false">
           <div class="owl-stage-outer">
             <div class="owl-stage"
@@ -90,26 +66,119 @@ c
       </div> <!-- card-body .// -->
     </div> <!-- card.// -->
   </div> <!-- col.// -->
-  <aside class="col-md-3">
 
-    <div class="card bg-white h-100 d-flex flex-column">
-      <div class="p-3 flex-grow-1">
-        <article class="box h-100">
-          <figure class="itembox text-center">
-            <span class="mt-2 icon-wrap rounded icon-sm bg-success"><i class="fa fa-user white"></i></span>
-            <figcaption class="text-wrap">
-              <h5 class="title">Creative Strategy &amp; solution</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod </p>
-            </figcaption>
-          </figure> <!-- iconbox // -->
-        </article>
+  <ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="Random first slide">
       </div>
-      <div class="p-3 bg flex-grow-1">
-        <p>Some item group </p><a href="#" class="btn btn-sm btn-primary round">View more</a>
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="Random second slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="Random third slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
 
-    </div>
+  <ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="Random first slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="Random second slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="Random third slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
 
-  </aside>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <!-- ================= main slide ================= -->
+        <div id='sdfaere3' class="owl-init2 slider-main owl-carousel owl-loaded owl-drag" data-items="1" data-nav="true"
+          data-dots="false">
+          <div class="owl-stage-outer">
+            <div class="owl-stage"
+              style="transform: translate3d(-1156px, 0px, 0px); transition: all 0.25s ease 0s; width: 4046px;">
+              <div class="owl-item cloned" style="width: 578px;">
+                <div class="item-slide">
+                  <figure class="card card-product">
+                    <div class="img-wrap"> <img
+                        src="http://13.75.198.182/webapi/UploadFile//item_cfaf4307-a0a3-4821-8232-623688260c24.jpg">
+                    </div>
+                    <figcaption class="info-wrap">
+                      <a href='/item?i=7' class="title">Ahya Coco Classic Coconut Milk 330mL</a>
+                      <div class="price-wrap">
+                        <span class="price-new">US $25</span>
+                      </div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </figure> <!-- card // -->
+                </div>
+              </div>
+              <div class="owl-item cloned" style="width: 578px;">
+                <div class="item-slide">
+                  <figure class="card card-product">
+                    <div class="img-wrap"> <img
+                        src="http://13.75.198.182/webapi/UploadFile//item_f0251c19-a8a3-4ffd-9b55-cc092df13c94.jpg">
+                    </div>
+                    <figcaption class="info-wrap">
+                      <a href='/item?i=10' class="title">ABC Mung Bean Drink 250ml</a>
+                      <div class="price-wrap">
+                        <span class="price-new"> US $33</span>
+                      </div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </figure> <!-- card // -->
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+          <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i
+                class="fa fa-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i
+                class="fa fa-chevron-right"></i></button></div>
+          <div class="owl-dots disabled"></div>
+        </div>
+        <!-- ============== main slidesow .end // ============= -->
+      </div> <!-- card-body .// -->
+    </div> <!-- card.// -->
+  </div> col.//
+
 </div>
-

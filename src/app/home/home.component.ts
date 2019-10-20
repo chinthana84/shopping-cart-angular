@@ -2,18 +2,29 @@
 import { Subscription, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { User } from '@app/_models';
+import { User, Item } from '@app/_models';
 import { UserService, AuthenticationService } from '@app/_services';
 import { ConfirmDialogService } from '@app/_services/dialog/confirm-dialog.service';
+import { ItemService } from '@app/_services/item.service';
+import { Router } from '@angular/router';
 
 
 @Component({ templateUrl: 'home.component.html' })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     data = `<b>This text is bold</b> and this one is <i>italics</i>`;
+      MostSoldItems: Item[];
+    constructor(private router: Router,private confirmDialogService: ConfirmDialogService,
+      private itemService: ItemService) {
+    }
 
-    constructor(private confirmDialogService: ConfirmDialogService) {
-
-
+    ngOnInit() {
+      this.itemService.MostSoldItems().subscribe((i: any[]) => {
+          this.MostSoldItems = i;
+          console.log(i);
+      });
+    }
+    navigateToItem(itemid: number){
+      this.router.navigate(['/item'], { queryParams: { i: itemid } });
     }
 
     showDialog() {

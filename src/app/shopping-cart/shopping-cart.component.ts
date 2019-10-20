@@ -51,8 +51,8 @@ export class ShoppingCartComponent implements OnInit {
 
   checkOut() {
     console.log( this.items);
-    this._shoppingCartService.checkoutShoppingCart(this.items).subscribe(r => {
+   // this._shoppingCartService.checkoutShoppingCart(this.items).subscribe(r => {
 
-    });
+   // });
   }
 }

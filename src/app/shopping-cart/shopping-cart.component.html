@@ -10,6 +10,7 @@
               <th scope="col" width="120">Quantity</th>
               <th scope="col" width="120">Unit Price</th>
               <th scope="col" width="120">Discount</th>
+              <th scope="col" width="120">Delivery Dates</th>
               <th scope="col" class="text-right" width="200">Action</th>
             </tr>
           </thead>
@@ -43,7 +44,11 @@
                   <var class="price">{{ (i.OrderQty * i.Price)*(i.Discount *0.01)  }}$</var>
                 </div> <!-- price-wrap .// -->
               </td>
-
+              <td>
+                  <div class="price-wrap">
+                    <var class="price"> <input class="form-control" type="text" [(ngModel)]="i.DeliveryDayCount"   /></var>
+                  </div> <!-- price-wrap .// -->
+                </td>
 
               <td class="text-right">
                 <button (click)="deleteShoppingCartItem(i)" class="btn btn-sm btn-danger">

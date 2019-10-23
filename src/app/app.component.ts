@@ -25,31 +25,25 @@ export class AppComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private _dataService: DataService,
-    private _itemService: ItemService,
     private httpStatus: HTTPStatus,
     private _toaster: ToastrService,
-    private localStorageService: LocalStorageService
-  ) {
+    private localStorageService: LocalStorageService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-
-    //this._dataService.ListBreadcrumb.subscribe((r: any) => {this.bsList = r;  });
   }
 
-
-
   ngOnInit() {
-
     const scSummary = new ShoppinCartSummary();
+
     this._dataService.currentCartCount.subscribe(count => {
-      if(count != null){
-      this.shoppinCartItemCount$ = count;
-      }else{
+      if (count != null) {
+        this.shoppinCartItemCount$ = count;
+      } else {
         this.shoppinCartItemCount$.itemsCount = 0;
       }
-     });
+    });
+
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });
     this._dataService.currentSPCartCount();
-
 
     this._dataService.isAdminLogged.subscribe((r: any) => {
       if (this.localStorageService.getData('isAdminLogin') != undefined) {
@@ -60,21 +54,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onClickedOutside(e: Event) {
-
-  }
   onSubmit() {
     this._dataService.adminLogin(true);
     this.router.navigate(['/home']);
     this._toaster.success('Admin Logged Sucessfully');
-
-
   }
 
-
-  test() {
-
-  }
   logOut() {
     this._dataService.adminLogin(false);
     this.router.navigate(['home']);

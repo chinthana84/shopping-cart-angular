@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit {
     data = `<b>This text is bold</b> and this one is <i>italics</i>`;
-      MostSoldItems: Item[];
-    constructor(private router: Router,private confirmDialogService: ConfirmDialogService,
+    MostSoldItems: Item[];
+    MontlyServedCustomoers : string="";
+    constructor(private router: Router, private confirmDialogService: ConfirmDialogService,
       private itemService: ItemService) {
     }
 
@@ -22,8 +23,12 @@ export class HomeComponent implements OnInit {
           this.MostSoldItems = i;
           console.log(i);
       });
+
+      this.itemService.MontlyServedCustomer().subscribe((i:any)=> {
+        this.MontlyServedCustomoers=i;
+      });
     }
-    navigateToItem(itemid: number){
+    navigateToItem(itemid: number) {
       this.router.navigate(['/item'], { queryParams: { i: itemid } });
     }
 

@@ -72,6 +72,7 @@ export class AdminEditItemsComponent implements OnInit {
 
   saveItem() {
     const c: ItemModel = this.editItemModel;
+    console.log(c);
     this._adminItemService.saveItem(c).subscribe(r => {
       this._router.navigate(['/AdminItems']);
       this.toastr.success('Sucessfully item saved.');

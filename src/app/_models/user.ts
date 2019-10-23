@@ -98,6 +98,7 @@ export class ItemModel {
   SubCategoryID?: number;
   StatusID?: number;
   DeliveryDatesCount? : number;
+  IsSpecial? :boolean;
 }
 
 

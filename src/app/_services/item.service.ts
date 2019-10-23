@@ -43,10 +43,17 @@ export class ItemService {
     return this.http.get(environment.apiUrl + '//api/Item/MostSoldItems');
   }
 
-  ItemSoldCount(itemId: number) {
+  ItemSoldCount(itemId) {
     const d = { ItemID: itemId };
     return this.http.get(environment.apiUrl + '//api/Item/ItemSoldCount', { params: d });
   }
 
+  GetSpecialItems()  {
+    return this.http.get(environment.apiUrl + '//api/Item/GetSpecialItems');
+  } 
+   
+  MontlyServedCustomer(){
+     return this.http.get(environment.apiUrl + '//api/Customer/MontlyServedCustomer');   
+  }
 
 }

@@ -44,13 +44,17 @@ export class DataService {
         acc + (val.Price * val.OrderQty) - (val.Price * val.OrderQty * val.Discount * 0.01), 0);
       this.bsShoppingCartCountSource.next(scSummary);
     }
+    else{
+      this.shoppintCartItems=[];
+      scSummary.itemsCount=0;scSummary.Total=0;
+      this.bsShoppingCartCountSource.next(scSummary);
+    }
   }
 
   addShoppingCartItem(item: Item): boolean {
-    if (this.shoppintCartItems == null) {
+    if (this.shoppintCartItems == null || this.shoppintCartItems.length ==0) {
       this.shoppintCartItems = [];
     }
-
     if (this.shoppintCartItems.filter(r => r.ItemID === item.ItemID).length > 0) {
       return false;
     } else {
@@ -63,7 +67,9 @@ export class DataService {
   clearShoppingCart() {
     this.localStorageService.removeData('shoppingCart');
     this.currentSPCartCount();
-    this.bsShoppingCartCountSource.next(null);
+    const scSummary = new ShoppinCartSummary();
+    scSummary.itemsCount=0;scSummary.Total=0;
+    this.bsShoppingCartCountSource.next(scSummary);
   }
 
   deleteShoppingCartItem(item: Item) {

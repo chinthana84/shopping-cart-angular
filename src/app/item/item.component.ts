@@ -14,7 +14,7 @@ import { environment } from '@environments/environment';
 export class ItemComponent implements OnInit {
   item: Item = {};
   imagePathUrl = environment.imageUrlPath;
-  itemSoldCount: number = 0;
+  itemSoldCount = 0;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
@@ -30,7 +30,7 @@ export class ItemComponent implements OnInit {
       });
 
       this._itemSer.ItemSoldCount(params['i']).subscribe((data: any) => {
-        this.itemSoldCount=data;
+        this.itemSoldCount = data;
       });
     });
   }

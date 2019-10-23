@@ -27,8 +27,8 @@ export class ShoppingCartCheckoutComponent implements OnInit {
     const c: Checkout = this.checkoutModel;
     this._shoppingCartService.checkoutShoppingCart(c).subscribe( r => {
       this.router.navigate(['/home']);
-      this._dataService.clearShoppingCart();
       this.toastr.success(" Done");
+      this._dataService.clearShoppingCart();
       });
   }
 

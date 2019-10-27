@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-//    apiUrl: 'http://13.75.198.182/webapi'
-//  , imageNotFoundUrl: '/sc/assets/images/notfound.png'
-//   , imageUrlPath: 'http://13.75.198.182/WebAPI/UploadFile/'
+   apiUrl: 'http://13.75.198.182/webapi'
+ , imageNotFoundUrl: '/sc/assets/images/notfound.png'
+  , imageUrlPath: 'http://13.75.198.182/WebAPI/UploadFile/'
 
 
- apiUrl: 'http://localhost:83/WebAPI'
-  , imageNotFoundUrl: '/assets/images/notfound.png'
-  , imageUrlPath: 'http://localhost:83/WebAPI/UploadFile/'
+//  apiUrl: 'http://localhost:83/WebAPI'
+//   , imageNotFoundUrl: '/assets/images/notfound.png'
+//   , imageUrlPath: 'http://localhost:83/WebAPI/UploadFile/'
 };
 
 export enum GridType {

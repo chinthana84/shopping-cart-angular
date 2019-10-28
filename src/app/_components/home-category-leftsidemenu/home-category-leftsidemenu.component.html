@@ -1,39 +1,224 @@
-<div class="row row-sm">
-  <aside class="col-md-3">
-    <div class="card">
-      <header class="card-header bg-secondary white">
-        <i class="icon-menu"></i> Categories
-      </header>
-      <ul class="menu-category">
-        <li *ngFor="let m of categoryModel ; let i = index">
-          <a href="#" *ngIf='m.listSubCategory.length > 0 && i < 5' [routerLink]="['/category/sub']"
-            [queryParams]="{c :m.CategoryID, name : m.Description }">
-            {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-          </a>
-          <a href="#" *ngIf='m.listSubCategory.length === 0  && i < 5' [routerLink]="['/category/items']"
-            [queryParams]="{cat :m.CategoryID }">
-            {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-          </a>
-        </li>
+<style> 
 
-        <li class='has-submenu' *ngIf='categoryModel.length > 5'>
-          <a class="nav-item nav-link" routerLink="/category">more..</a>
-          <ul class="submenu">
-            <li *ngFor="let m of categoryModel ; let j = index">
-              <a href="#" *ngIf='m.listSubCategory.length > 0 && j >= 5' [routerLink]="['/category/sub']"
-                [queryParams]="{c :m.CategoryID, name : m.Description }">
-                {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-              </a>
-              <a href="#" *ngIf='m.listSubCategory.length === 0  && j >=  5' [routerLink]="['/category/items']"
-                [queryParams]="{cat :m.CategoryID }">
-                {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-              </a>
+
+ .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu>a:after {
+    content: "\f0da";
+    float: right;
+    border: none;
+    font-family: 'FontAwesome';
+  }
+
+  .dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+
+
+
+
+  @media (min-width: 991px) {
+    .dropdown-menu {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  } 
+</style>
+
+<script>
+ 
+
+</script>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+  <div class="container">
+    <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars"
+      aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div id="navbarContent" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <!-- Level one dropdown -->
+        <li class="nav-item dropdown">
+          <a id="dropdownMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            class="nav-link dropdown-toggle">Dropdown</a>
+          <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">
+            <li><a href="#" class="dropdown-item">Some action </a></li>
+            <li><a href="#" class="dropdown-item">Some other action</a></li>
+
+            <li class="dropdown-divider"></li>
+
+            <!-- Level two dropdown-->
+            <li class="dropdown-submenu  ">
+              <a id="dropdownMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
+              <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0   show">
+
+               <div class="container row" style="width: 1500px">
+                  <li class="col-sm-3">
+                      <ul>
+                        <li class="dropdown-header">Glyphicons</li>
+                        <li><a href="#">Available glyphs</a></li>
+                        <li class="disabled"><a href="#">How to use</a></li>
+                        <li><a href="#">Examples</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Dropdowns</li>
+                        <li><a href="#">Example</a></li>
+                        <li><a href="#">Aligninment options</a></li>
+                        <li><a href="#">Headers</a></li>
+                        <li><a href="#">Disabled menu items</a></li>
+                      </ul>
+                    </li>
+                    <li class="col-sm-3">
+                      <ul>
+                        <li class="dropdown-header">Button groups</li>
+                        <li><a href="#">Basic example</a></li>
+                        <li><a href="#">Button toolbar</a></li>
+                        <li><a href="#">Sizing</a></li>
+                        <li><a href="#">Nesting</a></li>
+                        <li><a href="#">Vertical variation</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Button dropdowns</li>
+                        <li><a href="#">Single button dropdowns</a></li>
+                      </ul>
+                    </li>
+                    <li class="col-sm-3">
+                      <ul>
+                        <li class="dropdown-header">Input groups</li>
+                        <li><a href="#">Basic example</a></li>
+                        <li><a href="#">Sizing</a></li>
+                        <li><a href="#">Checkboxes and radio addons</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Navs</li>
+                        <li><a href="#">Tabs</a></li>
+                        <li><a href="#">Pills</a></li>
+                        <li><a href="#">Justified</a></li>
+                      </ul>
+                    </li>
+                    <li class="col-sm-3">
+                      <ul>
+                        <li class="dropdown-header">Navbar</li>
+                        <li><a href="#">Default navbar</a></li>
+                        <li><a href="#">Buttons</a></li>
+                        <li><a href="#">Text</a></li>
+                        <li><a href="#">Non-nav links</a></li>
+                        <li><a href="#">Component alignment</a></li>
+                        <li><a href="#">Fixed to top</a></li>
+                        <li><a href="#">Fixed to bottom</a></li>
+                        <li><a href="#">Static top</a></li>
+                        <li><a href="#">Inverted navbar</a></li>
+                      </ul>
+                    </li>
+                    </div>
+              </ul>
+              <a id="dropdownMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
+            <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0   show">
+
+             <div class="container row" style="width: 1500px">
+                <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">Glyphicons</li>
+                      <li><a href="#">Available glyphs</a></li>
+                      <li class="disabled"><a href="#">How to use</a></li>
+                      <li><a href="#">Examples</a></li>
+                      <li class="divider"></li>
+                      <li class="dropdown-header">Dropdowns</li>
+                      <li><a href="#">Example</a></li>
+                      <li><a href="#">Aligninment options</a></li>
+                      <li><a href="#">Headers</a></li>
+                      <li><a href="#">Disabled menu items</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">Button groups</li>
+                      <li><a href="#">Basic example</a></li>
+                      <li><a href="#">Button toolbar</a></li>
+                      <li><a href="#">Sizing</a></li>
+                      <li><a href="#">Nesting</a></li>
+                      <li><a href="#">Vertical variation</a></li>
+                      <li class="divider"></li>
+                      <li class="dropdown-header">Button dropdowns</li>
+                      <li><a href="#">Single button dropdowns</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">Input groups</li>
+                      <li><a href="#">Basic example</a></li>
+                      <li><a href="#">Sizing</a></li>
+                      <li><a href="#">Checkboxes and radio addons</a></li>
+                      <li class="divider"></li>
+                      <li class="dropdown-header">Navs</li>
+                      <li><a href="#">Tabs</a></li>
+                      <li><a href="#">Pills</a></li>
+                      <li><a href="#">Justified</a></li>
+                    </ul>
+                  </li>
+                  <li class="col-sm-3">
+                    <ul>
+                      <li class="dropdown-header">Navbar</li>
+                      <li><a href="#">Default navbar</a></li>
+                      <li><a href="#">Buttons</a></li>
+                      <li><a href="#">Text</a></li>
+                      <li><a href="#">Non-nav links</a></li>
+                      <li><a href="#">Component alignment</a></li>
+                      <li><a href="#">Fixed to top</a></li>
+                      <li><a href="#">Fixed to bottom</a></li>
+                      <li><a href="#">Static top</a></li>
+                      <li><a href="#">Inverted navbar</a></li>
+                    </ul>
+                  </li>
+                  </div>
+            </ul>
             </li>
+            <!-- End Level two -->
           </ul>
         </li>
+        <!-- End Level one -->
+
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
       </ul>
-    </div> <!-- card.// -->
-  </aside> <!-- col.// -->
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">.col-md-1ssssssssssssssssssssssssssss</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+    <div class="col-md-1">.col-md-1</div>
+  </div>
+
+</div>
+
+
+
+
+<div class="row row-sm">
+
+
+
+
+
 
   <div class="col-md-6">
     <div class="card">
@@ -56,7 +241,7 @@
             </div>
             <div class="carousel-caption">
               <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
           </ng-template>
         </ngb-carousel>
@@ -71,19 +256,18 @@
         <ngb-carousel [interval]="2000">
           <ng-template *ngFor="let i of items" ngbSlide>
             <div class="picsum-img-wrapper">
-              <img style="width:100% ;height: 250px;"
-              src="{{i.ImageURL}}">
+              <img style="width:100% ;height: 250px;" src="{{i.ImageURL}}">
             </div>
             <figcaption class="info-wrap">
-              <a href="/item?i={{i.ItemID }}"  class="title">{{i.Description}} </a>  
-             <div class="price-wrap">
-               
-               <span *ngIf="i.Discount==0" class="price-new">${{i.Price}}</span>
+              <a href="/item?i={{i.ItemID }}" class="title">{{i.Description}} </a>
+              <div class="price-wrap">
 
-               <span *ngIf="i.Discount>0" class="price-new">${{i.Price -(i.Price * i.Discount*.01)}}</span>
-               <del *ngIf="i.Discount>0" class="price-old">${{i.Price}}</del>
-             </div>  
-           </figcaption> 
+                <span *ngIf="i.Discount==0" class="price-new">${{i.Price}}</span>
+
+                <span *ngIf="i.Discount>0" class="price-new">${{i.Price -(i.Price * i.Discount*.01)}}</span>
+                <del *ngIf="i.Discount>0" class="price-old">${{i.Price}}</del>
+              </div>
+            </figcaption>
           </ng-template>
         </ngb-carousel>
       </div> <!-- card-body .// -->

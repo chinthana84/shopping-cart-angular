@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AllCategoryService } from '@app/_services/all-category.service';
 import { CategoryModel, ItemModel } from '@app/_models';
 import { ItemService } from '@app/_services/item.service';
-declare var $: any;
+import  $ from 'jquery';
+
 @Component({
   selector: 'app-home-category-leftsidemenu',
   templateUrl: './home-category-leftsidemenu.component.html'
@@ -13,7 +14,28 @@ export class HomeCategoryLeftsidemenuComponent implements OnInit {
 
   categoryModel: CategoryModel[] = [];
   items: ItemModel[]=[];
-  constructor(private allCategoryService: AllCategoryService, private itemsService: ItemService) { }
+  constructor(private allCategoryService: AllCategoryService, private itemsService: ItemService) {
+    $(function() {
+      // ------------------------------------------------------- //
+      // Multi Level dropdowns
+      // ------------------------------------------------------ //
+      $("ul.dropdown-menu [data-toggle='dropdown']").on("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    
+        $(this).siblings().toggleClass("show");
+    
+    
+        if (!$(this).next().hasClass('show')) {
+          $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+        }
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+          $('.dropdown-submenu .show').removeClass("show");
+        });
+    
+      });
+    });
+   }
 
   ngOnInit() {
     this.allCategoryService.getAllActiveCategory().subscribe((r: CategoryModel[]) => {

@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './_services';
-import { User, Item, ShoppinCartSummary, Breadcrumb } from './_models';
+import { User, Item, ShoppinCartSummary, Breadcrumb, CategoryModel } from './_models';
 import { DataService } from './_services/data.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -11,6 +11,7 @@ import { HTTPStatus } from './_helpers/HTTPStatus';
 import { SubjectSubscriber } from 'rxjs/internal/Subject';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageService } from './_services/local-storage.service';
+import { AllCategoryService } from './_services/all-category.service';
 
 
 // tslint:disable-next-line: component-selector
@@ -21,25 +22,32 @@ export class AppComponent implements OnInit {
   private shoppinCartItemCount$: ShoppinCartSummary = new ShoppinCartSummary();
   isAdminLogged$: Boolean;
   bsList: Breadcrumb[] = [];
+
+  MontlyServedCustomoers : string="";
+  categoryModel: CategoryModel[] = [];
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
     private _dataService: DataService,
     private httpStatus: HTTPStatus,
     private _toaster: ToastrService,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService,private allCategoryService: AllCategoryService,private itemService: ItemService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
     const scSummary = new ShoppinCartSummary();
-
+ 
     this._dataService.currentCartCount.subscribe(count => {
       if (count != null) {
         this.shoppinCartItemCount$ = count;
       } else {
         this.shoppinCartItemCount$.itemsCount = 0;
       }
+    });
+
+    this.itemService.MontlyServedCustomer().subscribe((i:any)=> {
+      this.MontlyServedCustomoers=i;
     });
 
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });
@@ -52,6 +60,12 @@ export class AppComponent implements OnInit {
         this.isAdminLogged$ = r;
       }
     });
+
+    this.allCategoryService.getAllActiveCategory().subscribe((r: CategoryModel[]) => {
+      this.categoryModel = r;
+      console.log(r);
+    });
+
   }
 
   onSubmit() {

@@ -1,4 +1,5 @@
 <style>
+
   .dropdown-submenu {
     position: relative;
   }
@@ -18,21 +19,12 @@
   }
 
 
-
-
   @media (min-width: 991px) {
     .dropdown-menu {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
   }
 </style>
-
-<script>
-
-
-</script>
-
-
 
 
 
@@ -76,7 +68,7 @@
 
   <div class="col-md-6">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body ">
         <ngb-carousel>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
@@ -106,11 +98,25 @@
   <div class="col-md-3">
     <div class="card">
       <div class="card-header bg-primary">Special Items</div>
-      <div class="card-body">
-        <ngb-carousel [interval]="2000">
+      <div class="card-body ">
+        <ngb-carousel [interval]="2000" style="height: 269px;">
           <ng-template *ngFor="let i of items" ngbSlide>
+
+              <figure class="card card-product" style="height:  220px;">
+                  <div class="img-wrap"> <a href="/sc/item?i={{i.ItemID }}"><img src="{{i.ImageURL}}"></a></div>
+                  <figcaption class="info-wrap" style="height: auto;">
+                    <a (click)="navigateToItem(i.ItemID)"   class="title">{{i.Description}}</a>
+                    <div class="price-wrap">
+                      <span *ngIf="i.Discount==0" class="price-new">${{i.Price}}</span>
+    
+                      <span *ngIf="i.Discount>0" class="price-new">${{i.Price -(i.Price * i.Discount*.01)}}</span>
+                      <del *ngIf="i.Discount>0" class="price-old">${{i.Price}}</del>
+                    </div> <!-- price-wrap.// -->
+                  </figcaption>
+                </figure> <!-- card // -->
+<!-- 
             <div class="picsum-img-wrapper">
-              <img style="width:100% ;height: 250px;" src="{{i.ImageURL}}">
+              <img style=" " src="{{i.ImageURL}}">
             </div>
             <figcaption class="info-wrap">
               <a href="/item?i={{i.ItemID }}" class="title">{{i.Description}} </a>
@@ -121,7 +127,7 @@
                 <span *ngIf="i.Discount>0" class="price-new">${{i.Price -(i.Price * i.Discount*.01)}}</span>
                 <del *ngIf="i.Discount>0" class="price-old">${{i.Price}}</del>
               </div>
-            </figcaption>
+            </figcaption> -->
           </ng-template>
         </ngb-carousel>
       </div> <!-- card-body .// -->

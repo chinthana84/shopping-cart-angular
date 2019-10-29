@@ -12,7 +12,7 @@ import { SubjectSubscriber } from 'rxjs/internal/Subject';
 import { ToastrService } from 'ngx-toastr';
 import { LocalStorageService } from './_services/local-storage.service';
 import { AllCategoryService } from './_services/all-category.service';
-
+import $ from 'jquery';
 
 // tslint:disable-next-line: component-selector
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   isAdminLogged$: Boolean;
   bsList: Breadcrumb[] = [];
 
-  MontlyServedCustomoers : string="";
+  MontlyServedCustomoers: string = "";
   categoryModel: CategoryModel[] = [];
   constructor(
     private router: Router,
@@ -31,13 +31,41 @@ export class AppComponent implements OnInit {
     private _dataService: DataService,
     private httpStatus: HTTPStatus,
     private _toaster: ToastrService,
-    private localStorageService: LocalStorageService,private allCategoryService: AllCategoryService,private itemService: ItemService) {
+    private localStorageService: LocalStorageService, private allCategoryService: AllCategoryService, private itemService: ItemService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-  }
+    $(function () {
+       
+        // executes when HTML-Document is loaded and DOM is ready
+       
+       // breakpoint and up  
+       $(window).resize(function(){
+         if ($(window).width() >= 980){	
+       
+             // when you hover a toggle show its dropdown menu
+             $(".navbar .dropdown-toggle").hover(function () {
+                $(this).parent().toggleClass("show");
+                $(this).parent().find(".dropdown-menu").toggleClass("show"); 
+              });
+       
+               // hide the menu when the mouse leaves the dropdown
+             $( ".navbar .dropdown-menu" ).mouseleave(function() {
+               $(this).removeClass("show");  
+             });
+         
+           // do something here
+         }	
+       });  
+         
+ 
+   
+
+    }
+
+  };
 
   ngOnInit() {
     const scSummary = new ShoppinCartSummary();
- 
+
     this._dataService.currentCartCount.subscribe(count => {
       if (count != null) {
         this.shoppinCartItemCount$ = count;
@@ -46,8 +74,8 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.itemService.MontlyServedCustomer().subscribe((i:any)=> {
-      this.MontlyServedCustomoers=i;
+    this.itemService.MontlyServedCustomer().subscribe((i: any) => {
+      this.MontlyServedCustomoers = i;
     });
 
     this.httpStatus.getHttpStatus().subscribe((status: boolean) => { this.HTTPActivity = status; });

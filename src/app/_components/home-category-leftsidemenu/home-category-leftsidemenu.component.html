@@ -1,76 +1,14 @@
 <style>
 
-  .dropdown-submenu {
-    position: relative;
-  }
-
-  .dropdown-submenu>a:after {
-    content: "\f0da";
-    float: right;
-    border: none;
-    font-family: 'FontAwesome';
-  }
-
-  .dropdown-submenu>.dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: 0px;
-    margin-left: 0px;
-  }
-
-
-  @media (min-width: 991px) {
-    .dropdown-menu {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-  }
+ 
 </style>
 
-
-
-
-
 <div class="row row-sm">
-
-   <aside class="col-md-3">
-    <div class="card">
-      <header class="card-header bg-secondary white">
-        <i class="icon-menu"></i> Categories
-      </header>
-      <ul class="menu-category">
-        <li class='has-submenu' *ngFor="let m of categoryModel ; let i = index">
-          <a class="nav-item nav-link" href="#" *ngIf='m.listSubCategory.length > 0' [routerLink]="['/category/sub']"
-            [queryParams]="{c :m.CategoryID, name : m.Description }">
-            {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-          </a>
-        
-          <a class="nav-item nav-link" href="#" *ngIf='m.listSubCategory.length == 0' [routerLink]="['/category/items']"
-          [queryParams]="{cat :m.CategoryID }">
-              {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-            </a>
-          <ul class="submenu" *ngIf='m.listSubCategory.length > 0'>
-            <li *ngFor="let s of m.listSubCategory ;">
-              <a href="#" [routerLink]="['/cat/sub/items']" 
-                [queryParams]="{s :s.SubCategoryID  }">
-                {{s.Description}} <i class="icon-arrow-right pull-right"></i>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div> <!-- card.// -->
-  </aside> <!-- col.// --> 
-
- 
-
-
-
-
-  <div class="col-md-6">
+  <div class="col-md-9">
     <div class="card">
       <div class="card-body ">
-        <ngb-carousel>
-          <ng-template ngbSlide>
+        <ngb-carousel >
+          <ng-template  ngbSlide>
             <div class="picsum-img-wrapper">
               <img style="width:100%" src="https://www.buyasianfood.com.au/_photopages/363/slide-new-products.jpg"
                 alt="Random first slide">
@@ -99,11 +37,11 @@
     <div class="card">
       <div class="card-header bg-primary">Special Items</div>
       <div class="card-body ">
-        <ngb-carousel [interval]="2000" style="height: 269px;">
+        <ngb-carousel [interval]="1000" style="height: 269px;">
           <ng-template *ngFor="let i of items" ngbSlide>
 
-              <figure class="card card-product" style="height:  220px;">
-                  <div class="img-wrap"> <a href="/sc/item?i={{i.ItemID }}"><img src="{{i.ImageURL}}"></a></div>
+              <figure class="card card-product">
+                  <div class="picsum-img-wrapper"> <a href="/sc/item?i={{i.ItemID }}"><img src="{{i.ImageURL}}"></a></div>
                   <figcaption class="info-wrap" style="height: auto;">
                     <a (click)="navigateToItem(i.ItemID)"   class="title">{{i.Description}}</a>
                     <div class="price-wrap">
@@ -111,27 +49,14 @@
     
                       <span *ngIf="i.Discount>0" class="price-new">${{i.Price -(i.Price * i.Discount*.01)}}</span>
                       <del *ngIf="i.Discount>0" class="price-old">${{i.Price}}</del>
-                    </div> <!-- price-wrap.// -->
+                    </div> 
                   </figcaption>
-                </figure> <!-- card // -->
-<!-- 
-            <div class="picsum-img-wrapper">
-              <img style=" " src="{{i.ImageURL}}">
-            </div>
-            <figcaption class="info-wrap">
-              <a href="/item?i={{i.ItemID }}" class="title">{{i.Description}} </a>
-              <div class="price-wrap">
+                </figure> 
 
-                <span *ngIf="i.Discount==0" class="price-new">${{i.Price}}</span>
-
-                <span *ngIf="i.Discount>0" class="price-new">${{i.Price -(i.Price * i.Discount*.01)}}</span>
-                <del *ngIf="i.Discount>0" class="price-old">${{i.Price}}</del>
-              </div>
-            </figcaption> -->
           </ng-template>
         </ngb-carousel>
-      </div> <!-- card-body .// -->
-    </div> <!-- card.// -->
+      </div> 
+    </div> 
   </div>
 
 </div>

@@ -1,111 +1,63 @@
 ﻿<style>
-  .navbar-light {
-    color: #fff;
-    background-color: #ccc6c6;
-    border-color: #aca1a2;
+  /* adds some margin below the link sets  */
+  .navbar .dropdown-menu div[class*="col"] {
+    margin-bottom: 1rem;
   }
 
-  .navbar-light .navbar-nav>li>a {
-    color: #fff;
+  .navbar .dropdown-menu {
+    border: none;
+    background-color: #0060c8 !important;
   }
 
-  .navbar-light .navbar-nav>.dropdown>a .caret {
-    border-top-color: #fff;
-    border-bottom-color: #fff;
-  }
+  /* breakpoint and up - mega dropdown styles */
+  @media screen and (min-width: 992px) {
 
-  .navbar-light .navbar-brand {
-    color: #fff;
-  }
-
-  .menu-large {
-    position: static !important;
-  }
-
-  .megamenu {
-    padding: 20px 20px;
-    width: 100%;
-  }
-
-  .megamenu>div>li>ul {
-    padding: 0;
-    margin: 0;
-  }
-
-  .megamenu>div>li>ul>li {
-    list-style: none;
-  }
-
-  .megamenu .card {
-    outline: none;
-  }
-
-  .megamenu .card:hover,
-  .megamenu .card:focus {
-    outline: 1px solid #000;
-  }
-
-  .megamenu>div>li>ul>li>a {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: normal;
-    line-height: 1.428571429;
-    color: #333333;
-    white-space: normal;
-  }
-
-  .megamenu>div>li>ul>li>a:hover,
-  .megamenu>div>li>ul>li>a:focus {
-    text-decoration: none;
-    color: #262626;
-    background-color: #f5f5f5;
- 
-  }
-
-  .megamenu.disabled>a,
-  .megamenu.disabled>a:hover,
-  .megamenu.disabled>a:focus {
-    color: #999999;
-  }
-
-  .megamenu.disabled>a:hover,
-  .megamenu.disabled>a:focus {
-    text-decoration: none;
-    background-color: transparent;
-    background-image: none;
-    filter: progid: DXImageTransform.Microsoft.gradient(enabled=false);
-    cursor: not-allowed;
-  }
-
-  .megamenu.dropdown-header {
-    color: #428bca;
-    font-size: 18px;
-  }
-
- 
- 
-
-  @media (max-width: 768px) {
-    .megamenu {
-      margin-left: 0;
-      margin-right: 0;
+    /* remove the padding from the navbar so the dropdown hover state is not broken */
+    .navbar {
+      padding-top: 0px;
+      padding-bottom: 0px;
     }
 
-    .megamenu>li {
-      margin-bottom: 30px;
+    /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+    .navbar .nav-item {
+      padding: .5rem .5rem;
+      margin: 0 .25rem;
     }
 
-    .megamenu>li:last-child {
-      margin-bottom: 0;
+    /* makes the dropdown full width  */
+    .navbar .dropdown {
+      position: static;
     }
 
-    .megamenu.dropdown-header {
-      padding: 3px 15px !important;
+    .navbar .dropdown-menu {
+      width: 100%;
+      left: 0;
+      right: 0;
+      /*  height of nav-item  */
+      top: 45px;
+
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s linear;
+
     }
 
-    .navbar-nav .open .dropdown-menu .dropdown-header {
-      color: #fff;
+
+
+
+    /* shows the dropdown menu on hover */
+    .navbar .dropdown:hover .dropdown-menu,
+    .navbar .dropdown .dropdown-menu:hover {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 0.3s linear;
+    }
+
+    .navbar .dropdown-menu {
+      border: 1px solid rgba(0, 0, 0, .15);
+      background-color: #fff;
     }
 
   }
@@ -205,63 +157,78 @@
     </div> <!-- container.// -->
   </section>
 </header>
-<app-bread-scrub-menu> </app-bread-scrub-menu>
+ 
 <div style='margin-top: 5px;' class='container-fluid'>
-    <div class='row'>
-       
-      <div class='col-md-2'></div>
-      <div class='col-md-8'>
-          <div class="navbar navbar-dark bg-dark   navbar-expand-md">
-              <div class="container">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">☰</button>
-                <div class="navbar-collapse collapse">
-                  <ul class="nav navbar-nav">
-                    <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link"
-                        data-toggle="dropdown">Categories </a>
-                      <ul class="dropdown-menu megamenu">
-                        <div class="row">
-                          <li class="col-md-3 dropdown-item"  *ngFor="let m of categoryModel ; let i = index">
-                            <ul>
-                              <li class="dropdown-header">
-                                  <a class="nav-item nav-link" href="#" *ngIf='m.listSubCategory.length > 0' [routerLink]="['/category/sub']"
-                                      [queryParams]="{c :m.CategoryID, name : m.Description }">
-                                      {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-                                    </a>
-                                    <a class="nav-item nav-link" href="#" *ngIf='m.listSubCategory.length == 0' [routerLink]="['/category/items']"
-                                    [queryParams]="{cat :m.CategoryID }">
-                                        {{m.Description}} <i class="icon-arrow-right pull-right"></i>
-                                      </a>
-                              <li *ngFor="let s of m.listSubCategory ;">
-                                  <a href="#" [routerLink]="['/cat/sub/items']" 
-                                  [queryParams]="{s :s.SubCategoryID  }">
-                                  {{s.Description}}  
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                        </div>
-                      </ul>
-                    </li>
-                                      
-                  </ul>
-                  <ul class="navbar-nav ml-auto">
-                      <li class="nav-item">
-                          <a class="nav-link text-success" href="#">we served <span class="badge badge-light">{{MontlyServedCustomoers}}</span> customers </a>
-                      </li>
-                  
-                  </ul>
-                </div>
-              </div>
-            </div>
-             
-      </div>
-      <div class='col-md-2'></div>
+  <div class='row'>
+
+    <div class='col-md-2'></div>
+    <div class='col-md-8'>
+      <!-- https://codepen.io/JacobLett/pen/jaaQYG -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Category
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="container">
+                  <div class="row">
+            <li class="col-md-3 " *ngFor="let m of categoryModel ; let i = index">
+              <ul class=''>
+                <li class="dropdown-header">
+                  <a class="nav-item nav-link" href="#" *ngIf='m.listSubCategory.length > 0'
+                    [routerLink]="['/category/sub']" [queryParams]="{c :m.CategoryID, name : m.Description }">
+                    {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+                  </a>
+                  <a class="nav-item nav-link" href="#" *ngIf='m.listSubCategory.length == 0'
+                    [routerLink]="['/category/items']" [queryParams]="{cat :m.CategoryID }">
+                    {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+                  </a>
+                </li>
+                <li *ngFor="let s of m.listSubCategory ;">
+                  <a href="#" [routerLink]="['/cat/sub/items']" [queryParams]="{s :s.SubCategoryID  }">
+                    {{s.Description}}
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+        </div>
     </div>
+    <!--  /.container  -->
+
+
   </div>
+  </li>
+
+  </ul>
+  <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+          <a class="navbar-brand" href="#">we served <span
+            class="badge badge-light">{{MontlyServedCustomoers}}</span>  customers</a>
+        
+      </li>
+    </ul>
+</div>
+
+
+</nav>
+
+</div>
+<div class='col-md-2'></div>
+</div>
+</div>
 
 <div style='margin-top: 5px;' class='container-fluid'>
   <div class='row'>
-     
+
     <div class='col-md-2'></div>
     <div class='col-md-8'>
       <router-outlet></router-outlet>

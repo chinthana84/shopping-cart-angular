@@ -3,8 +3,6 @@
   z-index: 9999999 !important;
 }
 
- 
-
 
 .filter-wrapper,
 .keyword-wrapper {
@@ -99,4 +97,41 @@
 .list-highlight:hover {
   background: rgb(55, 55, 55);
   color: #fff
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+ 
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+ .card-product-samesize{
+   height: 374px;
+ }
+
+ 
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+ 
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    
+}
+ 
+ 
+ 
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Custom media queries
+*/
+ 
+/* Set width to make card deck cards 100% width */
+@media (max-width: 950px) { 
+ 
 }

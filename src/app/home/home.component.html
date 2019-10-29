@@ -2,11 +2,16 @@
   .hideHome {
     display: none !important;
   }
+
+ 
 </style>
+
+
+
 <section class="section-main bg padding-top-sm">
   <div class="container">
 
-<app-home-category-leftsidemenu></app-home-category-leftsidemenu>
+    <app-home-category-leftsidemenu></app-home-category-leftsidemenu>
 
   </div> <!-- container .//  -->
 </section>
@@ -18,15 +23,15 @@
       <div class="card-body">
 
         <header class="section-heading">
-          <h3 class="title-section">Most sold items- we served {{MontlyServedCustomoers}} customers</h3>
+          <h3 class="title-section">Most sold items </h3>
         </header>
 
         <div class="row-sm">
           <div class="col-md-3 col-sm-6" *ngFor="let i of MostSoldItems">
-            <figure class="card card-product">
+            <figure class="card card-product card-product-samesize">
               <div class="img-wrap"> <a (click)="navigateToItem(i.ItemID)"><img src="{{i.ImageURL}}"></a></div>
               <figcaption class="info-wrap">
-                <a (click)="navigateToItem(i.ItemID)"   class="title">{{i.Description}}</a>
+                <a (click)="navigateToItem(i.ItemID)" class="title">{{i.Description}}</a>
                 <div class="price-wrap">
                   <span *ngIf="i.Discount==0" class="price-new">${{i.Price}}</span>
 

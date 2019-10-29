@@ -4,7 +4,7 @@
       <hr />
       <div class="row-sm">
         <div class="col-md-2 col-sm-6" *ngFor="let item of gridOption.datas.pagedItems">
-          <figure class="card card-product">
+          <figure class="card card-product card-product-samesize">
             <a (click)="loadItemBySubCatId(item)">
               <div class="img-wrap">
                 <img src="{{ imagePathUrl + item.ImageURL }}" />

@@ -54,14 +54,11 @@ export class AppComponent implements OnInit {
          
            // do something here
          }	
-       });  
-         
- 
-   
+       });   
 
-    }
+    });
+  }
 
-  };
 
   ngOnInit() {
     const scSummary = new ShoppinCartSummary();

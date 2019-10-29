@@ -40,6 +40,7 @@ export class HomeCategoryLeftsidemenuComponent implements OnInit {
   ngOnInit() {
     this.allCategoryService.getAllActiveCategory().subscribe((r: CategoryModel[]) => {
       this.categoryModel = r;
+      console.log(r);
     });
 
     this.itemsService.GetSpecialItems().subscribe((r: ItemModel[])=> {

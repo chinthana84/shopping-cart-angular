@@ -1,10 +1,10 @@
 ﻿<style>
   /* adds some margin below the link sets  */
-  .navbar .dropdown-menu div[class*="col"] {
+  #megamnu .navbar .dropdown-menu div[class*="col"] {
     margin-bottom: 1rem;
   }
 
-  .navbar .dropdown-menu {
+  #megamnu .navbar .dropdown-menu {
     border: none;
     background-color: #0060c8 !important;
   }
@@ -13,23 +13,23 @@
   @media screen and (min-width: 992px) {
 
     /* remove the padding from the navbar so the dropdown hover state is not broken */
-    .navbar {
+    #megamnu .navbar {
       padding-top: 0px;
       padding-bottom: 0px;
     }
 
     /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
-    .navbar .nav-item {
+    #megamnu .navbar .nav-item {
       padding: .5rem .5rem;
       margin: 0 .25rem;
     }
 
     /* makes the dropdown full width  */
-    .navbar .dropdown {
+    #megamnu .dropdown {
       position: static;
     }
 
-    .navbar .dropdown-menu {
+    #megamnu .dropdown-menu {
       width: 100%;
       left: 0;
       right: 0;
@@ -47,17 +47,17 @@
 
 
     /* shows the dropdown menu on hover */
-    .navbar .dropdown:hover .dropdown-menu,
-    .navbar .dropdown .dropdown-menu:hover {
+    #megamnu.navbar .dropdown:hover .dropdown-menu,
+    #megamnu .navbar .dropdown .dropdown-menu:hover {
       display: block;
       visibility: visible;
       opacity: 1;
       transition: visibility 0s, opacity 0.3s linear;
     }
 
-    .navbar .dropdown-menu {
+    #megamnu .navbar .dropdown-menu {
       border: 1px solid rgba(0, 0, 0, .15);
-      background-color: #fff;
+      background-color: yellow !important;
     }
 
   }
@@ -157,14 +157,14 @@
     </div> <!-- container.// -->
   </section>
 </header>
- 
+
 <div style='margin-top: 5px;' class='container-fluid'>
   <div class='row'>
 
     <div class='col-md-2'></div>
     <div class='col-md-8'>
       <!-- https://codepen.io/JacobLett/pen/jaaQYG -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav id='megamnu' class="navbar navbar-expand-lg navbar-dark bg-primary">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -178,8 +178,26 @@
                 Category
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <div class="container">
-                  <div class="row">
+                <div class="container ">
+                  <div class="row" style="background-color:#fff;">
+
+                    <aside class="col-sm-3 col-md-3 red" *ngFor="let m of categoryModel ; let i = index">
+                      <h5 class="title" *ngIf='m.listSubCategory.length > 0'>  <a class="  " href="#" *ngIf='m.listSubCategory.length > 0'
+                        [routerLink]="['/category/sub']" [queryParams]="{c :m.CategoryID, name : m.Description }">
+                        {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+                      </a></h5>
+                      <h5 class="title" *ngIf='m.listSubCategory.length == 0'>   <a class=" " href="#" *ngIf='m.listSubCategory.length == 0'
+                        [routerLink]="['/category/items']" [queryParams]="{cat :m.CategoryID }">
+                        {{m.Description}} <i class="icon-arrow-right pull-right"></i>
+                      </a></h5>
+                      <ul class="list-unstyled" *ngFor="let s of m.listSubCategory ;">
+                        <li>   <a href="#" [routerLink]="['/cat/sub/items']" [queryParams]="{s :s.SubCategoryID  }">
+                          {{s.Description}}
+                        </a></li>
+                       
+                      </ul>
+                    </aside>
+<!-- 
             <li class="col-md-3 " *ngFor="let m of categoryModel ; let i = index">
               <ul class=''>
                 <li class="dropdown-header">
@@ -198,7 +216,7 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
 
         </div>
     </div>
@@ -210,12 +228,12 @@
 
   </ul>
   <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-          <a class="navbar-brand" href="#">we served <span
-            class="badge badge-light">{{MontlyServedCustomoers}}</span>  customers</a>
-        
-      </li>
-    </ul>
+    <li class="nav-item">
+      <a class="navbar-brand" href="#">we served <span class="badge badge-light">{{MontlyServedCustomoers}}</span>
+        customers</a>
+
+    </li>
+  </ul>
 </div>
 
 

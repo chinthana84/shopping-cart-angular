@@ -46,6 +46,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   triggerUpdate(data: Item) {
+    debugger;
+    this.dataService.deleteShoppingCartItem(data);
+    this.dataService.addShoppingCartItem(data);
     this.dataService.currentSPCartCount();
   }
 

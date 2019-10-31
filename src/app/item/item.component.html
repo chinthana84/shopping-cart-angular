@@ -21,7 +21,8 @@
 
                 <div class="mb-3">
                   <var class="price h3 text-warning">
-                    <span class="currency">US $</span><span class="num">{{item.Price}}</span>
+                    <span class="currency"></span><span class="num">${{ item.Price - item.Price * item.Discount * 0.01 }}</span>
+                    <del class="price-old" *ngIf="item.Discount>0">${{ item.Price }}</del>
                   </var>
 
                 </div> <!-- price-detail-wrap .// -->
@@ -36,8 +37,6 @@
 
                 <hr>
                 <h6 class="card-title btn btn-danger" *ngIf='item.SIH <= 0'><del> out of stock</del></h6>
-                <h6 class="card-title btn btn-danger" *ngIf='item.Discount >0'>Discount : {{item.Discount}}%</h6>
-
 
                 <div class="input-group mb-3" *ngIf='item.SIH > 0'>
                   <div class="input-group-prepend">
@@ -62,13 +61,7 @@
         <article class="card mt-3">
           <div class="card-body">
             <h4>Detail overview</h4>
-            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi deserunt mollit anim id est laborum.</p>
+            <p> {{item.Remarks}} </p>
 
           </div> <!-- card-body.// -->
         </article> <!-- card.// -->

@@ -6,7 +6,12 @@
 
   #megamnu .navbar .dropdown-menu {
     border: none;
-    background-color: #0060c8 !important;
+    background-color: black !important;
+  }
+
+  #megamnu li>a   {
+ 
+    color:black !important;
   }
 
   /* breakpoint and up - mega dropdown styles */
@@ -56,13 +61,13 @@
     }
   }
 </style>
-<header class="section-header">
+<header class="section-header bg">
   <section class="header-main border-bottom">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-2 col-4">
           <a href="http://bootstrap-ecommerce.com" routerLink="/home" class="brand-wrap">
-            <img class="logo" src="images/logo.png">
+            <img class="logo" src="https://st4.depositphotos.com/18657574/21182/v/1600/depositphotos_211828976-stock-illustration-plant-sample-vector-icon-isolated.jpg">
           </a> <!-- brand-wrap.// -->
         </div>
         <div class="col-lg-6 col-sm-12">
@@ -109,6 +114,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+              <a class="nav-link" routerLink="/home" href="#" style="color: black !important">Home</a>
+           </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -117,6 +125,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <div class="container">
               <div class="row" style="background-color:#fff;">
+                
                 <aside class="col-sm-3 col-md-3 red" *ngFor="let m of categoryModel ; let i = index">
                   <h5 class="title" *ngIf='m.listSubCategory.length > 0'> <a class="  " href="#"
                       *ngIf='m.listSubCategory.length > 0' [routerLink]="['/category/sub']"
@@ -135,6 +144,7 @@
 
                   </ul>
                 </aside>
+              
               </div>
             </div>
           </div>

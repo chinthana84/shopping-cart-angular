@@ -1,86 +1,366 @@
 <section class="section-main bg padding-y">
   <div class="container">
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-7">
-        <form class="px-4 py-3" name="form" #f="ngForm" (ngSubmit)="f.form.valid && checkOutShoppingCart()" novalidate>
-          <div class="form-group">
-            <label for="CustomerName">Name</label>
-            <input type="text" name="CustomerName" class="form-control" placeholder="CustomerName" id="CustomerName"
-              [(ngModel)]="checkoutModel.Name" #CustomerName="ngModel" required>
-            <div *ngIf="CustomerName.invalid && f.submitted" class="alert alert-danger">
-              First Name is required
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="text" name="Email" class="form-control" placeholder="Email" id="Email"
-              [(ngModel)]="checkoutModel.Email">
-          </div>
-          <div class="form-group">
-            <label>Phone</label>
-            <input type="text" name="Phone" class="form-control" placeholder="Phone" id="Phone"
-              [(ngModel)]="checkoutModel.Phone">
-          </div>
-          <div class="form-group">
-            <label>Address1</label>
-            <input type="text" name="Address1" class="form-control" placeholder="Address1" id="Address1"
-              [(ngModel)]="checkoutModel.Address1">
-          </div>
-          <div class="form-group">
-            <label>Address2</label>
-            <input type="text" name="Address2" class="form-control" placeholder="Address2" id="Address2"
-              [(ngModel)]="checkoutModel.Address2">
-          </div>
-          <button type="submit" class="btn btn-primary">Check In</button>
-        </form>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
+   
 
     <div class="row">
-      <div class="col-md-12">
+
+        <aside class="col-md-3">
+            <div class="card">
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    data-toggle="collapse"
+                    data-target="#collapse_1"
+                    aria-expanded="true"
+                    class=""
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">Product type</h6>
+                  </a>
+                </header>
+                <div class="filter-content collapse show" id="collapse_1">
+                  <div class="card-body">
+                    <form class="pb-3">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Search"
+                        />
+                        <div class="input-group-append">
+                          <button class="btn btn-light" type="button">
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+    
+                    <ul class="list-menu">
+                      <li><a href="#">People </a></li>
+                      <li><a href="#">Watches </a></li>
+                      <li><a href="#">Cinema </a></li>
+                      <li><a href="#">Clothes </a></li>
+                      <li><a href="#">Home items </a></li>
+                      <li><a href="#">Animals</a></li>
+                      <li><a href="#">People </a></li>
+                    </ul>
+                  </div>
+                  <!-- card-body.// -->
+                </div>
+              </article>
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    data-toggle="collapse"
+                    data-target="#collapse_2"
+                    aria-expanded="true"
+                    class=""
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">Brands</h6>
+                  </a>
+                </header>
+                <div class="filter-content collapse show" id="collapse_2" style="">
+                  <div class="card-body">
+                    <label class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        checked=""
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">
+                        Mercedes
+                        <b class="badge badge-pill badge-light float-right">120</b>
+                      </div>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        checked=""
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">
+                        Toyota
+                        <b class="badge badge-pill badge-light float-right">15</b>
+                      </div>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        checked=""
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">
+                        Mitsubishi
+                        <b class="badge badge-pill badge-light float-right">35</b>
+                      </div>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        checked=""
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">
+                        Nissan
+                        <b class="badge badge-pill badge-light float-right">89</b>
+                      </div>
+                    </label>
+                    <label class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" />
+                      <div class="custom-control-label">
+                        Honda
+                        <b class="badge badge-pill badge-light float-right">30</b>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- card-body.// -->
+                </div>
+              </article>
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    data-toggle="collapse"
+                    data-target="#collapse_3"
+                    aria-expanded="true"
+                    class=""
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">Price range</h6>
+                  </a>
+                </header>
+                <div class="filter-content collapse show" id="collapse_3" style="">
+                  <div class="card-body">
+                    <input
+                      type="range"
+                      class="custom-range"
+                      min="0"
+                      max="100"
+                      name=""
+                    />
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Min</label>
+                        <input
+                          class="form-control"
+                          placeholder="$0"
+                          type="number"
+                        />
+                      </div>
+                      <div class="form-group text-right col-md-6">
+                        <label>Max</label>
+                        <input
+                          class="form-control"
+                          placeholder="$1,0000"
+                          type="number"
+                        />
+                      </div>
+                    </div>
+                    <!-- form-row.// -->
+                    <button class="btn btn-block btn-primary">Apply</button>
+                  </div>
+                  <!-- card-body.// -->
+                </div>
+              </article>
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    data-toggle="collapse"
+                    data-target="#collapse_4"
+                    aria-expanded="true"
+                    class=""
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">Sizes</h6>
+                  </a>
+                </header>
+                <div class="filter-content collapse show" id="collapse_4">
+                  <div class="card-body">
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> XS </span>
+                    </label>
+    
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> SM </span>
+                    </label>
+    
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> LG </span>
+                    </label>
+    
+                    <label class="checkbox-btn">
+                      <input type="checkbox" />
+                      <span class="btn btn-light"> XXL </span>
+                    </label>
+                  </div>
+                  <!-- card-body.// -->
+                </div>
+              </article>
+              <article class="filter-group">
+                <header class="card-header">
+                  <a
+                    href="#"
+                    data-toggle="collapse"
+                    data-target="#collapse_5"
+                    aria-expanded="false"
+                    class=""
+                  >
+                    <i class="icon-control fa fa-chevron-down"></i>
+                    <h6 class="title">More filter</h6>
+                  </a>
+                </header>
+                <div class="filter-content collapse in" id="collapse_5" style="">
+                  <div class="card-body">
+                    <label class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        name="myfilter_radio"
+                        checked=""
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">Any condition</div>
+                    </label>
+    
+                    <label class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        name="myfilter_radio"
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">Brand new</div>
+                    </label>
+    
+                    <label class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        name="myfilter_radio"
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">Used items</div>
+                    </label>
+    
+                    <label class="custom-control custom-radio">
+                      <input
+                        type="radio"
+                        name="myfilter_radio"
+                        class="custom-control-input"
+                      />
+                      <div class="custom-control-label">Very old</div>
+                    </label>
+                  </div>
+                  <!-- card-body.// -->
+                </div>
+              </article>
+            </div>
+          </aside>
+      <div class="col-md-9">
         <div class="card">
           <article class="card-body">
             <header class="mb-4">
-              <h4 class="card-title">Sign up</h4>
+              <h4 class="card-title">Checkout Order</h4>
             </header>
-            <form>
+            <form           class="px-4 py-3"
+            name="form"
+            #f="ngForm"
+            (ngSubmit)="f.form.valid && checkOutShoppingCart()"
+            novalidate >
               <div class="form-row">
                 <div class="col-md-6 form-group">
-                  <label>First name</label>
-                  <input type="text" class="form-control" placeholder="">
-                </div> <!-- form-group end.// -->
-                <div class="col-md-6 form-group">
-                  <label>Last name</label>
-                  <input type="text" class="form-control" placeholder="">
-                </div> <!-- form-group end.// -->
-              </div> <!-- form-row end.// -->
+                  <label>Name</label>
+                  <input
+                  type="text"
+                  name="CustomerName"
+                  class="form-control"
+                  placeholder="CustomerName"
+                  id="CustomerName"
+                  [(ngModel)]="checkoutModel.Name"
+                  #CustomerName="ngModel"
+                  required
+                />
+                <div
+                *ngIf="CustomerName.invalid && f.submitted"
+                class="alert alert-danger"
+              >
+                </div>
+                <!-- form-group end.// -->
+               
+                <!-- form-group end.// -->
+              </div></div>
+              <div class="form-row">
+                  <div class="col-md-6 form-group">
+                    <label>Email</label>
+                    <input
+                    type="text"
+                    name="Email"
+                    class="form-control"
+                    placeholder="Email"
+                    id="Email"
+                    [(ngModel)]="checkoutModel.Email"
+                  />
+                  </div>
+                  <!-- form-group end.// -->
+                  <div class="col-md-6 form-group">
+                    <label>Phone</label>
+                    <input
+                    type="text"
+                    name="Phone"
+                    class="form-control"
+                    placeholder="Phone"
+                    id="Phone"
+                    [(ngModel)]="checkoutModel.Phone"
+                  />
+                  </div>
+                  <!-- form-group end.// -->
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                      <label>Address1</label>
+                      <input
+                      type="text"
+                      name="Address1"
+                      class="form-control"
+                      placeholder="Address1"
+                      id="Address1"
+                      [(ngModel)]="checkoutModel.Address1"
+                    />
+                    </div>
+                    <!-- form-group end.// -->
+                    <div class="col-md-6 form-group">
+                      <label>Address2</label>
+                      <input
+                      type="text"
+                      name="Address2"
+                      class="form-control"
+                      placeholder="Address2"
+                      id="Address2"
+                      [(ngModel)]="checkoutModel.Address2"
+                    />
+                    </div>
+                    <!-- form-group end.// -->
+                  </div>
+              <!-- form-row end.// -->
+ 
               <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" placeholder="">
-                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
-              </div> <!-- form-group end.// -->
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label>Create password</label>
-                  <input class="form-control" type="password">
-                </div> <!-- form-group end.// -->
-                <div class="form-group col-md-6">
-                  <label>Repeat password</label>
-                  <input class="form-control" type="password">
-                </div> <!-- form-group end.// -->
+                <button type="submit" class="btn btn-primary btn-block">
+                  Checkout Order
+                </button>
               </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Register </button>
-              </div> <!-- form-group// -->
-
+              <!-- form-group// -->
             </form>
-            <hr>
+            <hr />
             <p class="text-center">Have an account? <a href="">Log In</a></p>
-          </article> <!-- card-body end .// -->
-        </div> <!-- card.// -->
+          </article>
+          <!-- card-body end .// -->
+        </div>
+        <!-- card.// -->
+      </div>
     </div>
-  </div>
   </div>
 </section>

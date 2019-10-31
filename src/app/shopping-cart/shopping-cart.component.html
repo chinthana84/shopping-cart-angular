@@ -1,109 +1,154 @@
 <section class="section-name padding-y bg">
-<div style='margin-top:5px' class="container ">
-  <div class="row">
-    <aside class="col-lg-12">
-      <div class="card">
-
-        <div class="table-responsive">
-
-          <table class="table table-borderless table-shopping-cart">
-            <thead class="text-muted">
-              <tr class="small text-uppercase">
-                <th scope="col">Product</th>
-                <th scope="col" width="75">Qty</th>
-                <th scope="col" width="120">Price</th>
-                <th scope="col" width="120"></th>
-                  <th scope="col" width="120">Delivery</th>              
-                <th scope="col" class="text-right d-none d-md-block" width="200"> </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let i of items; let ii = index">
-                <td>
-                  <figure class="itemside align-items-center">
-                    <div class="aside"><img src="{{ i.ImageURL}}" class="img-sm"></div>
-                    <figcaption class="info">
-                      <a href="#" class="title text-dark">{{i.Description}}</a>
-                      <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p>
-                    </figcaption>
-                  </figure>
-                </td>
-                <td>
-                  <input class="form-control" type="text" [(ngModel)]="i.OrderQty" (ngModelChange)="triggerUpdate(i)" />
-                </td>
-                <td>
-                  <div class="price-wrap">
-                    <!-- <var class="price">$1156.00</var>
+  <div style="margin-top:5px" class="container ">
+    <div class="row">
+      <aside class="col-lg-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table table-borderless table-shopping-cart">
+              <thead class="text-muted">
+                <tr class="small text-uppercase">
+                  <th scope="col">Product</th>
+                  <th scope="col" width="75">Qty</th>
+                  <th scope="col" width="120">Price</th>
+                  <th scope="col" width="120"></th>
+                  <th scope="col" width="120">Delivery</th>
+                  <th
+                    scope="col"
+                    class="text-right d-none d-md-block"
+                    width="200"
+                  ></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of items; let ii = index">
+                  <td>
+                    <figure class="itemside align-items-center">
+                      <div class="aside">
+                        <img src="{{ i.ImageURL }}" class="img-sm" />
+                      </div>
+                      <figcaption class="info">
+                        <a href="#" class="title text-dark">{{
+                          i.Description
+                        }}</a>
+                        <p class="text-muted small">
+                          Matrix: 25 Mpx <br />
+                          Brand: Canon
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <input
+                      class="form-control"
+                      type="text"
+                      [(ngModel)]="i.OrderQty"
+                      (ngModelChange)="triggerUpdate(i)"
+                    />
+                  </td>
+                  <td>
+                    <div class="price-wrap">
+                      <!-- <var class="price">$1156.00</var>
                     <small class="text-muted"> $315.20 each </small> -->
 
-                    <span class="currency"> <span class="num">${{ i.Price - (i.Price * i.Discount * 0.01) }} </span>
-                    <del class="price-old" *ngIf="i.Discount>0">${{ i.Price }}</del>
-                  </span>
-                    
+                      <span class="currency">
+                        <span class="num"
+                          >${{ i.Price - i.Price * i.Discount * 0.01 }}
+                        </span>
+                        <del class="price-old" *ngIf="i.Discount > 0"
+                          >${{ i.Price }}</del
+                        >
+                      </span>
+                    </div>
+                    <!-- price-wrap .// -->
+                  </td>
+                  <td>
+                    <div class="price-wrap">
+                      <span class="currency">
+                        <span class="num"
+                          >${{
+                            (i.Price - i.Price * i.Discount * 0.01) * i.OrderQty
+                          }}
+                        </span>
+                      </span>
+                    </div>
+                    <!-- price-wrap .// -->
+                  </td>
+                  <td>
+                    <div class="price-wrap">
+                      <input
+                        class="form-control"
+                        type="text"
+                        [(ngModel)]="i.DeliveryDayCount"
+                      />
+                    </div>
+                    <!-- price-wrap .// -->
+                  </td>
+                  <td class="text-right d-none d-md-block">
+                    <button
+                      (click)="deleteShoppingCartItem(i)"
+                      class="btn btn-sm btn-danger"
+                    >
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- table-responsive.// -->
 
-                  </div> <!-- price-wrap .// -->
-                </td>
-                <td>
-                  <div class="price-wrap">
-                    <span class="currency"> <span class="num">${{ (i.Price - (i.Price * i.Discount * 0.01))* i.OrderQty}} </span>
-                  </span>
-                    
-
-                  </div> <!-- price-wrap .// -->
-                </td>
-               <td>
-                  <div class="price-wrap">
-                    <input class="form-control" type="text" [(ngModel)]="i.DeliveryDayCount" />               
-                    
-
-                  </div> <!-- price-wrap .// -->
-                </td>                
-                <td class="text-right d-none d-md-block">
-                  <button (click)="deleteShoppingCartItem(i)" class="btn btn-sm btn-danger">
-                    <i class="fa fa-trash"></i> </button>
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-
-        </div> <!-- table-responsive.// -->
-
-        <div class="card-body border-top">
-          <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
-        </div> <!-- card-body.// -->
-
-      </div> <!-- card.// -->
-
-    </aside> <!-- col.// -->
-
-  </div><br />
-  <div class="row">
-    <aside class="offset-md-9 col-lg-3">
-      <div class="card">
-        <div class="card-body">
-          <dl class="dlist-align">
-            <dt>Total price:</dt>
-            <dd class="text-right">${{spCartSummary.Total  }}</dd>
-          </dl>
-          <dl class="dlist-align">
-            <dt>Discount:</dt>
-            <dd class="text-right text-danger">- ${{spCartSummary.TotalDiscount}}</dd>
-          </dl>
-          <dl class="dlist-align">
-            <dt>Total:</dt>
-            <dd class="text-right text-dark b"><strong>${{spCartSummary.Total -spCartSummary.TotalDiscount}}</strong></dd>
-          </dl>
-          <hr>
-             <a href="#" class="btn btn-primary btn-block" routerLink="/check-out"> Check out </a>
-
-        </div> <!-- card-body.// -->
-      </div> <!-- card.// -->
-
-    </aside> <!-- col.// -->
+          <div class="card-body border-top">
+            <p class="icontext">
+              <i class="icon text-success fa fa-truck"></i> Free Delivery within
+              1-2 weeks
+            </p>
+          </div>
+          <!-- card-body.// -->
+        </div>
+        <!-- card.// -->
+      </aside>
+      <!-- col.// -->
+    </div>
+    <br />
+    <div class="row">
+      <aside class="offset-md-9 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <dl class="dlist-align">
+              <dt>Total price:</dt>
+              <dd class="text-right">${{ spCartSummary.Total }}</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Discount:</dt>
+              <dd class="text-right text-danger">
+                - ${{ spCartSummary.TotalDiscount }}
+              </dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Total:</dt>
+              <dd class="text-right text-dark b">
+                <strong
+                  >${{
+                    spCartSummary.Total - spCartSummary.TotalDiscount
+                  }}</strong
+                >
+              </dd>
+            </dl>
+            <hr />
+            <a
+              href="#"
+              class="btn btn-primary btn-block"
+              routerLink="/check-out"
+            >
+              Check out
+            </a>
+          </div>
+          <!-- card-body.// -->
+        </div>
+        <!-- card.// -->
+      </aside>
+      <!-- col.// -->
+    </div>
   </div>
-
- 
-</div>
 </section>
 <br />

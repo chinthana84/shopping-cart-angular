@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './_services';
-import { User, Item, ShoppinCartSummary, Breadcrumb, CategoryModel } from './_models';
+import { User, Item, ShoppinCartSummary, Breadcrumb, CategoryModel, ItemModel } from './_models';
 import { DataService } from './_services/data.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -56,6 +56,9 @@ export class AppComponent implements OnInit {
          }	
        });   
 
+
+
+
     });
   }
 
@@ -90,6 +93,9 @@ export class AppComponent implements OnInit {
       this.categoryModel = r;
       console.log(r);
     });
+
+    
+   
 
   }
 

@@ -16,7 +16,7 @@ import $ from 'jquery';
 
 // tslint:disable-next-line: component-selector
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit,AfterViewInit {
   currentUser: User;
   HTTPActivity: boolean;
   private shoppinCartItemCount$: ShoppinCartSummary = new ShoppinCartSummary();
@@ -62,7 +62,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-
+  ngAfterViewInit(){
+ 
+  }
   ngOnInit() {
     const scSummary = new ShoppinCartSummary();
 
